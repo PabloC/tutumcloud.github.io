@@ -253,10 +253,10 @@ Stop an application
     :statuscode 401: unauthorized (wrong credentials)
 
 
-Destroy an application
-^^^^^^^^^^^^^^^^^^^^^^
+Terminate an application
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. http:post:: /api/v1/application/(uuid)/destroy/
+.. http:delete:: /api/v1/application/(uuid)/
 
     Destroy all the containers in an application. This is not reversible. All the data stored in all the application containers will be permanently deleted.
 
@@ -330,23 +330,6 @@ Stop a container
     :statuscode 404: container not found
 
 
-Destroy a container
-^^^^^^^^^^^^^^^^^^^
-
-.. http:post:: /api/v1/container/(uuid)/destroy/
-
-    Destroy the specified container and update the target number of containers of the related application. This is not reversible.
-    All the data stored in the container will be permanently deleted.
-
-    :query uuid: the UUID of the container
-    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
-    :reqheader Accept: required, only ``application/json`` is supported
-    :statuscode 202: operation accepted
-    :statuscode 400: cannot perform the operation (probably the container is not in a suitable state)
-    :statuscode 401: unauthorized (wrong credentials)
-    :statuscode 404: container not found
-
-
 Get logs for a container
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -361,4 +344,22 @@ Get logs for a container
     :statuscode 400: cannot perform the operation (probably the container is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
+
+
+Terminate a container
+^^^^^^^^^^^^^^^^^^^^^
+
+.. http:delete:: /api/v1/container/(uuid)/
+
+    Destroy the specified container and update the target number of containers of the related application. This is not reversible.
+    All the data stored in the container will be permanently deleted.
+
+    :query uuid: the UUID of the container
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :statuscode 202: operation accepted
+    :statuscode 400: cannot perform the operation (probably the container is not in a suitable state)
+    :statuscode 401: unauthorized (wrong credentials)
+    :statuscode 404: container not found
+
 
