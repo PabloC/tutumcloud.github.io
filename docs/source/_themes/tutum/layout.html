@@ -61,10 +61,10 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
     <div class="w-section inverse">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4" style="padding-top:25px;">
-                    {{ toctree(collapse=True, maxdepth=2) }}
+                <div class="col-sm-3" style="padding-top:25px;">
+                    {{ toctree(collapse=False, maxdepth=2) }}
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                     {{ super() }}
                 </div>
             </div>

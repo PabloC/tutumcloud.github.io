@@ -1331,6 +1331,11 @@ a.headerlink {
 h1:hover a.headerlink, h2:hover a.headerlink, h3:hover a.headerlink, h4:hover a.headerlink {
     visibility: visible;
 }
+pre {
+    overflow-x: scroll !important;
+    white-space: pre;
+    word-wrap: normal;
+}
 /* -- relbar ---------------------------------------------------------------- */
 
 div.related {
