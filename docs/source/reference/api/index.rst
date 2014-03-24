@@ -5,7 +5,6 @@ HTTP API
 
 .. contents:: Table of Contents
 
-
 Authorization
 -------------
 
