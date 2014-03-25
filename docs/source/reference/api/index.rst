@@ -3,7 +3,8 @@
 HTTP API
 ========
 
-.. contents:: Table of Contents
+.. contents::
+    :local:
 
 Authorization
 -------------
