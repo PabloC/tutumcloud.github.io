@@ -34,7 +34,7 @@ Am I charged while my container is stopped?
 Yes. The diskspace, CPU, RAM, and hostname are all reserved while your container is stopped. Additionally, you will benefit from extremely 
 fast restart times, within a few seconds. Stop a container if you want to maintain its state, but disable access to it for any period of time.
 
-Am I charged while my container is terminated/destroy?
+Am I charged while my container is terminated/destroyed?
 -------------------------------------------
 
 No. Terminated containers do not incur any charges. Tutum will give you access to a terminated container's logs for up to 5 minutes after termination.
