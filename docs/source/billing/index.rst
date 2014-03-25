@@ -24,8 +24,14 @@ During our public beta period we do not offer a Service Level Agreement (SLA).
 
 What forms of payment do you accept?
 ------------------------------------
+
 We accept Visa, MasterCard, American Express, JCB, Discover, and Diners Club.
 
+
+Am I charged when I enter a credit card?
+---------------------------------------
+
+No — your card is only charged at the end of the billing cycle (last day of every calendar year).
 
 How do I cancel my account?
 ---------------------------
