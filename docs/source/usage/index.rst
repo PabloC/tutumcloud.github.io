@@ -10,5 +10,3 @@ Contents:
 
    launching/index
    scaling/index
-   linking/index
-   pushing/index

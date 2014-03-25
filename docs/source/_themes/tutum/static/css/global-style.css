@@ -1338,6 +1338,9 @@ pre {
 .img-thumbnail {
     margin-bottom:12px;
 }
+.edit-on-github {
+    font-size:25px;
+}
 /* -- relbar ---------------------------------------------------------------- */
 
 div.related {
