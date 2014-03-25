@@ -13,6 +13,5 @@ Contents:
 
    introduction/index
    billing/index
-   technical/index
    usage/index
    reference/index

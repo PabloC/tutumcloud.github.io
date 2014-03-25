@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Tutum 0.6 documentation" href="../../index.html" />
     <link rel="up" title="Reference" href="../index.html" />
-    <link rel="prev" title="Python API" href="../sdk/python/index.html" />
+    <link rel="prev" title="HTTP API" href="../api/index.html" />
 <link rel="icon" href="../../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
 
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -59,7 +59,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                         <a href="http://www.tutum.co/pricing/">Pricing</a>
                     </li>
                     <li>
-                        <a href="http://support.tutum.co/hc/">Documentation</a>
+                        <a href="http://docs.tutum.co/">Documentation</a>
                     </li>
                     <li class="hidden-sm">
                         <a href="http://support.tutum.co/hc/communities/public/topics">Community</a>
@@ -89,12 +89,9 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                         <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../billing/index.html">Billing FAQ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../technical/index.html">Technical FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api/index.html">HTTP API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cli/index.html">Command-line Interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sdk/index.html">API Libraries</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Jumpstart Images</a></li>
 </ul>
 </li>
@@ -110,13 +107,41 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
             
   <div class="section" id="jumpstart-images">
 <h1>Jumpstart Images<a class="headerlink" href="#jumpstart-images" title="Permalink to this headline">¶</a></h1>
-<p>TBD</p>
+<div class="section" id="databases-and-caches">
+<h2>Databases and caches<a class="headerlink" href="#databases-and-caches" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mysql-tutum-mysql">
+<h3>MySQL (tutum/mysql)<a class="headerlink" href="#mysql-tutum-mysql" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://index.docker.io/u/tutum/mysql/">Link to the Docker Index page</a></p>
+<p><a class="reference external" href="https://github.com/tutumcloud/tutum-docker-mysql/">Link to the source GitHub repository</a></p>
+<div class="highlight-none"><div class="highlight"><pre>FROM ubuntu:saucy
+MAINTAINER Fernando Mayo &lt;fernando@tutum.co&gt;
+
+# Install packages
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor mysql-server pwgen
+
+# Add image configuration and scripts
+ADD start.sh /start.sh
+ADD run.sh /run.sh
+ADD supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
+ADD my.cnf /etc/mysql/conf.d/my.cnf
+ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
+ADD import_sql.sh /import_sql.sh
+RUN chmod 755 /*.sh
+
+EXPOSE 3306
+CMD [&quot;/run.sh&quot;]
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
           </div>
         </div>
       </div>
+                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/reference/jumpstarts/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
                 </div>
             </div>
         </div>

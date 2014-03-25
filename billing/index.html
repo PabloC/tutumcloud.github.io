@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Tutum 0.6 documentation" href="../index.html" />
-    <link rel="next" title="Technical FAQ" href="../technical/index.html" />
+    <link rel="next" title="Usage" href="../usage/index.html" />
     <link rel="prev" title="Introduction" href="../introduction/index.html" />
 <link rel="icon" href="../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../_static/assets/fraction/fractionslider.css" type="text/css" />
 
@@ -59,7 +59,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                         <a href="http://www.tutum.co/pricing/">Pricing</a>
                     </li>
                     <li>
-                        <a href="http://support.tutum.co/hc/">Documentation</a>
+                        <a href="http://docs.tutum.co/">Documentation</a>
                     </li>
                     <li class="hidden-sm">
                         <a href="http://support.tutum.co/hc/communities/public/topics">Community</a>
@@ -88,8 +88,9 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                     <div id="toctree" style="display:none;">
                         <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Billing FAQ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../technical/index.html">Technical FAQ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Billing FAQ</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
 </ul>
@@ -104,13 +105,39 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
             
   <div class="section" id="billing-faq">
 <h1>Billing FAQ<a class="headerlink" href="#billing-faq" title="Permalink to this headline">¶</a></h1>
-<p>TBD</p>
+<div class="section" id="how-am-i-billed">
+<h2>How am I billed?<a class="headerlink" href="#how-am-i-billed" title="Permalink to this headline">¶</a></h2>
+<p>All billing, payments, and associated information is encrypted and securely handled by Stripe. There is a 30-day billing cycle.
+Containers are charged for 10 minutes of usage when they are launched (not 1 hour, like most cloud providers do).
+After the initial 10 minutes, containers are charged per minute. We will bill your credit card on file after the billing cycles completes.
+You can check your ongoing spending for the current billing cycle, as well as past bills, right from within Tutum&#8217;s management console.</p>
+</div>
+<div class="section" id="do-you-charge-for-bandwidth-transfer">
+<h2>Do you charge for bandwidth transfer?<a class="headerlink" href="#do-you-charge-for-bandwidth-transfer" title="Permalink to this headline">¶</a></h2>
+<p>Incoming transfer into your container is always free. Every billing month, your container is given limited free bandwith transfer,
+the amount of which varies with the size of the container (leftover is non-accumulative). Additional outgoing transfer is charged 12¢ per GB.</p>
+</div>
+<div class="section" id="what-is-your-sla">
+<h2>What is your SLA?<a class="headerlink" href="#what-is-your-sla" title="Permalink to this headline">¶</a></h2>
+<p>During our public beta period we will not offer a Service Level Agreement (SLA). Sorry for the inconvenience.</p>
+</div>
+<div class="section" id="how-do-i-cancel-my-account">
+<h2>How do I cancel my account?<a class="headerlink" href="#how-do-i-cancel-my-account" title="Permalink to this headline">¶</a></h2>
+<p>During our public beta, please contact us directly at <a class="reference external" href="mailto:support&#37;&#52;&#48;tutum&#46;co">support<span>&#64;</span>tutum<span>&#46;</span>co</a> to cancel your account.</p>
+</div>
+<div class="section" id="am-i-being-charged-while-my-container-is-stopped">
+<h2>Am I being charged while my container is stopped?<a class="headerlink" href="#am-i-being-charged-while-my-container-is-stopped" title="Permalink to this headline">¶</a></h2>
+<p>Yes, you will be charged at the same rate, per minute, as if your container were running. While your container is stopped
+the local storage is not discarded. Additionally, you will benefit from extremely fast restart times, within 2 seconds.
+Stop a container if you want to maintain its state, but disable access to it for any period of time.</p>
+</div>
 </div>
 
 
           </div>
         </div>
       </div>
+                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/billing/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
                 </div>
             </div>
         </div>

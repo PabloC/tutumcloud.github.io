@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Tutum 0.6 documentation" href="../../index.html" />
     <link rel="up" title="Usage" href="../index.html" />
-    <link rel="next" title="Linking applications" href="../linking/index.html" />
+    <link rel="next" title="Reference" href="../../reference/index.html" />
     <link rel="prev" title="Launching an application" href="../launching/index.html" />
 <link rel="icon" href="../../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
 
@@ -60,7 +60,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                         <a href="http://www.tutum.co/pricing/">Pricing</a>
                     </li>
                     <li>
-                        <a href="http://support.tutum.co/hc/">Documentation</a>
+                        <a href="http://docs.tutum.co/">Documentation</a>
                     </li>
                     <li class="hidden-sm">
                         <a href="http://support.tutum.co/hc/communities/public/topics">Community</a>
@@ -90,12 +90,9 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                         <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../billing/index.html">Billing FAQ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../technical/index.html">Technical FAQ</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Usage</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../launching/index.html">Launching an application</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Scaling an application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linking/index.html">Linking applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pushing/index.html">Pushing your application to Tutum</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
@@ -111,13 +108,140 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
             
   <div class="section" id="scaling-an-application">
 <h1>Scaling an application<a class="headerlink" href="#scaling-an-application" title="Permalink to this headline">¶</a></h1>
-<p>TBD</p>
+<p>If the application that you are deploying supports horizontal scaling, Tutum makes it easy to spawn new instances (containers)
+with your application to handle any additional load.</p>
+<div class="section" id="what-can-be-scaled-horizontally">
+<h2>What can be scaled horizontally<a class="headerlink" href="#what-can-be-scaled-horizontally" title="Permalink to this headline">¶</a></h2>
+<p>Any application that can handle additional load by just increasing the number of instances (containers) of such application.
+Examples include:
+* Stateless web servers and proxies that listen in port 80
+* &#8220;Worker&#8221; instances that process jobs from a queue and do not receive user traffic
+* &#8220;Cron&#8221;-style instances that execute periodic tasks and do not receive user traffic</p>
+<p>Usually, databases cannot be scaled horizontally by just increasing the number of instances. The application has to be
+configured specifically to handle horizontal scaling, for example, for MySQL to automatically configure itself as
+a master or a slave instance depending on the number of existing instances in the cluster. A custom proxy is usually
+deployed in these scenarios to route traffic to the appropiate instance.</p>
+</div>
+<div class="section" id="how-tutum-handles-scaling">
+<h2>How Tutum handles scaling<a class="headerlink" href="#how-tutum-handles-scaling" title="Permalink to this headline">¶</a></h2>
+<p>When an application is launched with more than one instance, the second and subsequent instances are linked to all the other instances.
+This environment variables are very useful if your application needs to autoconfigure itself when launching depending
+on the number of instances already running.
+For example, if an application named <tt class="docutils literal"><span class="pre">my-web-app</span></tt> is launched with <strong>3</strong> containers, each instance will be started with the
+following environment variables:</p>
+<div class="section" id="environment-variables-set-in-the-first-my-web-app-1-container">
+<h3>Environment variables set in the first (my-web-app-1) container<a class="headerlink" href="#environment-variables-set-in-the-first-my-web-app-1-container" title="Permalink to this headline">¶</a></h3>
+<p>The first container will not have any special environment variables set by the scaling mechanism</p>
+</div>
+<div class="section" id="environment-variables-set-in-the-second-my-web-app-2-container">
+<h3>Environment variables set in the second (my-web-app-2) container<a class="headerlink" href="#environment-variables-set-in-the-second-my-web-app-2-container" title="Permalink to this headline">¶</a></h3>
+<p>The second container will be linked to the first container (<tt class="docutils literal"><span class="pre">my-web-app-1</span></tt>), ending up with the following environment variables:</p>
+<table border="1" class="table table-bordered table-striped docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MY-WEB-APP-1_PORT</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-odd"><td>MY-WEB-APP-1_PORT_80_TCP</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-even"><td>MY-WEB-APP-1_PORT_80_TCP_ADDR</td>
+<td>my-web-app-1-user.beta.tutum.io</td>
+</tr>
+<tr class="row-odd"><td>MY-WEB-APP-1_PORT_80_TCP_PORT</td>
+<td>49330</td>
+</tr>
+<tr class="row-even"><td>MY-WEB-APP-1_PORT_80_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="environment-variables-set-in-the-third-my-web-app-3-container">
+<h3>Environment variables set in the third (my-web-app-3) container<a class="headerlink" href="#environment-variables-set-in-the-third-my-web-app-3-container" title="Permalink to this headline">¶</a></h3>
+<p>The third container will be linked to the first and second containers (<tt class="docutils literal"><span class="pre">my-web-app-1</span></tt> and <tt class="docutils literal"><span class="pre">my-web-app-2</span></tt>),
+ending up with the following environment variables:</p>
+<table border="1" class="table table-bordered table-striped docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MY-WEB-APP-1_PORT</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-odd"><td>MY-WEB-APP-1_PORT_80_TCP</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-even"><td>MY-WEB-APP-1_PORT_80_TCP_ADDR</td>
+<td>my-web-app-1-user.beta.tutum.io</td>
+</tr>
+<tr class="row-odd"><td>MY-WEB-APP-1_PORT_80_TCP_PORT</td>
+<td>49330</td>
+</tr>
+<tr class="row-even"><td>MY-WEB-APP-1_PORT_80_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+<tr class="row-odd"><td>MY-WEB-APP-2_PORT</td>
+<td><a class="reference external" href="tcp://my-web-app-2-user.delta.tutum.io:49331">tcp://my-web-app-2-user.delta.tutum.io:49331</a></td>
+</tr>
+<tr class="row-even"><td>MY-WEB-APP-2_PORT_80_TCP</td>
+<td><a class="reference external" href="tcp://my-web-app-2-user.delta.tutum.io:49331">tcp://my-web-app-2-user.delta.tutum.io:49331</a></td>
+</tr>
+<tr class="row-odd"><td>MY-WEB-APP-2_PORT_80_TCP_ADDR</td>
+<td>my-web-app-2-user.delta.tutum.io</td>
+</tr>
+<tr class="row-even"><td>MY-WEB-APP-2_PORT_80_TCP_PORT</td>
+<td>49331</td>
+</tr>
+<tr class="row-odd"><td>MY-WEB-APP-2_PORT_80_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="setting-the-initial-number-of-containers">
+<h2>Setting the initial number of containers<a class="headerlink" href="#setting-the-initial-number-of-containers" title="Permalink to this headline">¶</a></h2>
+<p>When configuring your application prior to launch, you will have the chance to specify an initial number of containers for your
+application:</p>
+<img alt="../../_images/application_configuration_v1.png" class="img-responsive img-thumbnail" src="../../_images/application_configuration_v1.png" />
+<p>The number of containers specified in this wizard will be launched immediately.</p>
+</div>
+<div class="section" id="scaling-an-already-running-application">
+<h2>Scaling an already running application<a class="headerlink" href="#scaling-an-already-running-application" title="Permalink to this headline">¶</a></h2>
+<p>After your application has been started, if you need to scale it up (or down), you can do so from the application detail page:</p>
+<img alt="../../_images/application_detail_wordpress_v1.png" class="img-responsive img-thumbnail" src="../../_images/application_detail_wordpress_v1.png" />
+<p>Simply move the <strong>Number of containers</strong> slider to the target number of containers and press <strong>Apply</strong>. The application will
+start scaling immediately.</p>
+</div>
+<div class="section" id="high-availability-and-scaling-muli-az">
+<h2>High availability and scaling (muli-AZ)<a class="headerlink" href="#high-availability-and-scaling-muli-az" title="Permalink to this headline">¶</a></h2>
+<p>In order to increase the availability of your application, each container of your scaled application will run in a different
+<a class="reference external" href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">availability zone</a>, so it
+will become tolerant to any failures in one (or more, depending on the number of containers being ran) availability zones.
+This is done automatically and requires no user input.</p>
+</div>
 </div>
 
 
           </div>
         </div>
       </div>
+                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/usage/scaling/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
                 </div>
             </div>
         </div>
