@@ -12,6 +12,7 @@ What can be scaled horizontally
 
 Any application that can handle additional load by just increasing the number of instances (containers) of such application.
 Examples include:
+
 * Stateless web servers and proxies that listen in port 80
 * "Worker" instances that process jobs from a queue and do not receive user traffic
 * "Cron"-style instances that execute periodic tasks and do not receive user traffic
