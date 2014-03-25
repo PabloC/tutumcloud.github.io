@@ -6,7 +6,7 @@ Billing FAQ
 How am I billed?
 ----------------
 
-All billing, payments, and associated information is encrypted and securely handled by Stripe. There is a 30-day billing cycle.
+Billing, payments, and associated information is encrypted and securely handled by Stripe. There is a 30-day billing cycle.
 Containers are charged for 10 minutes of usage when they are launched (not 1 hour, like most cloud providers do).
 After the initial 10 minutes, containers are charged per minute. We will bill your credit card on file after the billing cycles completes.
 You can check your ongoing spending for the current billing cycle, as well as past bills, right from within Tutum's management console.
