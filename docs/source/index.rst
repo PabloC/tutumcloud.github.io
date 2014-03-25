@@ -1,18 +1,33 @@
-.. Tutum documentation master file, created by
-   sphinx-quickstart on Sun Mar 23 20:07:55 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Introduction
+============
 
-Documentation
-=============
+What is Tutum?
+--------------
 
-Contents:
+Tutum is a new type of cloud service. Unlike existing IaaS providers, such as Amazon Web Services or Digital Ocean,
+which provide Virtual Machines to end users, Tutum provides containers. Tutum is 100% compatible with containers that
+have been built using Docker.
 
-.. toctree::
-   :maxdepth: 2
-   :titlesonly:
 
-   introduction/index
-   billing/index
-   usage/index
-   reference/index
+What is Docker?
+---------------
+
+Docker is "an open-source project to easily create lightweight, portable, self-sufficient containers from any
+application". It was one of the fastest growing Open Source projects in 2013, and is poised to become the new standard
+in virtualization.
+
+
+What does Tutum provide?
+------------------------
+
+Tutum is a native container public cloud service. Because it is neither IaaS (Infrastructure-as-a-Service)
+nor PaaS (Platform-as-a-Service), we refer to it as CaaS or Containers-as-a-Service. You can run your public or
+private Docker images in Tutum with a few clicks using our web interface, or with just one command using our CLI.
+
+But that's not all: Tutum also provides advanced features such as application linking, scaling, web proxies,
+load balancing, etc.
+
+With Tutum you'll experience the flexibility and control of existing IaaS providers, and the speed and ease-of-use of
+application PaaS.
+
+Head to our Getting Started with Tutum to find out how to make use of our service.
