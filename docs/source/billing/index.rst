@@ -22,6 +22,11 @@ What is your SLA?
 During our public beta period we do not offer a Service Level Agreement (SLA).
 
 
+What forms of payment do you accept?
+------------------------------------
+Visa, MasterCard, American Express, JCB, Discover, and Diners Club.
+
+
 How do I cancel my account?
 ---------------------------
 
