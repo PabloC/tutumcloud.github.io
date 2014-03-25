@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>HTTP API &mdash; Tutum 0.6 documentation</title>
+    <title>HTTP API &mdash; Tutum Documentation</title>
     
     <link rel="stylesheet" href="../../_static/css/global-style.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="Tutum 0.6 documentation" href="../../index.html" />
+    <link rel="top" title="Tutum Documentation" href="../../index.html" />
     <link rel="up" title="Reference" href="../index.html" />
     <link rel="next" title="Jumpstart Images" href="../jumpstarts/index.html" />
     <link rel="prev" title="Reference" href="../index.html" />
@@ -107,43 +107,39 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
           <div class="body">
             
   <div class="section" id="http-api">
-<h1><a class="toc-backref" href="#id1">HTTP API</a><a class="headerlink" href="#http-api" title="Permalink to this headline">¶</a></h1>
-<div class="contents topic" id="table-of-contents">
-<p class="topic-title first">Table of Contents</p>
+<h1>HTTP API<a class="headerlink" href="#http-api" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#http-api" id="id1">HTTP API</a><ul>
-<li><a class="reference internal" href="#authorization" id="id2">Authorization</a></li>
-<li><a class="reference internal" href="#endpoint" id="id3">Endpoint</a></li>
-<li><a class="reference internal" href="#applications" id="id4">Applications</a><ul>
-<li><a class="reference internal" href="#list-all-applications" id="id5">List all applications</a></li>
-<li><a class="reference internal" href="#get-application-details" id="id6">Get application details</a></li>
-<li><a class="reference internal" href="#create-a-new-application" id="id7">Create a new application</a></li>
-<li><a class="reference internal" href="#update-an-application" id="id8">Update an application</a></li>
-<li><a class="reference internal" href="#start-an-application" id="id9">Start an application</a></li>
-<li><a class="reference internal" href="#stop-an-application" id="id10">Stop an application</a></li>
-<li><a class="reference internal" href="#terminate-an-application" id="id11">Terminate an application</a></li>
+<li><a class="reference internal" href="#authorization" id="id1">Authorization</a></li>
+<li><a class="reference internal" href="#endpoint" id="id2">Endpoint</a></li>
+<li><a class="reference internal" href="#applications" id="id3">Applications</a><ul>
+<li><a class="reference internal" href="#list-all-applications" id="id4">List all applications</a></li>
+<li><a class="reference internal" href="#get-application-details" id="id5">Get application details</a></li>
+<li><a class="reference internal" href="#create-a-new-application" id="id6">Create a new application</a></li>
+<li><a class="reference internal" href="#update-an-application" id="id7">Update an application</a></li>
+<li><a class="reference internal" href="#start-an-application" id="id8">Start an application</a></li>
+<li><a class="reference internal" href="#stop-an-application" id="id9">Stop an application</a></li>
+<li><a class="reference internal" href="#terminate-an-application" id="id10">Terminate an application</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#containers" id="id12">Containers</a><ul>
-<li><a class="reference internal" href="#list-all-containers" id="id13">List all containers</a></li>
-<li><a class="reference internal" href="#get-container-details" id="id14">Get container details</a></li>
-<li><a class="reference internal" href="#start-a-container" id="id15">Start a container</a></li>
-<li><a class="reference internal" href="#stop-a-container" id="id16">Stop a container</a></li>
-<li><a class="reference internal" href="#get-logs-for-a-container" id="id17">Get logs for a container</a></li>
-<li><a class="reference internal" href="#terminate-a-container" id="id18">Terminate a container</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#containers" id="id11">Containers</a><ul>
+<li><a class="reference internal" href="#list-all-containers" id="id12">List all containers</a></li>
+<li><a class="reference internal" href="#get-container-details" id="id13">Get container details</a></li>
+<li><a class="reference internal" href="#start-a-container" id="id14">Start a container</a></li>
+<li><a class="reference internal" href="#stop-a-container" id="id15">Stop a container</a></li>
+<li><a class="reference internal" href="#get-logs-for-a-container" id="id16">Get logs for a container</a></li>
+<li><a class="reference internal" href="#terminate-a-container" id="id17">Terminate a container</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="authorization">
-<h2><a class="toc-backref" href="#id2">Authorization</a><a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Authorization</a><a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h2>
 <p>In order to be able to make requests to the API, you should first obtain an ApiKey for your account.
 For this, log into Tutum, click on the menu on the upper right corner of the screen, and select <strong>Get Api Key</strong></p>
 </div>
 <div class="section" id="endpoint">
-<h2><a class="toc-backref" href="#id3">Endpoint</a><a class="headerlink" href="#endpoint" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Endpoint</a><a class="headerlink" href="#endpoint" title="Permalink to this headline">¶</a></h2>
 <p>The Tutum HTTP API is reachable through the following hostname:</p>
 <div class="highlight-python"><div class="highlight"><pre>https://app.tutum.co/
 </pre></div>
@@ -154,9 +150,9 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 </div>
 </div>
 <div class="section" id="applications">
-<h2><a class="toc-backref" href="#id4">Applications</a><a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Applications</a><a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="list-all-applications">
-<h3><a class="toc-backref" href="#id5">List all applications</a><a class="headerlink" href="#list-all-applications" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">List all applications</a><a class="headerlink" href="#list-all-applications" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-application-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/application/</tt><a class="headerlink" href="#get--api-v1-application-" title="Permalink to this definition">¶</a></dt>
@@ -241,7 +237,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="get-application-details">
-<h3><a class="toc-backref" href="#id6">Get application details</a><a class="headerlink" href="#get-application-details" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Get application details</a><a class="headerlink" href="#get-application-details" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-application-(uuid)-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/application/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--api-v1-application-(uuid)-" title="Permalink to this definition">¶</a></dt>
@@ -337,7 +333,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="create-a-new-application">
-<h3><a class="toc-backref" href="#id7">Create a new application</a><a class="headerlink" href="#create-a-new-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Create a new application</a><a class="headerlink" href="#create-a-new-application" title="Permalink to this headline">¶</a></h3>
 <dl class="post">
 <dt id="post--api-v1-application-">
 <tt class="descname">POST </tt><tt class="descname">/api/v1/application/</tt><a class="headerlink" href="#post--api-v1-application-" title="Permalink to this definition">¶</a></dt>
@@ -377,7 +373,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="update-an-application">
-<h3><a class="toc-backref" href="#id8">Update an application</a><a class="headerlink" href="#update-an-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Update an application</a><a class="headerlink" href="#update-an-application" title="Permalink to this headline">¶</a></h3>
 <dl class="patch">
 <dt id="patch--api-v1-application-(uuid)-">
 <tt class="descname">PATCH </tt><tt class="descname">/api/v1/application/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#patch--api-v1-application-(uuid)-" title="Permalink to this definition">¶</a></dt>
@@ -418,7 +414,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="start-an-application">
-<h3><a class="toc-backref" href="#id9">Start an application</a><a class="headerlink" href="#start-an-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Start an application</a><a class="headerlink" href="#start-an-application" title="Permalink to this headline">¶</a></h3>
 <dl class="post">
 <dt id="post--api-v1-application-(uuid)-start-">
 <tt class="descname">POST </tt><tt class="descname">/api/v1/application/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/start/</tt><a class="headerlink" href="#post--api-v1-application-(uuid)-start-" title="Permalink to this definition">¶</a></dt>
@@ -453,7 +449,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="stop-an-application">
-<h3><a class="toc-backref" href="#id10">Stop an application</a><a class="headerlink" href="#stop-an-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Stop an application</a><a class="headerlink" href="#stop-an-application" title="Permalink to this headline">¶</a></h3>
 <dl class="post">
 <dt id="post--api-v1-application-(uuid)-stop-">
 <tt class="descname">POST </tt><tt class="descname">/api/v1/application/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/stop/</tt><a class="headerlink" href="#post--api-v1-application-(uuid)-stop-" title="Permalink to this definition">¶</a></dt>
@@ -488,7 +484,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="terminate-an-application">
-<h3><a class="toc-backref" href="#id11">Terminate an application</a><a class="headerlink" href="#terminate-an-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Terminate an application</a><a class="headerlink" href="#terminate-an-application" title="Permalink to this headline">¶</a></h3>
 <dl class="delete">
 <dt id="delete--api-v1-application-(uuid)-">
 <tt class="descname">DELETE </tt><tt class="descname">/api/v1/application/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#delete--api-v1-application-(uuid)-" title="Permalink to this definition">¶</a></dt>
@@ -524,9 +520,9 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 </div>
 </div>
 <div class="section" id="containers">
-<h2><a class="toc-backref" href="#id12">Containers</a><a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Containers</a><a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="list-all-containers">
-<h3><a class="toc-backref" href="#id13">List all containers</a><a class="headerlink" href="#list-all-containers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">List all containers</a><a class="headerlink" href="#list-all-containers" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-container-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/container/</tt><a class="headerlink" href="#get--api-v1-container-" title="Permalink to this definition">¶</a></dt>
@@ -554,7 +550,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="get-container-details">
-<h3><a class="toc-backref" href="#id14">Get container details</a><a class="headerlink" href="#get-container-details" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Get container details</a><a class="headerlink" href="#get-container-details" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-container-(uuid)-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--api-v1-container-(uuid)-" title="Permalink to this definition">¶</a></dt>
@@ -583,7 +579,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="start-a-container">
-<h3><a class="toc-backref" href="#id15">Start a container</a><a class="headerlink" href="#start-a-container" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Start a container</a><a class="headerlink" href="#start-a-container" title="Permalink to this headline">¶</a></h3>
 <dl class="post">
 <dt id="post--api-v1-container-(uuid)-start-">
 <tt class="descname">POST </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/start/</tt><a class="headerlink" href="#post--api-v1-container-(uuid)-start-" title="Permalink to this definition">¶</a></dt>
@@ -619,7 +615,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="stop-a-container">
-<h3><a class="toc-backref" href="#id16">Stop a container</a><a class="headerlink" href="#stop-a-container" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Stop a container</a><a class="headerlink" href="#stop-a-container" title="Permalink to this headline">¶</a></h3>
 <dl class="post">
 <dt id="post--api-v1-container-(uuid)-stop-">
 <tt class="descname">POST </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/stop/</tt><a class="headerlink" href="#post--api-v1-container-(uuid)-stop-" title="Permalink to this definition">¶</a></dt>
@@ -655,7 +651,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="get-logs-for-a-container">
-<h3><a class="toc-backref" href="#id17">Get logs for a container</a><a class="headerlink" href="#get-logs-for-a-container" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Get logs for a container</a><a class="headerlink" href="#get-logs-for-a-container" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-container-(uuid)-logs-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/logs/</tt><a class="headerlink" href="#get--api-v1-container-(uuid)-logs-" title="Permalink to this definition">¶</a></dt>
@@ -691,7 +687,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 
 </div>
 <div class="section" id="terminate-a-container">
-<h3><a class="toc-backref" href="#id18">Terminate a container</a><a class="headerlink" href="#terminate-a-container" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Terminate a container</a><a class="headerlink" href="#terminate-a-container" title="Permalink to this headline">¶</a></h3>
 <dl class="delete">
 <dt id="delete--api-v1-container-(uuid)-">
 <tt class="descname">DELETE </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#delete--api-v1-container-(uuid)-" title="Permalink to this definition">¶</a></dt>
