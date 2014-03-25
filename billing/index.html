@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Tutum Documentation" href="../" />
     <link rel="next" title="Usage" href="../usage/" />
-    <link rel="prev" title="Introduction" href="../introduction/" />
+    <link rel="prev" title="Introduction" href="../" />
 <link rel="icon" href="../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../_static/assets/fraction/fractionslider.css" type="text/css" />
 
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -89,8 +89,20 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
             <div class="row">
                 <div class="col-sm-3" style="padding-top:25px;">
                     <div id="toctree" style="display:none;">
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div id="searchbox" style="display: none; margin-bottom:50px;">
+    <form class="search" action="../search/" method="get">
+      <input type="search" class="form-control" name="q" placeholder="Search documentation..." />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
                         <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Billing FAQ</a><ul class="simple">
 </ul>
 </li>
@@ -110,10 +122,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <h1>Billing FAQ<a class="headerlink" href="#billing-faq" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="how-am-i-billed">
 <h2>How am I billed?<a class="headerlink" href="#how-am-i-billed" title="Permalink to this headline">¶</a></h2>
-<p>Billing, payments, and associated information is encrypted and securely handled by Stripe. There is a 30-day billing cycle.
-Containers are charged for 10 minutes of usage when they are launched (not 1 hour, like most cloud providers do).
-After the initial 10 minutes, containers are charged per minute. We will bill your credit card on file after the billing cycles completes.
-You can check your ongoing spending for the current billing cycle, as well as past bills, right from within Tutum&#8217;s management console.</p>
+<p>Containers are billed for 10 minutes of usage when they are launched. After this, containers are billed per minute.</p>
 </div>
 <div class="section" id="do-you-charge-for-bandwidth-transfer">
 <h2>Do you charge for bandwidth transfer?<a class="headerlink" href="#do-you-charge-for-bandwidth-transfer" title="Permalink to this headline">¶</a></h2>
@@ -122,17 +131,28 @@ the amount of which varies with the size of the container (leftover is non-accum
 </div>
 <div class="section" id="what-is-your-sla">
 <h2>What is your SLA?<a class="headerlink" href="#what-is-your-sla" title="Permalink to this headline">¶</a></h2>
-<p>During our public beta period we will not offer a Service Level Agreement (SLA). Sorry for the inconvenience.</p>
+<p>During our public beta period we do not offer a Service Level Agreement (SLA).</p>
+</div>
+<div class="section" id="what-forms-of-payment-do-you-accept">
+<h2>What forms of payment do you accept?<a class="headerlink" href="#what-forms-of-payment-do-you-accept" title="Permalink to this headline">¶</a></h2>
+<p>We accept Visa, MasterCard, American Express, JCB, Discover, and Diners Club.</p>
+</div>
+<div class="section" id="am-i-charged-when-i-enter-a-credit-card">
+<h2>Am I charged when I enter a credit card?<a class="headerlink" href="#am-i-charged-when-i-enter-a-credit-card" title="Permalink to this headline">¶</a></h2>
+<p>No, your card is only charged at the end of the billing cycle (last day of every calendar year).</p>
 </div>
 <div class="section" id="how-do-i-cancel-my-account">
 <h2>How do I cancel my account?<a class="headerlink" href="#how-do-i-cancel-my-account" title="Permalink to this headline">¶</a></h2>
 <p>During our public beta, please contact us directly at <a class="reference external" href="mailto:support&#37;&#52;&#48;tutum&#46;co">support<span>&#64;</span>tutum<span>&#46;</span>co</a> to cancel your account.</p>
 </div>
-<div class="section" id="am-i-being-charged-while-my-container-is-stopped">
-<h2>Am I being charged while my container is stopped?<a class="headerlink" href="#am-i-being-charged-while-my-container-is-stopped" title="Permalink to this headline">¶</a></h2>
-<p>Yes, you will be charged at the same rate, per minute, as if your container were running. While your container is stopped
-the local storage is not discarded. Additionally, you will benefit from extremely fast restart times, within 2 seconds.
-Stop a container if you want to maintain its state, but disable access to it for any period of time.</p>
+<div class="section" id="am-i-charged-while-my-container-is-stopped">
+<h2>Am I charged while my container is stopped?<a class="headerlink" href="#am-i-charged-while-my-container-is-stopped" title="Permalink to this headline">¶</a></h2>
+<p>Yes. The diskspace, CPU, RAM, and hostname are all reserved while your container is stopped. Additionally, you will benefit from extremely
+fast restart times. Stop a container if you want to maintain its state, but disable access to it for any period of time.</p>
+</div>
+<div class="section" id="am-i-charged-while-my-container-is-terminated-destroyed">
+<h2>Am I charged while my container is terminated/destroyed?<a class="headerlink" href="#am-i-charged-while-my-container-is-terminated-destroyed" title="Permalink to this headline">¶</a></h2>
+<p>No. Terminated containers do not incur any charges. Tutum will give you access to a terminated container&#8217;s logs for up to 5 minutes after termination.</p>
 </div>
 </div>
 

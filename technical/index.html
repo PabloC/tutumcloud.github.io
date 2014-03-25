@@ -87,8 +87,20 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
             <div class="row">
                 <div class="col-sm-3" style="padding-top:25px;">
                     <div id="toctree" style="display:none;">
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div id="searchbox" style="display: none; margin-bottom:50px;">
+    <form class="search" action="../search/" method="get">
+      <input type="search" class="form-control" name="q" placeholder="Search documentation..." />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
                         <ul>
-<li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../billing/">Billing FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/">Reference</a></li>
@@ -104,7 +116,31 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
             
   <div class="section" id="technical-faq">
 <h1>Technical FAQ<a class="headerlink" href="#technical-faq" title="Permalink to this headline">¶</a></h1>
-<p>TBD</p>
+<div class="section" id="do-you-have-an-api">
+<h2>Do you have an API?<a class="headerlink" href="#do-you-have-an-api" title="Permalink to this headline">¶</a></h2>
+<p>Yes, we have a <a class="reference internal" href="../reference/api/"><em>RESTful API</em></a>. The API allows you to create and destroy containers and application,
+as well as replicate all of the application control panel functionality.</p>
+</div>
+<div class="section" id="do-containers-applications-have-a-firewall">
+<h2>Do containers/applications have a firewall?<a class="headerlink" href="#do-containers-applications-have-a-firewall" title="Permalink to this headline">¶</a></h2>
+<p>With containers, only ports that have been explicitly exposed are open. All other ports are closed.</p>
+</div>
+<div class="section" id="what-kind-of-virtualization-do-you-use">
+<h2>What kind of Virtualization do you use?<a class="headerlink" href="#what-kind-of-virtualization-do-you-use" title="Permalink to this headline">¶</a></h2>
+<p>We use LXC and Docker.</p>
+</div>
+<div class="section" id="what-kind-of-infrastructure-does-tutum-run-on">
+<h2>What kind of Infrastructure does Tutum run on?<a class="headerlink" href="#what-kind-of-infrastructure-does-tutum-run-on" title="Permalink to this headline">¶</a></h2>
+<p>Tutum runs on top of Amazon Web Services.</p>
+</div>
+<div class="section" id="can-i-set-my-own-hostname">
+<h2>Can I set my own hostname?<a class="headerlink" href="#can-i-set-my-own-hostname" title="Permalink to this headline">¶</a></h2>
+<p>Yes, we support custom hostnames using CNAMES for web applications (coming soon!).</p>
+</div>
+<div class="section" id="do-you-offer-redundancy">
+<h2>Do you offer redundancy?<a class="headerlink" href="#do-you-offer-redundancy" title="Permalink to this headline">¶</a></h2>
+<p>Yes, when deploying an application to multiple containers, Tutum automatically deploys to different hosts in different availability zones.</p>
+</div>
 </div>
 
 
