@@ -62,7 +62,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                     <li>
                         <a href="http://www.tutum.co/pricing/">Pricing</a>
                     </li>
-                    <li>
+                    <li class="hidden-sm">
                         <a href="http://docs.tutum.co/">Documentation</a>
                     </li>
                     <li class="hidden-sm">
@@ -91,7 +91,6 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                 <div class="col-sm-3" style="padding-top:25px;">
                     <div id="toctree" style="display:none;">
                         <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../billing/index.html">Billing FAQ</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Usage</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../launching/index.html">Launching an application</a></li>
@@ -116,10 +115,12 @@ with your application to handle any additional load.</p>
 <div class="section" id="what-can-be-scaled-horizontally">
 <h2>What can be scaled horizontally<a class="headerlink" href="#what-can-be-scaled-horizontally" title="Permalink to this headline">¶</a></h2>
 <p>Any application that can handle additional load by just increasing the number of instances (containers) of such application.
-Examples include:
-* Stateless web servers and proxies that listen in port 80
-* &#8220;Worker&#8221; instances that process jobs from a queue and do not receive user traffic
-* &#8220;Cron&#8221;-style instances that execute periodic tasks and do not receive user traffic</p>
+Examples include:</p>
+<ul class="simple">
+<li>Stateless web servers and proxies that listen in port 80</li>
+<li>&#8220;Worker&#8221; instances that process jobs from a queue and do not receive user traffic</li>
+<li>&#8220;Cron&#8221;-style instances that execute periodic tasks and do not receive user traffic</li>
+</ul>
 <p>Usually, databases cannot be scaled horizontally by just increasing the number of instances. The application has to be
 configured specifically to handle horizontal scaling, for example, for MySQL to automatically configure itself as
 a master or a slave instance depending on the number of existing instances in the cluster. A custom proxy is usually
