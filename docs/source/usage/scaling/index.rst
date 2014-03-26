@@ -50,11 +50,11 @@ The second container will be linked to the first container (``my-web-app-1``), e
     ============================== ===========================================
     Name                           Value
     ============================== ===========================================
-    MY-WEB-APP-1_PORT              tcp://my-web-app-1-user.beta.tutum.io:49330
-    MY-WEB-APP-1_PORT_80_TCP       tcp://my-web-app-1-user.beta.tutum.io:49330
-    MY-WEB-APP-1_PORT_80_TCP_ADDR  my-web-app-1-user.beta.tutum.io
-    MY-WEB-APP-1_PORT_80_TCP_PORT  49330
-    MY-WEB-APP-1_PORT_80_TCP_PROTO tcp
+    MY_WEB_APP_1_PORT              tcp://my-web-app-1-user.beta.tutum.io:49330
+    MY_WEB_APP_1_PORT_80_TCP       tcp://my-web-app-1-user.beta.tutum.io:49330
+    MY_WEB_APP_1_PORT_80_TCP_ADDR  my-web-app-1-user.beta.tutum.io
+    MY_WEB_APP_1_PORT_80_TCP_PORT  49330
+    MY_WEB_APP_1_PORT_80_TCP_PROTO tcp
     ============================== ===========================================
 
 
@@ -70,16 +70,16 @@ ending up with the following environment variables:
     ============================== ============================================
     Name                           Value
     ============================== ============================================
-    MY-WEB-APP-1_PORT              tcp://my-web-app-1-user.beta.tutum.io:49330
-    MY-WEB-APP-1_PORT_80_TCP       tcp://my-web-app-1-user.beta.tutum.io:49330
-    MY-WEB-APP-1_PORT_80_TCP_ADDR  my-web-app-1-user.beta.tutum.io
-    MY-WEB-APP-1_PORT_80_TCP_PORT  49330
-    MY-WEB-APP-1_PORT_80_TCP_PROTO tcp
-    MY-WEB-APP-2_PORT              tcp://my-web-app-2-user.delta.tutum.io:49331
-    MY-WEB-APP-2_PORT_80_TCP       tcp://my-web-app-2-user.delta.tutum.io:49331
-    MY-WEB-APP-2_PORT_80_TCP_ADDR  my-web-app-2-user.delta.tutum.io
-    MY-WEB-APP-2_PORT_80_TCP_PORT  49331
-    MY-WEB-APP-2_PORT_80_TCP_PROTO tcp
+    MY_WEB_APP_1_PORT              tcp://my-web-app-1-user.beta.tutum.io:49330
+    MY_WEB_APP_1_PORT_80_TCP       tcp://my-web-app-1-user.beta.tutum.io:49330
+    MY_WEB_APP_1_PORT_80_TCP_ADDR  my-web-app-1-user.beta.tutum.io
+    MY_WEB_APP_1_PORT_80_TCP_PORT  49330
+    MY_WEB_APP_1_PORT_80_TCP_PROTO tcp
+    MY_WEB_APP_2_PORT              tcp://my-web-app-2-user.delta.tutum.io:49331
+    MY_WEB_APP_2_PORT_80_TCP       tcp://my-web-app-2-user.delta.tutum.io:49331
+    MY_WEB_APP_2_PORT_80_TCP_ADDR  my-web-app-2-user.delta.tutum.io
+    MY_WEB_APP_2_PORT_80_TCP_PORT  49331
+    MY_WEB_APP_2_PORT_80_TCP_PROTO tcp
     ============================== ============================================
 
 
