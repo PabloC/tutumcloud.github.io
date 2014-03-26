@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Pushing your application to Tutum &mdash; Tutum Documentation</title>
+    <title>Pushing your app to Tutum &mdash; Tutum Documentation</title>
     
     <link rel="stylesheet" href="../../_static/css/global-style.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,6 +24,9 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Tutum Documentation" href="../../" />
+    <link rel="up" title="Usage" href="../" />
+    <link rel="next" title="Reference" href="../../reference/" />
+    <link rel="prev" title="Linking applications" href="../linking/" />
 <link rel="icon" href="../../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
 
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -99,11 +102,17 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-                        <ul>
+                        <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../billing/">Billing FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../technical/">Technical FAQ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../launching/">Launching an application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scaling/">Scaling an application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linking/">Linking applications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Pushing your app to Tutum</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/">Reference</a></li>
 </ul>
 
@@ -115,9 +124,26 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="pushing-your-application-to-tutum">
-<h1>Pushing your application to Tutum<a class="headerlink" href="#pushing-your-application-to-tutum" title="Permalink to this headline">¶</a></h1>
-<p>TBD</p>
+  <div class="section" id="pushing-your-app-to-tutum">
+<h1>Pushing your app to Tutum<a class="headerlink" href="#pushing-your-app-to-tutum" title="Permalink to this headline">¶</a></h1>
+<p>Tutum offers a free private Docker registry to its users. This short tutorial will guide you through the process to
+upload/push your Docker images to Tutum&#8217;s private registry. Application images pushed to Tutum&#8217;s private registry will
+automatically be shown in the <strong>My Images</strong> section of the <strong>Launch new application</strong> wizard.</p>
+<p>First thing you&#8217;ll need to push an image to Tutum&#8217;s registry is to have Docker installed.
+Please follow the <a class="reference external" href="https://www.docker.io/gettingstarted/">official installation instructions</a> depending on your system.</p>
+<p>With Docker installed:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ docker login r.tutum.co
+Username: user
+Password:
+Email: user@email.com
+Login Succeeded
+$ docker tag my_image r.tutum.co/user/my_image
+$ docker push r.tutum.co/user/my_image
+</pre></div>
+</div>
+<p>Note: In the instructions above, please substitute <tt class="docutils literal"><span class="pre">user</span></tt> with your Tutum username, <tt class="docutils literal"><span class="pre">my_image</span></tt> with your image&#8217;s name,
+and <tt class="docutils literal"><span class="pre">user&#64;email.com</span></tt> with the email you used to register at Tutum.</p>
+<p>After you complete those steps, you&#8217;ll see that your application image is available for selection in <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Images</span></tt>.</p>
 </div>
 
 
