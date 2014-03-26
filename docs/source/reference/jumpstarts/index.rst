@@ -246,6 +246,40 @@ MONGODB_PASS
     If set, the container will set the ``admin`` account password to the specified value on launch
 
 
+CouchDB (tutum/couchdb)
+^^^^^^^^^^^^^^^^^^^^^^^
+CouchDB image - listens in port 5984. For the admin account password, either set COUCHDB_PASS environment variable, or
+check the logs for a randomly generated one.
+
+Links: `Docker Index <https://index.docker.io/u/tutum/couchdb/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-couchdb/>`_
+
+**Source Dockerfile**
+
+.. sourcecode:: none
+
+    FROM ubuntu:saucy
+    MAINTAINER FENG, HONGLIN <hfeng@tutum.co>
+
+    #install CouchDB
+    RUN apt-get update
+    RUN DEBIAN_FRONTEND=noninteractive apt-get install -y couchdb
+    RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl pwgen
+    RUN mkdir /var/run/couchdb
+    RUN sed -i -r 's/;bind_address = 127.0.0.1/bind_address = 0.0.0.0/' /etc/couchdb/local.ini
+
+    ADD create_couchdb_admin_user.sh /create_couchdb_admin_user.sh
+    ADD run.sh /run.sh
+    RUN chmod 755 /*.sh
+
+    EXPOSE 5984
+    CMD ["/run.sh"]
+
+**Environment variables**
+
+COUCHDB_PASS
+    If set, the container will set the ``admin`` account password to the specified value on launch
+
+
 Message queues
 --------------
 
