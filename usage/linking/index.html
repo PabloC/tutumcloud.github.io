@@ -24,6 +24,9 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Tutum Documentation" href="../../" />
+    <link rel="up" title="Usage" href="../" />
+    <link rel="next" title="Reference" href="../../reference/" />
+    <link rel="prev" title="Scaling an application" href="../scaling/" />
 <link rel="icon" href="../../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
 
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -99,11 +102,16 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-                        <ul>
+                        <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../billing/">Billing FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../technical/">Technical FAQ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Usage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../launching/">Launching an application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scaling/">Scaling an application</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Linking applications</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/">Reference</a></li>
 </ul>
 
@@ -117,7 +125,140 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
             
   <div class="section" id="linking-applications">
 <h1>Linking applications<a class="headerlink" href="#linking-applications" title="Permalink to this headline">¶</a></h1>
-<p>TBD</p>
+<p>Tutum&#8217;s application linking capabilities have been modeled after Docker&#8217;s own
+<a class="reference external" href="http://docs.docker.io/en/latest/use/working_with_links_names/">Container Links</a>.</p>
+<p>Linking applications exposes a pre-defined set of environment variables with information (i.e. hostname, port, etc.)
+from the <em>linked</em> application to the <em>linking</em> application.</p>
+<p>Tutum links your application to all of the linked application&#8217;s containers. To do this, Tutum prefixes the environment
+variables with the applications and container&#8217;s names.</p>
+<p>For example, let&#8217;s say that you are running an application (<tt class="docutils literal"><span class="pre">my-web-app</span></tt>) with 2 containers (<tt class="docutils literal"><span class="pre">my-web-app-1</span></tt> and <tt class="docutils literal"><span class="pre">my-web-app-2</span></tt>).
+You now want to launch a proxy that will balance HTTP traffic to each of the containers in your <tt class="docutils literal"><span class="pre">my-web-app</span></tt> application.
+To launch the proxy, you would first select the appropriate image, then link it to your &#8220;web&#8221; application.
+These are the environment variables that would be passed to your proxy:</p>
+<table border="1" class="table table-bordered table-striped docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MY_WEB_APP_1_PORT</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_ADDR</td>
+<td>my-web-app-1-user.beta.tutum.io</td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP_PORT</td>
+<td>49330</td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT</td>
+<td><a class="reference external" href="tcp://my-web-app-2-user.delta.tutum.io:49331">tcp://my-web-app-2-user.delta.tutum.io:49331</a></td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_2_PORT_80_TCP</td>
+<td><a class="reference external" href="tcp://my-web-app-2-user.delta.tutum.io:49331">tcp://my-web-app-2-user.delta.tutum.io:49331</a></td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT_80_TCP_ADDR</td>
+<td>my-web-app-2-user.delta.tutum.io</td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_2_PORT_80_TCP_PORT</td>
+<td>49331</td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT_80_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_TUTUM_API_URL</td>
+<td><a class="reference external" href="https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/">https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/</a></td>
+</tr>
+</tbody>
+</table>
+<p>Your proxy application can now use these environment variables to configure itself on startup and start balancing traffic
+between the two containers of <tt class="docutils literal"><span class="pre">my-web-app</span></tt>.</p>
+<p>You will notice that the last environment variable, <tt class="docutils literal"><span class="pre">MY_WEB_APP_TUTUM_API_URL</span></tt>, is not defined in the Docker specification.
+This is a special Tutum variable passed on every link that contains the Tutum API resource URI of the linked application.
+This can be used, in conjunction with API roles (see below), to check for updates in the linked application.</p>
+<div class="section" id="using-tutum-api-roles">
+<h2>Using Tutum API roles<a class="headerlink" href="#using-tutum-api-roles" title="Permalink to this headline">¶</a></h2>
+<p>The above example is a very simple one. If <tt class="docutils literal"><span class="pre">my-web-app</span></tt> scales down, the proxy could detect this and remove the terminated container
+from its member list. However, if <tt class="docutils literal"><span class="pre">my-web-app</span></tt> scales up, these environment variables alone will not be of any help to
+detect the change.</p>
+<p>You can give an application an API role. This role is a set of privileges granted to the application containers on the
+Tutum API. At the moment we only support a &#8220;full&#8221; role which allows any operation to be performed on the API if granted.
+To get the list of available roles you can query the API: see <a class="reference internal" href="../../reference/api/#api-roles"><em>Roles</em></a></p>
+<p>The API role is passed in to the application containers as an authorization token stored in an environment variable called <tt class="docutils literal"><span class="pre">TUTUM_AUTH</span></tt>.
+This variable should be use to set the <tt class="docutils literal"><span class="pre">Authorization</span></tt> HTTP header when calling Tutum&#8217;s API:</p>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s2">&quot;Authorization: $TUTUM_AUTH&quot;</span> https://app.tutum.co/api/v1/application/
+</pre></div>
+</div>
+<p>Using this feature and following the example above, we can ask for updated information of the application using the
+environment variable <tt class="docutils literal"><span class="pre">MY_WEB_APP_TUTUM_API_URL</span></tt>:</p>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s2">&quot;Authorization: $TUTUM_AUTH&quot;</span> <span class="nv">$MY_WEB_APP_TUTUM_API_URL</span>
+
+<span class="o">{</span>
+    <span class="s2">&quot;autodestroy&quot;</span>: <span class="s2">&quot;OFF&quot;</span>,
+    <span class="s2">&quot;autoreplace&quot;</span>: <span class="s2">&quot;OFF&quot;</span>,
+    <span class="s2">&quot;autorestart&quot;</span>: <span class="s2">&quot;OFF&quot;</span>,
+    <span class="s2">&quot;container_envvars&quot;</span>: <span class="o">[]</span>,
+    <span class="s2">&quot;container_ports&quot;</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">&quot;application&quot;</span>: <span class="s2">&quot;/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/&quot;</span>,
+            <span class="s2">&quot;inner_port&quot;</span>: 80,
+            <span class="s2">&quot;outer_port&quot;</span>: null,
+            <span class="s2">&quot;protocol&quot;</span>: <span class="s2">&quot;tcp&quot;</span>
+        <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">&quot;container_size&quot;</span>: <span class="s2">&quot;XS&quot;</span>,
+    <span class="s2">&quot;containers&quot;</span>: <span class="o">[</span>
+        <span class="s2">&quot;/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/&quot;</span>,
+        <span class="s2">&quot;/api/v1/container/83499f74-85b1-4f69-9ab3-658a67535f70/&quot;</span>
+    <span class="o">]</span>,
+    <span class="s2">&quot;current_num_containers&quot;</span>: 2,
+    <span class="s2">&quot;deployed_datetime&quot;</span>: <span class="s2">&quot;Mon, 24 Mar 2014 23:58:15 +0000&quot;</span>,
+    <span class="s2">&quot;destroyed_datetime&quot;</span>: null,
+    <span class="s2">&quot;entrypoint&quot;</span>: <span class="s2">&quot;&quot;</span>,
+    <span class="s2">&quot;image_tag&quot;</span>: <span class="s2">&quot;/api/v1/image/tutum/hello-world/tag/latest/&quot;</span>,
+    <span class="s2">&quot;link_variables&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;MY_WEB_APP_1_PORT&quot;</span>: <span class="s2">&quot;tcp://my-web-app-1-admin.beta.tutum.io:49330&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_1_PORT_80_TCP&quot;</span>: <span class="s2">&quot;tcp://my-web-app-1-admin.beta.tutum.io:49330&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_1_PORT_80_TCP_ADDR&quot;</span>: <span class="s2">&quot;my-web-app-1-admin.beta.tutum.io&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_1_PORT_80_TCP_PORT&quot;</span>: <span class="s2">&quot;49330&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_1_PORT_80_TCP_PROTO&quot;</span>: <span class="s2">&quot;tcp&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_2_PORT&quot;</span>: <span class="s2">&quot;tcp://my-web-app-2-admin.beta.tutum.io:49331&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_2_PORT_80_TCP&quot;</span>: <span class="s2">&quot;tcp://my-web-app-2-admin.beta.tutum.io:49331&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_2_PORT_80_TCP_ADDR&quot;</span>: <span class="s2">&quot;my-web-app-2-admin.beta.tutum.io&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_2_PORT_80_TCP_PORT&quot;</span>: <span class="s2">&quot;49331&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_2_PORT_80_TCP_PROTO&quot;</span>: <span class="s2">&quot;tcp&quot;</span>,
+        <span class="s2">&quot;MY_WEB_APP_TUTUM_API_URL&quot;</span>: <span class="s2">&quot;https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/&quot;</span>
+    <span class="o">}</span>,
+    <span class="s2">&quot;linked_from_application&quot;</span>: <span class="o">[]</span>,
+    <span class="s2">&quot;linked_to_application&quot;</span>: <span class="o">[]</span>,
+    <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;my-web-app&quot;</span>,
+    <span class="s2">&quot;resource_uri&quot;</span>: <span class="s2">&quot;/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/&quot;</span>,
+    <span class="s2">&quot;roles&quot;</span>: <span class="o">[]</span>,
+    <span class="s2">&quot;run_command&quot;</span>: <span class="s2">&quot;/run.sh&quot;</span>,
+    <span class="s2">&quot;running_num_containers&quot;</span>: 1,
+    <span class="s2">&quot;started_datetime&quot;</span>: <span class="s2">&quot;Mon, 24 Mar 2014 23:58:15 +0000&quot;</span>,
+    <span class="s2">&quot;state&quot;</span>: <span class="s2">&quot;Partly running&quot;</span>,
+    <span class="s2">&quot;stopped_datetime&quot;</span>: null,
+    <span class="s2">&quot;stopped_num_containers&quot;</span>: 1,
+    <span class="s2">&quot;target_num_containers&quot;</span>: 2,
+    <span class="s2">&quot;unique_name&quot;</span>: <span class="s2">&quot;my-web-app&quot;</span>,
+    <span class="s2">&quot;uuid&quot;</span>: <span class="s2">&quot;6fe5029e-c125-4088-9b9a-4e74da20ac58&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Using this information (reading the <tt class="docutils literal"><span class="pre">containers</span></tt> attribute of the JSON response), the proxy can detect any changes
+on the linked application and add and remove members as the application scales up or down.</p>
+</div>
 </div>
 
 

@@ -155,17 +155,17 @@ Get application details
             "entrypoint": "",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY-WEB-APP-2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io",
-                "MY-WEB-APP-2_PORT_80_TCP_PORT": "49282",
-                "MY-WEB-APP-2_PORT_80_TCP_PROTO": "tcp",
-                "MY-WEB-APP-3_PORT": "tcp://my-web-app-3-admin.alpha-dev.tutum.io:49283",
-                "MY-WEB-APP-3_PORT_80_TCP": "tcp://my-web-app-3-admin.alpha-dev.tutum.io:49283",
-                "MY-WEB-APP-3_PORT_80_TCP_ADDR": "my-web-app-3-admin.alpha-dev.tutum.io",
-                "MY-WEB-APP-3_PORT_80_TCP_PORT": "49283",
-                "MY-WEB-APP-3_PORT_80_TCP_PROTO": "tcp",
-                "MY-WEB-APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/"
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io",
+                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
+                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_3_PORT": "tcp://my-web-app-3-admin.alpha-dev.tutum.io:49283",
+                "MY_WEB_APP_3_PORT_80_TCP": "tcp://my-web-app-3-admin.alpha-dev.tutum.io:49283",
+                "MY_WEB_APP_3_PORT_80_TCP_ADDR": "my-web-app-3-admin.alpha-dev.tutum.io",
+                "MY_WEB_APP_3_PORT_80_TCP_PORT": "49283",
+                "MY_WEB_APP_3_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/"
             },
             "linked_from_application": [],
             "linked_to_application": [],
@@ -248,7 +248,7 @@ Create a new application
             "entrypoint": "",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY-NEW-APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
             },
             "linked_from_application": [],
             "linked_to_application": [],
@@ -279,7 +279,7 @@ Create a new application
     :jsonparam string autorestart: optional, whether the containers should be restarted if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autoreplace: optional, whether the containers should be replaced with a new one if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autodestroy: optional, whether the containers should be terminated if they stop, i.e. ``OFF`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
-    :jsonparam string roles: optional, a list of Tutum API role resource URIs to grant the application, i.e. ``["/api/v1/role/global/"]`` (default: empty array)
+    :jsonparam string roles: optional, a list of Tutum API role resource URIs to grant the application, i.e. ``["/api/v1/role/global/"]`` (default: empty array, options: see :ref:`api-roles`)
     :reqheader Content-Type: required, only ``application/json`` is supported
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
@@ -356,17 +356,17 @@ Update an application
             "autoreplace": "OFF",
             "container_envvars": [],
             "link_variables": {
-                "MY-NEW-APP-2_PORT_80_TCP_PORT": "49154",
-                "MY-NEW-APP-2_PORT_80_TCP_PROTO": "tcp",
-                "MY-NEW-APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
-                "MY-NEW-APP-2_PORT": "tcp://my-new-app-2-admin.alpha-dev.tutum.io:49154",
-                "MY-NEW-APP-1_PORT_80_TCP": "tcp://my-new-app-1-admin.alpha-dev.tutum.io:49153",
-                "MY-NEW-APP-1_PORT_80_TCP_PORT": "49153",
-                "MY-NEW-APP-1_PORT_80_TCP_PROTO": "tcp",
-                "MY-NEW-APP-1_PORT": "tcp://my-new-app-1-admin.alpha-dev.tutum.io:49153",
-                "MY-NEW-APP-1_PORT_80_TCP_ADDR": "my-new-app-1-admin.alpha-dev.tutum.io",
-                "MY-NEW-APP-2_PORT_80_TCP": "tcp://my-new-app-2-admin.alpha-dev.tutum.io:49154",
-                "MY-NEW-APP-2_PORT_80_TCP_ADDR": "my-new-app-2-admin.alpha-dev.tutum.io"
+                "MY_NEW_APP_2_PORT_80_TCP_PORT": "49154",
+                "MY_NEW_APP_2_PORT_80_TCP_PROTO": "tcp",
+                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                "MY_NEW_APP_2_PORT": "tcp://my-new-app-2-admin.alpha-dev.tutum.io:49154",
+                "MY_NEW_APP_1_PORT_80_TCP": "tcp://my-new-app-1-admin.alpha-dev.tutum.io:49153",
+                "MY_NEW_APP_1_PORT_80_TCP_PORT": "49153",
+                "MY_NEW_APP_1_PORT_80_TCP_PROTO": "tcp",
+                "MY_NEW_APP_1_PORT": "tcp://my-new-app-1-admin.alpha-dev.tutum.io:49153",
+                "MY_NEW_APP_1_PORT_80_TCP_ADDR": "my-new-app-1-admin.alpha-dev.tutum.io",
+                "MY_NEW_APP_2_PORT_80_TCP": "tcp://my-new-app-2-admin.alpha-dev.tutum.io:49154",
+                "MY_NEW_APP_2_PORT_80_TCP_ADDR": "my-new-app-2-admin.alpha-dev.tutum.io"
             },
             "target_num_containers": 3
         }
@@ -444,7 +444,7 @@ Start an application
             "autoreplace": "OFF",
             "container_envvars": [],
             "link_variables": {
-                "MY-NEW-APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
             },
             "target_num_containers": 3
         }
@@ -520,7 +520,7 @@ Stop an application
             "autoreplace": "OFF",
             "container_envvars": [],
             "link_variables": {
-                "MY-NEW-APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
             },
             "target_num_containers": 3
         }
@@ -596,7 +596,7 @@ Terminate an application
             "autoreplace": "OFF",
             "container_envvars": [],
             "link_variables": {
-                "MY-NEW-APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
             },
             "target_num_containers": 3
         }
@@ -776,37 +776,37 @@ Get container details
             "container_envvars": [
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT",
+                    "key": "MY_WEB_APP_1_PORT",
                     "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP",
                     "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_ADDR",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
                     "value": "my-web-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_PORT",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
                     "value": "49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_PROTO",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
             "autoreplace": "OFF",
             "link_variables": {
-                "MY-WEB-APP-2_PORT_80_TCP_PROTO": "tcp",
-                "MY-WEB-APP-2_PORT_80_TCP_PORT": "49282",
-                "MY-WEB-APP-2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
+                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
             }
         }
 
@@ -876,37 +876,37 @@ Start a container
             "container_envvars": [
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT",
+                    "key": "MY_WEB_APP_1_PORT",
                     "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP",
                     "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_ADDR",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
                     "value": "my-web-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_PORT",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
                     "value": "49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_PROTO",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
             "autoreplace": "OFF",
             "link_variables": {
-                "MY-WEB-APP-2_PORT_80_TCP_PROTO": "tcp",
-                "MY-WEB-APP-2_PORT_80_TCP_PORT": "49282",
-                "MY-WEB-APP-2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
+                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
             }
         }
 
@@ -978,37 +978,37 @@ Stop a container
             "container_envvars": [
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT",
+                    "key": "MY_WEB_APP_1_PORT",
                     "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP",
                     "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_ADDR",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
                     "value": "my-web-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_PORT",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
                     "value": "49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_PROTO",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
             "autoreplace": "OFF",
             "link_variables": {
-                "MY-WEB-APP-2_PORT_80_TCP_PROTO": "tcp",
-                "MY-WEB-APP-2_PORT_80_TCP_PORT": "49282",
-                "MY-WEB-APP-2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
+                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
             }
         }
 
@@ -1053,7 +1053,7 @@ Get logs for a container
     :query uuid: the UUID of the container
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
-    :statuscode 200: operation accepted
+    :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
 
@@ -1118,37 +1118,37 @@ Terminate a container
             "container_envvars": [
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT",
+                    "key": "MY_WEB_APP_1_PORT",
                     "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP",
                     "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_ADDR",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
                     "value": "my-web-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_PORT",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
                     "value": "49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY-WEB-APP-1_PORT_80_TCP_PROTO",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
             "autoreplace": "OFF",
             "link_variables": {
-                "MY-WEB-APP-2_PORT_80_TCP_PROTO": "tcp",
-                "MY-WEB-APP-2_PORT_80_TCP_PORT": "49282",
-                "MY-WEB-APP-2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY-WEB-APP-2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
+                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
             }
         }
 
@@ -1161,3 +1161,56 @@ Terminate a container
     :statuscode 404: container not found
 
 
+.. _api-roles:
+
+Roles
+-----
+
+List all available roles
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. http:get:: /api/v1/role/
+
+    This operation returns a list of all available roles to be used when launching an application.
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        GET /api/v1/role/ HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+        {
+            "meta": {
+                "limit": 25,
+                "next": null,
+                "offset": 0,
+                "previous": null,
+                "total_count": 1
+            },
+            "objects": [
+                {
+                    "label": "Full access",
+                    "resource_uri": "/api/v1/role/global/",
+                    "scope": "global"
+                }
+            ]
+        }
+
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :queryparam int offset: optional, start the list skipping the first ``offset`` records (default: 0)
+    :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
+    :statuscode 200: no error
+    :statuscode 401: unauthorized (wrong credentials)

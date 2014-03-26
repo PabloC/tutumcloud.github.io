@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Tutum Documentation" href="../../" />
     <link rel="up" title="Usage" href="../" />
-    <link rel="next" title="Reference" href="../../reference/" />
+    <link rel="next" title="Linking applications" href="../linking/" />
     <link rel="prev" title="Launching an application" href="../launching/" />
 <link rel="icon" href="../../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
 
@@ -109,6 +109,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li class="toctree-l1 current"><a class="reference internal" href="../">Usage</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../launching/">Launching an application</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Scaling an application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linking/">Linking applications</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/">Reference</a></li>
@@ -165,19 +166,19 @@ following environment variables:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>MY-WEB-APP-1_PORT</td>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT</td>
 <td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
 </tr>
-<tr class="row-odd"><td>MY-WEB-APP-1_PORT_80_TCP</td>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP</td>
 <td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
 </tr>
-<tr class="row-even"><td>MY-WEB-APP-1_PORT_80_TCP_ADDR</td>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_ADDR</td>
 <td>my-web-app-1-user.beta.tutum.io</td>
 </tr>
-<tr class="row-odd"><td>MY-WEB-APP-1_PORT_80_TCP_PORT</td>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP_PORT</td>
 <td>49330</td>
 </tr>
-<tr class="row-even"><td>MY-WEB-APP-1_PORT_80_TCP_PROTO</td>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_PROTO</td>
 <td>tcp</td>
 </tr>
 </tbody>
@@ -198,34 +199,34 @@ ending up with the following environment variables:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>MY-WEB-APP-1_PORT</td>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT</td>
 <td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
 </tr>
-<tr class="row-odd"><td>MY-WEB-APP-1_PORT_80_TCP</td>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP</td>
 <td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
 </tr>
-<tr class="row-even"><td>MY-WEB-APP-1_PORT_80_TCP_ADDR</td>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_ADDR</td>
 <td>my-web-app-1-user.beta.tutum.io</td>
 </tr>
-<tr class="row-odd"><td>MY-WEB-APP-1_PORT_80_TCP_PORT</td>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP_PORT</td>
 <td>49330</td>
 </tr>
-<tr class="row-even"><td>MY-WEB-APP-1_PORT_80_TCP_PROTO</td>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_PROTO</td>
 <td>tcp</td>
 </tr>
-<tr class="row-odd"><td>MY-WEB-APP-2_PORT</td>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT</td>
 <td><a class="reference external" href="tcp://my-web-app-2-user.delta.tutum.io:49331">tcp://my-web-app-2-user.delta.tutum.io:49331</a></td>
 </tr>
-<tr class="row-even"><td>MY-WEB-APP-2_PORT_80_TCP</td>
+<tr class="row-even"><td>MY_WEB_APP_2_PORT_80_TCP</td>
 <td><a class="reference external" href="tcp://my-web-app-2-user.delta.tutum.io:49331">tcp://my-web-app-2-user.delta.tutum.io:49331</a></td>
 </tr>
-<tr class="row-odd"><td>MY-WEB-APP-2_PORT_80_TCP_ADDR</td>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT_80_TCP_ADDR</td>
 <td>my-web-app-2-user.delta.tutum.io</td>
 </tr>
-<tr class="row-even"><td>MY-WEB-APP-2_PORT_80_TCP_PORT</td>
+<tr class="row-even"><td>MY_WEB_APP_2_PORT_80_TCP_PORT</td>
 <td>49331</td>
 </tr>
-<tr class="row-odd"><td>MY-WEB-APP-2_PORT_80_TCP_PROTO</td>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT_80_TCP_PROTO</td>
 <td>tcp</td>
 </tr>
 </tbody>
