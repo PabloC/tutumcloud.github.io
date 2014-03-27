@@ -146,6 +146,7 @@ List all applications
                     "entrypoint": "",
                     "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
                     "name": "my-web-app",
+                    "public_dns": "my-web-app.alpha.tutum.io",
                     "resource_uri": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
                     "run_command": "/run.sh",
                     "running_num_containers": 2,
@@ -155,7 +156,8 @@ List all applications
                     "stopped_num_containers": 0,
                     "target_num_containers": 2,
                     "unique_name": "my-web-app",
-                    "uuid": "6fe5029e-c125-4088-9b9a-4e74da20ac58"
+                    "uuid": "6fe5029e-c125-4088-9b9a-4e74da20ac58",
+                    "web_public_dns": "my-web-app.alpha.tutum.io"
                 }
             ]
         }
@@ -229,14 +231,14 @@ Get application details
             "entrypoint": "",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io",
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io",
                 "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
                 "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
-                "MY_WEB_APP_3_PORT": "tcp://my-web-app-3-admin.alpha-dev.tutum.io:49283",
-                "MY_WEB_APP_3_PORT_80_TCP": "tcp://my-web-app-3-admin.alpha-dev.tutum.io:49283",
-                "MY_WEB_APP_3_PORT_80_TCP_ADDR": "my-web-app-3-admin.alpha-dev.tutum.io",
+                "MY_WEB_APP_3_PORT": "tcp://my-web-app-3-admin.alpha.tutum.io:49283",
+                "MY_WEB_APP_3_PORT_80_TCP": "tcp://my-web-app-3-admin.alpha.tutum.io:49283",
+                "MY_WEB_APP_3_PORT_80_TCP_ADDR": "my-web-app-3-admin.alpha.tutum.io",
                 "MY_WEB_APP_3_PORT_80_TCP_PORT": "49283",
                 "MY_WEB_APP_3_PORT_80_TCP_PROTO": "tcp",
                 "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/"
@@ -244,6 +246,7 @@ Get application details
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-web-app",
+            "public_dns": "my-web-app.alpha.tutum.io",
             "resource_uri": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
             "roles": [],
             "run_command": "/run.sh",
@@ -254,7 +257,8 @@ Get application details
             "stopped_num_containers": 0,
             "target_num_containers": 2,
             "unique_name": "my-web-app",
-            "uuid": "6fe5029e-c125-4088-9b9a-4e74da20ac58"
+            "uuid": "6fe5029e-c125-4088-9b9a-4e74da20ac58",
+            "web_public_dns": "my-web-app.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the application
@@ -337,6 +341,7 @@ Create and launch a new application
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-new-app",
+            "public_dns": "my-new-app.alpha.tutum.io",
             "resource_uri": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
             "roles": [],
             "run_command": "/run.sh",
@@ -347,7 +352,8 @@ Create and launch a new application
             "stopped_num_containers": 0,
             "target_num_containers": 2,
             "unique_name": "my-new-app",
-            "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513"
+            "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
+            "web_public_dns": "my-new-app.alpha.tutum.io"
         }
 
 
@@ -430,6 +436,7 @@ Update an application
             "stopped_num_containers": 0,
             "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
             "name": "my-new-app",
+            "public_dns": "my-new-app.alpha.tutum.io"
             "autorestart": "OFF",
             "destroyed_datetime": null,
             "state": "Scaling",
@@ -452,20 +459,22 @@ Update an application
                 "MY_NEW_APP_2_PORT_80_TCP_PORT": "49154",
                 "MY_NEW_APP_2_PORT_80_TCP_PROTO": "tcp",
                 "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
-                "MY_NEW_APP_2_PORT": "tcp://my-new-app-2-admin.alpha-dev.tutum.io:49154",
-                "MY_NEW_APP_1_PORT_80_TCP": "tcp://my-new-app-1-admin.alpha-dev.tutum.io:49153",
+                "MY_NEW_APP_2_PORT": "tcp://my-new-app-2-admin.alpha.tutum.io:49154",
+                "MY_NEW_APP_1_PORT_80_TCP": "tcp://my-new-app-1-admin.alpha.tutum.io:49153",
                 "MY_NEW_APP_1_PORT_80_TCP_PORT": "49153",
                 "MY_NEW_APP_1_PORT_80_TCP_PROTO": "tcp",
-                "MY_NEW_APP_1_PORT": "tcp://my-new-app-1-admin.alpha-dev.tutum.io:49153",
-                "MY_NEW_APP_1_PORT_80_TCP_ADDR": "my-new-app-1-admin.alpha-dev.tutum.io",
-                "MY_NEW_APP_2_PORT_80_TCP": "tcp://my-new-app-2-admin.alpha-dev.tutum.io:49154",
-                "MY_NEW_APP_2_PORT_80_TCP_ADDR": "my-new-app-2-admin.alpha-dev.tutum.io"
+                "MY_NEW_APP_1_PORT": "tcp://my-new-app-1-admin.alpha.tutum.io:49153",
+                "MY_NEW_APP_1_PORT_80_TCP_ADDR": "my-new-app-1-admin.alpha.tutum.io",
+                "MY_NEW_APP_2_PORT_80_TCP": "tcp://my-new-app-2-admin.alpha.tutum.io:49154",
+                "MY_NEW_APP_2_PORT_80_TCP_ADDR": "my-new-app-2-admin.alpha.tutum.io"
             },
-            "target_num_containers": 3
+            "target_num_containers": 3,
+            "web_public_dns": "my-new-app.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the application
     :jsonparam int target_num_containers: optional, the target number of containers to scale this application to
+    :jsonparam string web_public_dns: optional, the custom domain to use for this web application
     :reqheader Content-Type: required, only ``application/json`` is supported
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
@@ -529,6 +538,7 @@ Start an application
             "stopped_num_containers": 0,
             "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
             "name": "my-new-app",
+            "public_dns": "my-new-app.alpha.tutum.io"
             "autorestart": "OFF",
             "destroyed_datetime": null,
             "state": "Starting",
@@ -550,7 +560,8 @@ Start an application
             "link_variables": {
                 "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
             },
-            "target_num_containers": 3
+            "target_num_containers": 3,
+            "web_public_dns": "my-new-app.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the application
@@ -615,6 +626,7 @@ Stop an application
             "stopped_num_containers": 0,
             "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
             "name": "my-new-app",
+            "public_dns": "my-new-app.alpha.tutum.io",
             "autorestart": "OFF",
             "destroyed_datetime": null,
             "state": "Stopping",
@@ -636,7 +648,8 @@ Stop an application
             "link_variables": {
                 "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
             },
-            "target_num_containers": 3
+            "target_num_containers": 3,
+            "web_public_dns": "my-new-app.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the application
@@ -701,6 +714,7 @@ Terminate an application
             "stopped_num_containers": 0,
             "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
             "name": "my-new-app",
+            "public_dns": "my-new-app.alpha.tutum.io",
             "autorestart": "OFF",
             "destroyed_datetime": null,
             "state": "Stopping",
@@ -722,7 +736,8 @@ Terminate an application
             "link_variables": {
                 "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
             },
-            "target_num_containers": 3
+            "target_num_containers": 3,
+            "web_public_dns": "my-new-app.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the application
@@ -807,8 +822,9 @@ List all containers
                     "unique_name": "my-web-app-2",
                     "exit_code_msg": null,
                     "entrypoint": "",
-                    "public_dns": "my-web-app-2-admin.alpha-dev.tutum.io",
-                    "autoreplace": "OFF"
+                    "public_dns": "my-web-app-2-admin.alpha.tutum.io",
+                    "autoreplace": "OFF",
+                    "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
                 },
                 {
                     "exit_code": null,
@@ -837,8 +853,9 @@ List all containers
                     "unique_name": "my-web-app-3",
                     "exit_code_msg": null,
                     "entrypoint": "",
-                    "public_dns": "my-web-app-3-admin.alpha-dev.tutum.io",
-                    "autoreplace": "OFF"
+                    "public_dns": "my-web-app-3-admin.alpha.tutum.io",
+                    "autoreplace": "OFF",
+                    "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
                 }
             ]
         }
@@ -918,22 +935,22 @@ Get container details
             "linked_from_application": [],
             "exit_code_msg": null,
             "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha-dev.tutum.io",
+            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
             "container_envvars": [
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha-dev.tutum.io"
+                    "value": "my-web-app-1-admin.alpha.tutum.io"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
@@ -950,10 +967,11 @@ Get container details
             "link_variables": {
                 "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
                 "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
-            }
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+            },
+            "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the container
@@ -972,6 +990,124 @@ Get container details
     <tutum.api.container.Container object at 0x10701ca90>
 
 ``tutum.Container`` objects have all the attributes of the returned JSON as properties
+
+
+Update a container
+^^^^^^^^^^^^^^^^^^
+
+.. http:patch:: /api/v1/container/(uuid)/
+
+    Updates the specified container with the given data
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        PATCH /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/ HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+
+        {
+            "web_public_dns": "my-web-app.example.com"
+        }
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 202 Accepted
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+        {
+            "exit_code": null,
+            "deployed_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
+            "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
+            "container_ports": [
+                {
+                    "outer_port": 49282,
+                    "inner_port": 80,
+                    "protocol": "tcp",
+                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/"
+                }
+            ],
+            "run_command": "/run.sh",
+            "autodestroy": "OFF",
+            "linked_to_application": [],
+            "container_size": "XS",
+            "started_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
+            "uuid": "7d6696b7-fbaf-471d-8e6b-ce7052586c24",
+            "name": "my-web-app",
+            "autorestart": "OFF",
+            "destroyed_datetime": null,
+            "state": "Running",
+            "roles": [],
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
+            "stopped_datetime": null,
+            "resource_uri": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
+            "unique_name": "my-web-app-2",
+            "linked_from_application": [],
+            "exit_code_msg": null,
+            "entrypoint": "",
+            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
+            "container_envvars": [
+                {
+                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
+                    "key": "MY_WEB_APP_1_PORT",
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                },
+                {
+                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP",
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                },
+                {
+                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
+                    "value": "my-web-app-1-admin.alpha.tutum.io"
+                },
+                {
+                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
+                    "value": "49281"
+                },
+                {
+                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
+                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
+                    "value": "tcp"
+                }
+            ],
+            "autoreplace": "OFF",
+            "link_variables": {
+                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+            },
+            "web_public_dns": "my-web-app.example.com"
+        }
+
+    :query uuid: the UUID of the container
+    :jsonparam string web_public_dns: optional, the custom domain to use for this web application
+    :reqheader Content-Type: required, only ``application/json`` is supported
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :statuscode 202: operation accepted
+    :statuscode 404: container not found
+    :statuscode 401: unauthorized (wrong credentials)
+
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
+    >>> container.web_public_dns = "my-web-app.example.com"
+    >>> container.save()
+    True
 
 
 Start a container
@@ -1029,22 +1165,22 @@ Start a container
             "linked_from_application": [],
             "exit_code_msg": null,
             "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha-dev.tutum.io",
+            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
             "container_envvars": [
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha-dev.tutum.io"
+                    "value": "my-web-app-1-admin.alpha.tutum.io"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
@@ -1061,10 +1197,11 @@ Start a container
             "link_variables": {
                 "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
                 "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
-            }
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+            },
+            "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the container
@@ -1140,22 +1277,22 @@ Stop a container
             "linked_from_application": [],
             "exit_code_msg": null,
             "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha-dev.tutum.io",
+            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
             "container_envvars": [
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha-dev.tutum.io"
+                    "value": "my-web-app-1-admin.alpha.tutum.io"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
@@ -1172,10 +1309,11 @@ Stop a container
             "link_variables": {
                 "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
                 "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
-            }
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+            },
+            "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the container
@@ -1298,22 +1436,22 @@ Terminate a container
             "linked_from_application": [],
             "exit_code_msg": null,
             "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha-dev.tutum.io",
+            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
             "container_envvars": [
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49281"
+                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
                     "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha-dev.tutum.io"
+                    "value": "my-web-app-1-admin.alpha.tutum.io"
                 },
                 {
                     "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
@@ -1330,10 +1468,11 @@ Terminate a container
             "link_variables": {
                 "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
                 "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
-            }
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+            },
+            "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
         }
 
     :query uuid: the UUID of the container
