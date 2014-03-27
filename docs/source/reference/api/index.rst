@@ -1,10 +1,35 @@
 :title: HTTP API
 
-HTTP API
-========
+.. _api-ref:
+
+Tutum API
+=========
 
 .. contents::
     :local:
+
+.. _api-auth-ref:
+
+
+Introduction
+------------
+
+Tutum currently offers an HTTP REST API and a Python library that wraps this API. In this document you will find
+all the operations currently supported in the platform and examples on how to execute them as raw HTTP requests
+and by using the Python library.
+
+
+Installing the Python library
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order to install the Tutum Python library, you can use ``pip install``:
+
+.. sourcecode:: bash
+
+    pip install python-tutum
+
+It will install a Python module called ``tutum`` which you can use to interface with the API.
+
 
 Authorization
 -------------
@@ -13,19 +38,56 @@ In order to be able to make requests to the API, you should first obtain an ApiK
 For this, log into Tutum, click on the menu on the upper right corner of the screen, and select **Get Api Key**
 
 
-Endpoint
---------
+HTTP API
+^^^^^^^^
 
 The Tutum HTTP API is reachable through the following hostname::
 
     https://app.tutum.co/
 
-All requests should be sent to this endpoint with the appropriate Authorization header:
+All requests should be sent to this endpoint with the following ``Authorization`` header:
 
 .. sourcecode:: bash
 
     curl -H "Authorization: ApiKey username:apikey" https://app.tutum.co/api/v1/application/
 
+
+Python library
+^^^^^^^^^^^^^^
+
+You can use your ApiKey with the Python library in any of the following ways (will be used in this order):
+
+* Store it in a configuration file in ``~/.tutum``:
+
+.. sourcecode:: ini
+
+    [auth]
+    user = "username"
+    apikey = "apikey"
+
+* Set the environment variables ``TUTUM_USER`` and ``TUTUM_APIKEY``:
+
+.. sourcecode:: bash
+
+    export TUTUM_USER=username
+    export TUTUM_APIKEY=apikey
+
+* Manually set it in your Python initialization code:
+
+.. sourcecode:: python
+
+    import tutum
+    tutum.user = "username"
+    tutum.apikey = "apikey"
+
+
+Errors
+------
+
+Errors in the HTTP API will be returned with status codes in the 4xx and 5xx ranges.
+
+The Python library will detect this status codes and raise ``TutumServerError`` exceptions with the error message,
+which should be handled by the calling application accordingly.
 
 
 Applications
@@ -105,6 +167,18 @@ List all applications
     :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
 
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> tutum.Application.list()
+    [<tutum.api.application.Application object at 0x10701ca90>, <tutum.api.application.Application object at 0x10701ca91>]
+
+
+``tutum.Application`` objects have all the attributes of the returned JSON as properties
+
+.. _api-application-ref:
 
 Get application details
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -190,9 +264,19 @@ Get application details
     :statuscode 404: application not found
     :statuscode 401: unauthorized (wrong credentials)
 
+**Python library example**
 
-Create a new application
-^^^^^^^^^^^^^^^^^^^^^^^^
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
+    <tutum.api.application.Application object at 0x106c45c10>
+
+
+``tutum.Application`` objects have all the attributes of the returned JSON as properties
+
+Create and launch a new application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. http:post:: /api/v1/application/
 
@@ -286,6 +370,15 @@ Create a new application
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
+
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> app = tutum.Application(image_tag="tutum/hello-world")
+    >>> app.save()
+    True
 
 
 Update an application
@@ -381,6 +474,17 @@ Update an application
     :statuscode 401: unauthorized (wrong credentials)
 
 
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
+    >>> app.target_num_containers = 3
+    >>> app.save()
+    True
+
+
 Start an application
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -455,6 +559,16 @@ Start an application
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
+
+
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
+    >>> app.start()
+    True
 
 
 Stop an application
@@ -533,6 +647,16 @@ Stop an application
     :statuscode 401: unauthorized (wrong credentials)
 
 
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
+    >>> app.stop()
+    True
+
+
 Terminate an application
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -607,6 +731,16 @@ Terminate an application
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
+
+
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
+    >>> app.delete()
+    True
 
 
 Containers
@@ -717,6 +851,18 @@ List all containers
     :statuscode 401: unauthorized (wrong credentials)
 
 
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> tutum.Container.list()
+    [<tutum.api.container.Container object at 0x10701ca90>, <tutum.api.container.Container object at 0x10701ca91>]
+
+
+``tutum.Container`` objects have all the attributes of the returned JSON as properties
+
+
 Get container details
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -810,11 +956,22 @@ Get container details
             }
         }
 
+    :query uuid: the UUID of the container
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
     :statuscode 200: no error
     :statuscode 404: container not found
     :statuscode 401: unauthorized (wrong credentials)
+
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
+    <tutum.api.container.Container object at 0x10701ca90>
+
+``tutum.Container`` objects have all the attributes of the returned JSON as properties
 
 
 Start a container
@@ -918,6 +1075,15 @@ Start a container
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
 
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
+    >>> container.start()
+    True
+
 
 Stop a container
 ^^^^^^^^^^^^^^^^
@@ -1020,6 +1186,15 @@ Stop a container
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
 
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
+    >>> container.stop()
+    True
+
 
 Get logs for a container
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1056,6 +1231,15 @@ Get logs for a container
     :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
+
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
+    >>> container.logs()
+    {"logs": "2014-03-24 23:58:08,973 CRIT Supervisor running as root (no user in config file)\n2014-03-24 23:58:08,973 WARN Included extra file \"/etc/supervisor/conf.d/supervisord-apache2.conf\" during parsing"}
 
 
 Terminate a container
@@ -1160,6 +1344,15 @@ Terminate a container
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
 
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
+    >>> container.delete()
+    True
+
 
 .. _api-roles:
 
@@ -1214,3 +1407,62 @@ List all available roles
     :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
     :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
+
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> tutum.Role.list()
+    [<tutum.api.role.Role object at 0x10701ca90>]
+
+``tutum.Role`` objects have all the attributes of the returned JSON as properties
+
+
+Get role details
+^^^^^^^^^^^^^^^^
+
+.. http:get:: /api/v1/role/(scope)/
+
+    Returns the details of the specified role
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        GET /api/v1/role/global/ HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+        {
+            "label": "Full access",
+            "resource_uri": "/api/v1/role/global/",
+            "scope": "global"
+        }
+
+    :query scope: the scope of the role
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :statuscode 200: no error
+    :statuscode 404: role not found
+    :statuscode 401: unauthorized (wrong credentials)
+
+**Python library example**
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> tutum.Role.fetch("global")
+    <tutum.api.role.Role object at 0x10701ca90>
+
+``tutum.Role`` objects have all the attributes of the returned JSON as properties
