@@ -1,4 +1,4 @@
-:title: Pushing your application to Tutum
+:title: Pushing your app to Tutum
 
 Pushing your app to Tutum
 =========================
