@@ -57,14 +57,6 @@ Python library
 
 You can use your ApiKey with the Python library in any of the following ways (will be used in this order):
 
-* Store it in a configuration file in ``~/.tutum``:
-
-.. sourcecode:: ini
-
-    [auth]
-    user = "username"
-    apikey = "apikey"
-
 * Set the environment variables ``TUTUM_USER`` and ``TUTUM_APIKEY``:
 
 .. sourcecode:: bash
@@ -86,7 +78,7 @@ Errors
 
 Errors in the HTTP API will be returned with status codes in the 4xx and 5xx ranges.
 
-The Python library will detect this status codes and raise ``TutumServerError`` exceptions with the error message,
+The Python library will detect this status codes and raise ``TutumApiError`` exceptions with the error message,
 which should be handled by the calling application accordingly.
 
 
@@ -178,7 +170,7 @@ List all applications
     [<tutum.api.application.Application object at 0x10701ca90>, <tutum.api.application.Application object at 0x10701ca91>]
 
 
-``tutum.Application`` objects have all the attributes of the returned JSON as properties
+``Application`` objects have all the attributes of the returned JSON as properties
 
 .. _api-application-ref:
 
@@ -277,7 +269,7 @@ Get application details
     <tutum.api.application.Application object at 0x106c45c10>
 
 
-``tutum.Application`` objects have all the attributes of the returned JSON as properties
+``Application`` objects have all the attributes of the returned JSON as properties
 
 Create and launch a new application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -297,7 +289,7 @@ Create and launch a new application
         Content-Type: application/json
 
         {
-            "image_tag": "tutum/hello-world",
+            "image": "tutum/hello-world",
             "name": "my-new-app",
             "target_num_containers": 2,
             "container_size": "XS"
@@ -356,8 +348,8 @@ Create and launch a new application
             "web_public_dns": "my-new-app.alpha.tutum.io"
         }
 
-
-    :jsonparam string image_tag: required, the image used to deploy this application, i.e. ``tutum/hello-world``
+    :jsonparam string image_tag: required, the resource URI of the image used to deploy this application, i.e. ``/api/v1/image/tutum/hello-world/tag/latest/``
+    :jsonparam string image: optional, the image used to deploy this application in docker format, i.e. ``tutum/hello-world``. Required if ``image_tag`` is not provided.
     :jsonparam string name: optional, a human-readable name for the application, i.e. ``my-hello-world-app`` (default: ``image_tag`` without namespace)
     :jsonparam string container_size: optional, the size of the application containers, i.e. ``M`` (default: ``XS``, possible values: ``XS``, ``S``, ``M``, ``L``, ``XL``)
     :jsonparam int target_num_containers: the number of containers to run for this application (default: 1)
@@ -382,7 +374,7 @@ Create and launch a new application
 .. sourcecode:: python
 
     >>> import tutum
-    >>> app = tutum.Application(image_tag="tutum/hello-world")
+    >>> app = tutum.Application.create(image="tutum/hello-world", name="my-new-app", target_num_containers=2, container_size="XS")
     >>> app.save()
     True
 
@@ -877,7 +869,7 @@ List all containers
     [<tutum.api.container.Container object at 0x10701ca90>, <tutum.api.container.Container object at 0x10701ca91>]
 
 
-``tutum.Container`` objects have all the attributes of the returned JSON as properties
+``Container`` objects have all the attributes of the returned JSON as properties
 
 
 Get container details
@@ -989,7 +981,7 @@ Get container details
     >>> tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
     <tutum.api.container.Container object at 0x10701ca90>
 
-``tutum.Container`` objects have all the attributes of the returned JSON as properties
+``Container`` objects have all the attributes of the returned JSON as properties
 
 
 Update a container
@@ -1345,7 +1337,7 @@ Get logs for a container
 
     .. sourcecode:: http
 
-        POST /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/stop/ HTTP/1.1
+        GET /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/logs/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -1376,8 +1368,8 @@ Get logs for a container
 
     >>> import tutum
     >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.logs()
-    {"logs": "2014-03-24 23:58:08,973 CRIT Supervisor running as root (no user in config file)\n2014-03-24 23:58:08,973 WARN Included extra file \"/etc/supervisor/conf.d/supervisord-apache2.conf\" during parsing"}
+    >>> container.logs
+    "2014-03-24 23:58:08,973 CRIT Supervisor running as root (no user in config file)\n2014-03-24 23:58:08,973 WARN Included extra file \"/etc/supervisor/conf.d/supervisord-apache2.conf\" during parsing"
 
 
 Terminate a container
@@ -1555,7 +1547,7 @@ List all available roles
     >>> tutum.Role.list()
     [<tutum.api.role.Role object at 0x10701ca90>]
 
-``tutum.Role`` objects have all the attributes of the returned JSON as properties
+``Role`` objects have all the attributes of the returned JSON as properties
 
 
 Get role details
@@ -1604,4 +1596,4 @@ Get role details
     >>> tutum.Role.fetch("global")
     <tutum.api.role.Role object at 0x10701ca90>
 
-``tutum.Role`` objects have all the attributes of the returned JSON as properties
+``Role`` objects have all the attributes of the returned JSON as properties
