@@ -24,6 +24,9 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <link rel="top" title="Tutum Documentation" href="../../../" />
+    <link rel="up" title="API Libraries" href="../" />
+    <link rel="next" title="Jumpstart Images" href="../../jumpstarts/" />
+    <link rel="prev" title="API Libraries" href="../" />
 <link rel="icon" href="../../../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../../../_static/assets/fraction/fractionslider.css" type="text/css" />
 
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -99,12 +102,17 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-                        <ul>
+                        <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../billing/">Billing FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../technical/">Technical FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../">Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../api/">Tutum API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../">API Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jumpstarts/">Jumpstart Images</a></li>
+</ul>
+</li>
 </ul>
 
                     </div>
@@ -117,7 +125,95 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
             
   <div class="section" id="python-api">
 <h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h1>
-<p>TBD</p>
+<p>Tutum provides a REST HTTP API (see <a class="reference internal" href="../../api/#api-ref"><em>Tutum API</em></a>). In order to facilitate access to this API, we have built an
+open source library for Python which makes it very easy to deploy and manage your applications in Tutum.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#authentication" id="id1">Authentication</a></li>
+<li><a class="reference internal" href="#errors" id="id2">Errors</a></li>
+<li><a class="reference internal" href="#applications" id="id3">Applications</a><ul>
+<li><a class="reference internal" href="#the-application-object" id="id4">The application object</a></li>
+<li><a class="reference internal" href="#list-all-applications" id="id5">List all applications</a></li>
+<li><a class="reference internal" href="#get-one-application-by-uuid" id="id6">Get one application by UUID</a></li>
+<li><a class="reference internal" href="#create-and-launch-a-new-application" id="id7">Create and launch a new application</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="authentication">
+<h2><a class="toc-backref" href="#id1">Authentication</a><a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p>To authenticate to Tutum&#8217;s API you need an ApiKey. To obtain it, see <a class="reference internal" href="../../api/#api-auth-ref"><em>Introduction</em></a>.</p>
+<p>Once you have your ApiKey, you can do use it with this library in a few ways:</p>
+<ul class="simple">
+<li>Set the environment variables <tt class="docutils literal"><span class="pre">TUTUM_USER</span></tt> and <tt class="docutils literal"><span class="pre">TUTUM_APIKEY</span></tt>:</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">TUTUM_USER</span><span class="o">=</span>username
+<span class="nb">export </span><span class="nv">TUTUM_APIKEY</span><span class="o">=</span>apikey
+</pre></div>
+</div>
+<ul class="simple">
+<li>Manually set it in your Python initialization code:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">tutum</span>
+<span class="n">tutum</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="s">&quot;username&quot;</span>
+<span class="n">tutum</span><span class="o">.</span><span class="n">apikey</span> <span class="o">=</span> <span class="s">&quot;apikey&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Store it in a configuration file in <tt class="docutils literal"><span class="pre">~/.tutum</span></tt>:</li>
+</ul>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[auth]</span>
+<span class="na">user</span> <span class="o">=</span> <span class="s">&quot;username&quot;</span>
+<span class="na">apikey</span> <span class="o">=</span> <span class="s">&quot;apikey&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="errors">
+<h2><a class="toc-backref" href="#id2">Errors</a><a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h2>
+<p>Errors in the HTTP API will be returned with status codes in the 4xx and 5xx ranges.
+The library will detect this and raise a <tt class="docutils literal"><span class="pre">TutumServerError</span></tt> with the error message, which should be handled by
+your application accordingly.</p>
+</div>
+<div class="section" id="applications">
+<h2><a class="toc-backref" href="#id3">Applications</a><a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<p>Operations with applications are wrapped in the object <tt class="docutils literal"><span class="pre">Application</span></tt>. An application is the basic component used
+at Tutum, and is composed of one or more containers.</p>
+<div class="section" id="the-application-object">
+<h3><a class="toc-backref" href="#id4">The application object</a><a class="headerlink" href="#the-application-object" title="Permalink to this headline">¶</a></h3>
+<p>The application object will reflect all the attributes returned by the HTTP API. See <a class="reference internal" href="../../api/#api-application-ref"><em>Get application details</em></a> for
+a full list of attributes.</p>
+</div>
+<div class="section" id="list-all-applications">
+<h3><a class="toc-backref" href="#id5">List all applications</a><a class="headerlink" href="#list-all-applications" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of all applications in the account.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tutum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tutum</span><span class="o">.</span><span class="n">Application</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="go">[&lt;tutum.api.application.Application object at 0x10701ca90&gt;, &lt;tutum.api.application.Application object at 0x10701ca91&gt;]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-one-application-by-uuid">
+<h3><a class="toc-backref" href="#id6">Get one application by UUID</a><a class="headerlink" href="#get-one-application-by-uuid" title="Permalink to this headline">¶</a></h3>
+<p>Returns an application by its unique identified (UUID). Attributes of the object will be the attributes returned by the HTTP API.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tutum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tutum</span><span class="o">.</span><span class="n">Application</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s">&quot;fee900c6-97da-46b3-a21c-e2b50ed07015&quot;</span><span class="p">)</span>
+<span class="go">&lt;tutum.api.application.Application object at 0x106c45c10&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-and-launch-a-new-application">
+<h3><a class="toc-backref" href="#id7">Create and launch a new application</a><a class="headerlink" href="#create-and-launch-a-new-application" title="Permalink to this headline">¶</a></h3>
+<p>Returns an application by its unique identified (UUID). Attributes of the object will be the attributes returned by the HTTP API.</p>
+<p><strong>Example</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tutum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tutum</span><span class="o">.</span><span class="n">Application</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s">&quot;fee900c6-97da-46b3-a21c-e2b50ed07015&quot;</span><span class="p">)</span>
+<span class="go">&lt;tutum.api.application.Application object at 0x106c45c10&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
