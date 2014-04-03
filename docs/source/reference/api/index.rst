@@ -57,13 +57,6 @@ Python library
 
 You can use your ApiKey with the Python library in any of the following ways (will be used in this order):
 
-* Set the environment variables ``TUTUM_USER`` and ``TUTUM_APIKEY``:
-
-.. sourcecode:: bash
-
-    export TUTUM_USER=username
-    export TUTUM_APIKEY=apikey
-
 * Manually set it in your Python initialization code:
 
 .. sourcecode:: python
@@ -71,6 +64,23 @@ You can use your ApiKey with the Python library in any of the following ways (wi
     import tutum
     tutum.user = "username"
     tutum.apikey = "apikey"
+
+
+* Store it in a configuration file in ``~/.tutum``:
+
+.. sourcecode:: ini
+
+    [auth]
+    user = "username"
+    apikey = "apikey"
+
+
+* Set the environment variables ``TUTUM_USER`` and ``TUTUM_APIKEY``:
+
+.. sourcecode:: bash
+
+    export TUTUM_USER=username
+    export TUTUM_APIKEY=apikey
 
 
 Errors
