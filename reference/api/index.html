@@ -65,9 +65,6 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
                     <li class="hidden-sm">
                         <a href="http://docs.tutum.co/">Documentation</a>
                     </li>
-                    <li class="hidden-sm">
-                        <a href="http://support.tutum.co/hc/communities/public/topics">Community</a>
-                    </li>
                     <li>
                         <a href="http://blog.tutum.co/">Blog</a>
                     </li>
@@ -196,18 +193,26 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 <h3><a class="toc-backref" href="#id5">Python library</a><a class="headerlink" href="#python-library" title="Permalink to this headline">¶</a></h3>
 <p>You can use your ApiKey with the Python library in any of the following ways (will be used in this order):</p>
 <ul class="simple">
-<li>Set the environment variables <tt class="docutils literal"><span class="pre">TUTUM_USER</span></tt> and <tt class="docutils literal"><span class="pre">TUTUM_APIKEY</span></tt>:</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">TUTUM_USER</span><span class="o">=</span>username
-<span class="nb">export </span><span class="nv">TUTUM_APIKEY</span><span class="o">=</span>apikey
-</pre></div>
-</div>
-<ul class="simple">
 <li>Manually set it in your Python initialization code:</li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">tutum</span>
 <span class="n">tutum</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="s">&quot;username&quot;</span>
 <span class="n">tutum</span><span class="o">.</span><span class="n">apikey</span> <span class="o">=</span> <span class="s">&quot;apikey&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Store it in a configuration file in <tt class="docutils literal"><span class="pre">~/.tutum</span></tt>:</li>
+</ul>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[auth]</span>
+<span class="na">user</span> <span class="o">=</span> <span class="s">&quot;username&quot;</span>
+<span class="na">apikey</span> <span class="o">=</span> <span class="s">&quot;apikey&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Set the environment variables <tt class="docutils literal"><span class="pre">TUTUM_USER</span></tt> and <tt class="docutils literal"><span class="pre">TUTUM_APIKEY</span></tt>:</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">export </span><span class="nv">TUTUM_USER</span><span class="o">=</span>username
+<span class="nb">export </span><span class="nv">TUTUM_APIKEY</span><span class="o">=</span>apikey
 </pre></div>
 </div>
 </div>
