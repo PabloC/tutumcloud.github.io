@@ -54,7 +54,7 @@ detect the change.
 
 You can give an application an API role. This role is a set of privileges granted to the application containers on the
 Tutum API. At the moment we only support a "full" role which allows any operation to be performed on the API if granted.
-To get the list of available roles you can query the API: see :ref:`api-roles`
+To get the list of available roles see :ref:`api-launch-app`
 
 The API role is passed in to the application containers as an authorization token stored in an environment variable called ``TUTUM_AUTH``.
 This variable should be use to set the ``Authorization`` HTTP header when calling Tutum's API:

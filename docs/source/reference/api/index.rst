@@ -281,6 +281,8 @@ Get application details
 
 ``Application`` objects have all the attributes of the returned JSON as properties
 
+.. _api-launch-app:
+
 Create and launch a new application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -371,7 +373,7 @@ Create and launch a new application
     :jsonparam string autorestart: optional, whether the containers should be restarted if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autoreplace: optional, whether the containers should be replaced with a new one if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autodestroy: optional, whether the containers should be terminated if they stop, i.e. ``OFF`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
-    :jsonparam string roles: optional, a list of Tutum API role resource URIs to grant the application, i.e. ``["/api/v1/role/global/"]`` (default: empty array, options: see :ref:`api-roles`)
+    :jsonparam string roles: optional, a list of Tutum API roles to grant the application, i.e. ``["global"]`` (default: empty array, possible values: ``global``)
     :reqheader Content-Type: required, only ``application/json`` is supported
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
@@ -1493,117 +1495,3 @@ Terminate a container
     >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
     >>> container.delete()
     True
-
-
-.. _api-roles:
-
-Roles
------
-
-List all available roles
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. http:get:: /api/v1/role/
-
-    This operation returns a list of all available roles to be used when launching an application.
-
-    **Example request**:
-
-    .. sourcecode:: http
-
-        GET /api/v1/role/ HTTP/1.1
-        Host: app.tutum.co
-        Accept: application/json
-        Authorization: ApiKey username:apikey
-
-    **Example response**:
-
-    .. sourcecode:: http
-
-        HTTP/1.1 200 OK
-        Cache-Control: must-revalidate, max-age=0
-        Content-Type: application/json
-        Vary: Accept, Authorization, Cookie
-
-        {
-            "meta": {
-                "limit": 25,
-                "next": null,
-                "offset": 0,
-                "previous": null,
-                "total_count": 1
-            },
-            "objects": [
-                {
-                    "label": "Full access",
-                    "resource_uri": "/api/v1/role/global/",
-                    "scope": "global"
-                }
-            ]
-        }
-
-    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
-    :reqheader Accept: required, only ``application/json`` is supported
-    :queryparam int offset: optional, start the list skipping the first ``offset`` records (default: 0)
-    :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
-    :statuscode 200: no error
-    :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Role.list()
-    [<tutum.api.role.Role object at 0x10701ca90>]
-
-``Role`` objects have all the attributes of the returned JSON as properties
-
-
-Get role details
-^^^^^^^^^^^^^^^^
-
-.. http:get:: /api/v1/role/(scope)/
-
-    Returns the details of the specified role
-
-    **Example request**:
-
-    .. sourcecode:: http
-
-        GET /api/v1/role/global/ HTTP/1.1
-        Host: app.tutum.co
-        Accept: application/json
-        Authorization: ApiKey username:apikey
-
-    **Example response**:
-
-    .. sourcecode:: http
-
-        HTTP/1.1 200 OK
-        Cache-Control: must-revalidate, max-age=0
-        Content-Type: application/json
-        Vary: Accept, Authorization, Cookie
-
-        {
-            "label": "Full access",
-            "resource_uri": "/api/v1/role/global/",
-            "scope": "global"
-        }
-
-    :query scope: the scope of the role
-    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
-    :reqheader Accept: required, only ``application/json`` is supported
-    :statuscode 200: no error
-    :statuscode 404: role not found
-    :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Role.fetch("global")
-    <tutum.api.role.Role object at 0x10701ca90>
-
-``Role`` objects have all the attributes of the returned JSON as properties
