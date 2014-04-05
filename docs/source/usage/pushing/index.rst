@@ -25,4 +25,7 @@ With Docker installed:
 Note: In the instructions above, please substitute ``user`` with your Tutum username, ``my_image`` with your image's name,
 and ``user@email.com`` with the email you used to register at Tutum.
 
+If you created your account logging in via Docker.io or GitHub, you will need to `set a password <https://app.tutum.co/accounts/password/change/>`_
+before being able to push to the registry.
+
 After you complete those steps, you'll see that your application image is available for selection in ``My Images``.
