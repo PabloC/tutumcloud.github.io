@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Tutum Documentation" href="../../" />
     <link rel="up" title="Reference" href="../" />
-    <link rel="prev" title="Tutum API" href="../api/" />
+    <link rel="prev" title="Command-line Interface" href="../cli/" />
 <link rel="icon" href="../../_static/images/favicon.png" type="image/png"><link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
 
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -104,7 +104,9 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li class="toctree-l1"><a class="reference internal" href="../../technical/">Technical FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/">Usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../">Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../api/">Tutum API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/">HTTP API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/">Python library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/">Command-line Interface</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Jumpstart Images</a></li>
 </ul>
 </li>
@@ -122,32 +124,32 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <h1>Jumpstart Images<a class="headerlink" href="#jumpstart-images" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#ssh-enabled-linux-images" id="id21">SSH-enabled Linux images</a><ul>
-<li><a class="reference internal" href="#ubuntu-saucy-tutum-ubuntu-saucy" id="id22">Ubuntu Saucy (tutum/ubuntu-saucy)</a></li>
-<li><a class="reference internal" href="#centos-6-4-tutum-centos-6-4" id="id23">Centos 6.4 (tutum/centos-6.4)</a></li>
-<li><a class="reference internal" href="#debian-wheezy-tutum-debian-wheezy" id="id24">Debian Wheezy (tutum/debian-wheezy)</a></li>
-<li><a class="reference internal" href="#fedora-20-tutum-fedora-20" id="id25">Fedora 20 (tutum/fedora-20)</a></li>
+<li><a class="reference internal" href="#ssh-enabled-linux-images" id="id1">SSH-enabled Linux images</a><ul>
+<li><a class="reference internal" href="#ubuntu-saucy-tutum-ubuntu-saucy" id="id2">Ubuntu Saucy (tutum/ubuntu-saucy)</a></li>
+<li><a class="reference internal" href="#centos-6-4-tutum-centos-6-4" id="id3">Centos 6.4 (tutum/centos-6.4)</a></li>
+<li><a class="reference internal" href="#debian-wheezy-tutum-debian-wheezy" id="id4">Debian Wheezy (tutum/debian-wheezy)</a></li>
+<li><a class="reference internal" href="#fedora-20-tutum-fedora-20" id="id5">Fedora 20 (tutum/fedora-20)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#databases-and-caches" id="id26">Databases and caches</a><ul>
-<li><a class="reference internal" href="#mysql-tutum-mysql" id="id27">MySQL (tutum/mysql)</a></li>
-<li><a class="reference internal" href="#redis-tutum-redis" id="id28">Redis (tutum/redis)</a></li>
-<li><a class="reference internal" href="#mongodb-tutum-mongodb" id="id29">MongoDB (tutum/mongodb)</a></li>
-<li><a class="reference internal" href="#couchdb-tutum-couchdb" id="id30">CouchDB (tutum/couchdb)</a></li>
+<li><a class="reference internal" href="#databases-and-caches" id="id6">Databases and caches</a><ul>
+<li><a class="reference internal" href="#mysql-tutum-mysql" id="id7">MySQL (tutum/mysql)</a></li>
+<li><a class="reference internal" href="#redis-tutum-redis" id="id8">Redis (tutum/redis)</a></li>
+<li><a class="reference internal" href="#mongodb-tutum-mongodb" id="id9">MongoDB (tutum/mongodb)</a></li>
+<li><a class="reference internal" href="#couchdb-tutum-couchdb" id="id10">CouchDB (tutum/couchdb)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#message-queues" id="id31">Message queues</a><ul>
-<li><a class="reference internal" href="#rabbitmq-tutum-rabbitmq" id="id32">RabbitMQ (tutum/rabbitmq)</a></li>
+<li><a class="reference internal" href="#message-queues" id="id11">Message queues</a><ul>
+<li><a class="reference internal" href="#rabbitmq-tutum-rabbitmq" id="id12">RabbitMQ (tutum/rabbitmq)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="ssh-enabled-linux-images">
-<h2><a class="toc-backref" href="#id21">SSH-enabled Linux images</a><a class="headerlink" href="#ssh-enabled-linux-images" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">SSH-enabled Linux images</a><a class="headerlink" href="#ssh-enabled-linux-images" title="Permalink to this headline">¶</a></h2>
 <p>These images are based on Docker base images, but have a SSH server installed and configure to run on startup. By default,
 all SSH-based images generate a random <tt class="docutils literal"><span class="pre">root</span></tt> password on launch unless the environment variable <tt class="docutils literal"><span class="pre">ROOT_PASS</span></tt> is set.</p>
 <div class="section" id="ubuntu-saucy-tutum-ubuntu-saucy">
-<h3><a class="toc-backref" href="#id22">Ubuntu Saucy (tutum/ubuntu-saucy)</a><a class="headerlink" href="#ubuntu-saucy-tutum-ubuntu-saucy" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id2">Ubuntu Saucy (tutum/ubuntu-saucy)</a><a class="headerlink" href="#ubuntu-saucy-tutum-ubuntu-saucy" title="Permalink to this headline">¶</a></h3>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/ubuntu-saucy/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-ubuntu/">GitHub repo</a></p>
 <p><strong>Source Dockerfile</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>FROM ubuntu:saucy
@@ -178,7 +180,7 @@ CMD [&quot;/run.sh&quot;]
 </ul>
 </div>
 <div class="section" id="centos-6-4-tutum-centos-6-4">
-<h3><a class="toc-backref" href="#id23">Centos 6.4 (tutum/centos-6.4)</a><a class="headerlink" href="#centos-6-4-tutum-centos-6-4" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Centos 6.4 (tutum/centos-6.4)</a><a class="headerlink" href="#centos-6-4-tutum-centos-6-4" title="Permalink to this headline">¶</a></h3>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/ubuntu-centos-6.4/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-centos/">GitHub repo</a></p>
 <p><strong>Source Dockerfile</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>FROM centos:6.4
@@ -205,7 +207,7 @@ CMD [&quot;/run.sh&quot;]
 </dl>
 </div>
 <div class="section" id="debian-wheezy-tutum-debian-wheezy">
-<h3><a class="toc-backref" href="#id24">Debian Wheezy (tutum/debian-wheezy)</a><a class="headerlink" href="#debian-wheezy-tutum-debian-wheezy" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Debian Wheezy (tutum/debian-wheezy)</a><a class="headerlink" href="#debian-wheezy-tutum-debian-wheezy" title="Permalink to this headline">¶</a></h3>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/debian-wheezy/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-debian/">GitHub repo</a></p>
 <p><strong>Source Dockerfile</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>FROM debian:wheezy
@@ -233,7 +235,7 @@ CMD [&quot;/run.sh&quot;]
 </ul>
 </div>
 <div class="section" id="fedora-20-tutum-fedora-20">
-<h3><a class="toc-backref" href="#id25">Fedora 20 (tutum/fedora-20)</a><a class="headerlink" href="#fedora-20-tutum-fedora-20" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Fedora 20 (tutum/fedora-20)</a><a class="headerlink" href="#fedora-20-tutum-fedora-20" title="Permalink to this headline">¶</a></h3>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/fedora-20/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-fedora/">GitHub repo</a></p>
 <p><strong>Source Dockerfile</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>FROM fedora:20
@@ -260,9 +262,9 @@ CMD [&quot;/run.sh&quot;]
 </div>
 </div>
 <div class="section" id="databases-and-caches">
-<h2><a class="toc-backref" href="#id26">Databases and caches</a><a class="headerlink" href="#databases-and-caches" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Databases and caches</a><a class="headerlink" href="#databases-and-caches" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mysql-tutum-mysql">
-<h3><a class="toc-backref" href="#id27">MySQL (tutum/mysql)</a><a class="headerlink" href="#mysql-tutum-mysql" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">MySQL (tutum/mysql)</a><a class="headerlink" href="#mysql-tutum-mysql" title="Permalink to this headline">¶</a></h3>
 <p>MySQL Server image - listens in port 3306. For the admin account password, either set <tt class="docutils literal"><span class="pre">MYSQL_PASS</span></tt> environment variable,
 or check the logs for a randomly generated one.</p>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/mysql/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-mysql/">GitHub repo</a></p>
@@ -294,7 +296,7 @@ CMD [&quot;/run.sh&quot;]
 </dl>
 </div>
 <div class="section" id="redis-tutum-redis">
-<h3><a class="toc-backref" href="#id28">Redis (tutum/redis)</a><a class="headerlink" href="#redis-tutum-redis" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Redis (tutum/redis)</a><a class="headerlink" href="#redis-tutum-redis" title="Permalink to this headline">¶</a></h3>
 <p>Redis Docker image image – listens in port 6379. For the server password, either set <tt class="docutils literal"><span class="pre">REDIS_PASS</span></tt> environment variable or
 read the logs for a randomly generated one</p>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/redis/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-redis/">GitHub repo</a></p>
@@ -322,7 +324,7 @@ CMD [&quot;/run.sh&quot;]
 </dl>
 </div>
 <div class="section" id="mongodb-tutum-mongodb">
-<h3><a class="toc-backref" href="#id29">MongoDB (tutum/mongodb)</a><a class="headerlink" href="#mongodb-tutum-mongodb" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">MongoDB (tutum/mongodb)</a><a class="headerlink" href="#mongodb-tutum-mongodb" title="Permalink to this headline">¶</a></h3>
 <p>MongoDB Docker image – listens in port 27017. For the admin password, either set <tt class="docutils literal"><span class="pre">MONGODB_PASS</span></tt> environment variable or
 check the logs for a randomly generated one</p>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/mongodb/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-mongodb/">GitHub repo</a></p>
@@ -352,7 +354,7 @@ CMD [&quot;/run.sh&quot;]
 </dl>
 </div>
 <div class="section" id="couchdb-tutum-couchdb">
-<h3><a class="toc-backref" href="#id30">CouchDB (tutum/couchdb)</a><a class="headerlink" href="#couchdb-tutum-couchdb" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">CouchDB (tutum/couchdb)</a><a class="headerlink" href="#couchdb-tutum-couchdb" title="Permalink to this headline">¶</a></h3>
 <p>CouchDB image - listens in port 5984. For the admin account password, either set COUCHDB_PASS environment variable, or
 check the logs for a randomly generated one.</p>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/couchdb/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-couchdb/">GitHub repo</a></p>
@@ -383,9 +385,9 @@ CMD [&quot;/run.sh&quot;]
 </div>
 </div>
 <div class="section" id="message-queues">
-<h2><a class="toc-backref" href="#id31">Message queues</a><a class="headerlink" href="#message-queues" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Message queues</a><a class="headerlink" href="#message-queues" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="rabbitmq-tutum-rabbitmq">
-<h3><a class="toc-backref" href="#id32">RabbitMQ (tutum/rabbitmq)</a><a class="headerlink" href="#rabbitmq-tutum-rabbitmq" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">RabbitMQ (tutum/rabbitmq)</a><a class="headerlink" href="#rabbitmq-tutum-rabbitmq" title="Permalink to this headline">¶</a></h3>
 <p>RabbitMQ Docker image – listens in ports 5672/55672 (admin). For the admin password, either set <tt class="docutils literal"><span class="pre">RABBITMQ_PASS</span></tt>
 environment variable or read the logs for a randomly generated one</p>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/rabbitmq/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-rabbitmq/">GitHub repo</a></p>

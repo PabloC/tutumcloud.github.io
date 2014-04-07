@@ -9,4 +9,6 @@ Contents:
    :maxdepth: 2
 
    api/index
+   python/index
+   cli/index
    jumpstarts/index

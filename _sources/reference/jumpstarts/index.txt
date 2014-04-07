@@ -16,7 +16,7 @@ all SSH-based images generate a random ``root`` password on launch unless the en
 Ubuntu Saucy (tutum/ubuntu-saucy)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Links: `Docker Index <https://index.docker.io/u/tutum/ubuntu-saucy/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-ubuntu/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/ubuntu-saucy/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-ubuntu/>`__
 
 **Source Dockerfile**
 
@@ -42,16 +42,16 @@ ROOT_PASS
 
 **Other versions available**
 
-* Ubuntu Raring: `Link to Docker Index <https://index.docker.io/u/tutum/ubuntu-raring/>`_
-* Ubuntu Precise: `Link to Docker Index <https://index.docker.io/u/tutum/ubuntu-precise/>`_
-* Ubuntu Quantal: `Link to Docker Index <https://index.docker.io/u/tutum/ubuntu-quantal/>`_
-* Ubuntu Lucid: `Link to Docker Index <https://index.docker.io/u/tutum/ubuntu-lucid/>`_
+* Ubuntu Raring: `Link to Docker Index <https://index.docker.io/u/tutum/ubuntu-raring/>`__
+* Ubuntu Precise: `Link to Docker Index <https://index.docker.io/u/tutum/ubuntu-precise/>`__
+* Ubuntu Quantal: `Link to Docker Index <https://index.docker.io/u/tutum/ubuntu-quantal/>`__
+* Ubuntu Lucid: `Link to Docker Index <https://index.docker.io/u/tutum/ubuntu-lucid/>`__
 
 
 Centos 6.4 (tutum/centos-6.4)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Links: `Docker Index <https://index.docker.io/u/tutum/ubuntu-centos-6.4/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-centos/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/ubuntu-centos-6.4/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-centos/>`__
 
 **Source Dockerfile**
 
@@ -82,7 +82,7 @@ ROOT_PASS
 Debian Wheezy (tutum/debian-wheezy)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Links: `Docker Index <https://index.docker.io/u/tutum/debian-wheezy/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-debian/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/debian-wheezy/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-debian/>`__
 
 **Source Dockerfile**
 
@@ -108,13 +108,13 @@ ROOT_PASS
 
 **Other versions available**
 
-* Debian Squeeze: `Link to Docker Index <https://index.docker.io/u/tutum/debian-squeeze/>`_
+* Debian Squeeze: `Link to Docker Index <https://index.docker.io/u/tutum/debian-squeeze/>`__
 
 
 Fedora 20 (tutum/fedora-20)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Links: `Docker Index <https://index.docker.io/u/tutum/fedora-20/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-fedora/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/fedora-20/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-fedora/>`__
 
 **Source Dockerfile**
 
@@ -149,7 +149,7 @@ MySQL (tutum/mysql)
 MySQL Server image - listens in port 3306. For the admin account password, either set ``MYSQL_PASS`` environment variable,
 or check the logs for a randomly generated one.
 
-Links: `Docker Index <https://index.docker.io/u/tutum/mysql/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-mysql/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/mysql/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-mysql/>`__
 
 **Source Dockerfile**
 
@@ -185,7 +185,7 @@ Redis (tutum/redis)
 Redis Docker image image – listens in port 6379. For the server password, either set ``REDIS_PASS`` environment variable or
 read the logs for a randomly generated one
 
-Links: `Docker Index <https://index.docker.io/u/tutum/redis/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-redis/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/redis/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-redis/>`__
 
 **Source Dockerfile**
 
@@ -217,7 +217,7 @@ MongoDB (tutum/mongodb)
 MongoDB Docker image – listens in port 27017. For the admin password, either set ``MONGODB_PASS`` environment variable or
 check the logs for a randomly generated one
 
-Links: `Docker Index <https://index.docker.io/u/tutum/mongodb/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-mongodb/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/mongodb/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-mongodb/>`__
 
 **Source Dockerfile**
 
@@ -251,7 +251,7 @@ CouchDB (tutum/couchdb)
 CouchDB image - listens in port 5984. For the admin account password, either set COUCHDB_PASS environment variable, or
 check the logs for a randomly generated one.
 
-Links: `Docker Index <https://index.docker.io/u/tutum/couchdb/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-couchdb/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/couchdb/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-couchdb/>`__
 
 **Source Dockerfile**
 
@@ -288,7 +288,7 @@ RabbitMQ (tutum/rabbitmq)
 RabbitMQ Docker image – listens in ports 5672/55672 (admin). For the admin password, either set ``RABBITMQ_PASS``
 environment variable or read the logs for a randomly generated one
 
-Links: `Docker Index <https://index.docker.io/u/tutum/rabbitmq/>`_ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-rabbitmq/>`_
+Links: `Docker Index <https://index.docker.io/u/tutum/rabbitmq/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-rabbitmq/>`__
 
 **Source Dockerfile**
 

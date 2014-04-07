@@ -2,44 +2,27 @@
 
 .. _api-ref:
 
-Tutum API
-=========
+HTTP API
+========
 
 .. contents::
     :local:
-
-.. _api-auth-ref:
 
 
 Introduction
 ------------
 
-Tutum currently offers an HTTP REST API and a Python library that wraps this API. In this document you will find
-all the operations currently supported in the platform and examples on how to execute them as raw HTTP requests
-and by using the Python library.
+Tutum currently offers an HTTP REST API which is used by both the Web UI and the CLI. In this document you will find
+all the operations currently supported in the platform and examples on how to execute them as raw HTTP requests.
 
 
-Installing the Python library
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _api-auth-ref:
 
-In order to install the Tutum Python library, you can use ``pip install``:
-
-.. sourcecode:: bash
-
-    pip install python-tutum
-
-It will install a Python module called ``tutum`` which you can use to interface with the API.
-
-
-Authorization
--------------
+Authentication
+--------------
 
 In order to be able to make requests to the API, you should first obtain an ApiKey for your account.
 For this, log into Tutum, click on the menu on the upper right corner of the screen, and select **Get Api Key**
-
-
-HTTP API
-^^^^^^^^
 
 The Tutum HTTP API is reachable through the following hostname::
 
@@ -50,46 +33,6 @@ All requests should be sent to this endpoint with the following ``Authorization`
 .. sourcecode:: bash
 
     curl -H "Authorization: ApiKey username:apikey" https://app.tutum.co/api/v1/application/
-
-
-Python library
-^^^^^^^^^^^^^^
-
-You can use your ApiKey with the Python library in any of the following ways (will be used in this order):
-
-* Manually set it in your Python initialization code:
-
-.. sourcecode:: python
-
-    import tutum
-    tutum.user = "username"
-    tutum.apikey = "apikey"
-
-
-* Store it in a configuration file in ``~/.tutum``:
-
-.. sourcecode:: ini
-
-    [auth]
-    user = "username"
-    apikey = "apikey"
-
-
-* Set the environment variables ``TUTUM_USER`` and ``TUTUM_APIKEY``:
-
-.. sourcecode:: bash
-
-    export TUTUM_USER=username
-    export TUTUM_APIKEY=apikey
-
-
-Errors
-------
-
-Errors in the HTTP API will be returned with status codes in the 4xx and 5xx ranges.
-
-The Python library will detect this status codes and raise ``TutumApiError`` exceptions with the error message,
-which should be handled by the calling application accordingly.
 
 
 Applications
@@ -131,11 +74,11 @@ List all applications
             "objects": [
                 {
                     "autodestroy": "OFF",
-                    "autoreplace": "OFF",
-                    "autorestart": "OFF",
+                    "autoreplace": "ALWAYS",
+                    "autorestart": "ALWAYS",
                     "container_ports": [
                         {
-                            "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
+                            "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                             "inner_port": 80,
                             "outer_port": null,
                             "protocol": "tcp"
@@ -143,23 +86,23 @@ List all applications
                     ],
                     "container_size": "XS",
                     "current_num_containers": 2,
-                    "deployed_datetime": "Mon, 24 Mar 2014 23:58:15 +0000",
+                    "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
                     "destroyed_datetime": null,
                     "entrypoint": "",
                     "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
                     "name": "my-web-app",
-                    "public_dns": "my-web-app.alpha.tutum.io",
-                    "resource_uri": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
+                    "public_dns": "my-web-app-admin.dev.tutum.io",
+                    "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "run_command": "/run.sh",
                     "running_num_containers": 2,
-                    "started_datetime": "Mon, 24 Mar 2014 23:58:15 +0000",
+                    "started_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
                     "state": "Running",
                     "stopped_datetime": null,
                     "stopped_num_containers": 0,
                     "target_num_containers": 2,
                     "unique_name": "my-web-app",
-                    "uuid": "6fe5029e-c125-4088-9b9a-4e74da20ac58",
-                    "web_public_dns": "my-web-app.alpha.tutum.io"
+                    "uuid": "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
+                    "web_public_dns": "myapp.example.com"
                 }
             ]
         }
@@ -168,19 +111,13 @@ List all applications
     :reqheader Accept: required, only ``application/json`` is supported
     :queryparam int offset: optional, start the list skipping the first ``offset`` records (default: 0)
     :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
+    :queryparam string name: optional, filter applications by name
+    :queryparam string uuid: optional, filter applications by UUID
+    :queryparam string uuid__startswith: optional, filter applications by UUIDs that start with the given string
+    :queryparam string state: optional, filter applications by state
     :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
 
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Application.list()
-    [<tutum.api.application.Application object at 0x10701ca90>, <tutum.api.application.Application object at 0x10701ca91>]
-
-
-``Application`` objects have all the attributes of the returned JSON as properties
 
 .. _api-application-ref:
 
@@ -195,7 +132,7 @@ Get application details
 
     .. sourcecode:: http
 
-        GET /api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/ HTTP/1.1
+        GET /api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -211,12 +148,18 @@ Get application details
 
         {
             "autodestroy": "OFF",
-            "autoreplace": "OFF",
-            "autorestart": "OFF",
-            "container_envvars": [],
+            "autoreplace": "ALWAYS",
+            "autorestart": "ALWAYS",
+            "container_envvars": [
+                {
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "key": "ENVIRONMENT",
+                    "value": "dev"
+                }
+            ],
             "container_ports": [
                 {
-                    "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "inner_port": 80,
                     "outer_port": null,
                     "protocol": "tcp"
@@ -224,62 +167,54 @@ Get application details
             ],
             "container_size": "XS",
             "containers": [
-                "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                "/api/v1/container/83499f74-85b1-4f69-9ab3-658a67535f70/"
+                "/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/",
+                "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/"
             ],
             "current_num_containers": 2,
-            "deployed_datetime": "Mon, 24 Mar 2014 23:58:15 +0000",
+            "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
             "destroyed_datetime": null,
             "entrypoint": "",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io",
-                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
+                "MY_WEB_APP_1_PORT": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
+                "MY_WEB_APP_1_PORT_80_TCP": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
+                "MY_WEB_APP_1_PORT_80_TCP_ADDR": "my-web-app-1-admin.alpha-dev.tutum.io",
+                "MY_WEB_APP_1_PORT_80_TCP_PORT": "49219",
+                "MY_WEB_APP_1_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220",
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io",
+                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49220",
                 "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
-                "MY_WEB_APP_3_PORT": "tcp://my-web-app-3-admin.alpha.tutum.io:49283",
-                "MY_WEB_APP_3_PORT_80_TCP": "tcp://my-web-app-3-admin.alpha.tutum.io:49283",
-                "MY_WEB_APP_3_PORT_80_TCP_ADDR": "my-web-app-3-admin.alpha.tutum.io",
-                "MY_WEB_APP_3_PORT_80_TCP_PORT": "49283",
-                "MY_WEB_APP_3_PORT_80_TCP_PROTO": "tcp",
-                "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/"
+                "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
             },
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-web-app",
-            "public_dns": "my-web-app.alpha.tutum.io",
-            "resource_uri": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
+            "public_dns": "my-web-app-admin.dev.tutum.io",
+            "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
             "roles": [],
             "run_command": "/run.sh",
             "running_num_containers": 2,
-            "started_datetime": "Mon, 24 Mar 2014 23:58:15 +0000",
+            "started_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
             "state": "Running",
             "stopped_datetime": null,
             "stopped_num_containers": 0,
             "target_num_containers": 2,
             "unique_name": "my-web-app",
-            "uuid": "6fe5029e-c125-4088-9b9a-4e74da20ac58",
-            "web_public_dns": "my-web-app.alpha.tutum.io"
+            "uuid": "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
+            "web_public_dns": "myapp.example.com"
         }
 
     :query uuid: the UUID of the application
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
     :statuscode 200: no error
-    :statuscode 404: application not found
     :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
-    <tutum.api.application.Application object at 0x106c45c10>
+    :statuscode 404: application not found
 
 
-``Application`` objects have all the attributes of the returned JSON as properties
+.. _api-launch-app:
 
 Create and launch a new application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -300,9 +235,10 @@ Create and launch a new application
 
         {
             "image": "tutum/hello-world",
-            "name": "my-new-app",
+            "name": "my-awesome-app",
             "target_num_containers": 2,
-            "container_size": "XS"
+            "container_size": "XS",
+            "web_public_dns": "awesome-app.example.com"
         }
 
     **Example response**:
@@ -321,7 +257,7 @@ Create and launch a new application
             "container_envvars": [],
             "container_ports": [
                 {
-                    "application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "application": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
                     "inner_port": 80,
                     "outer_port": null,
                     "protocol": "tcp"
@@ -329,8 +265,8 @@ Create and launch a new application
             ],
             "container_size": "XS",
             "containers": [
-                "/api/v1/container/7dfee1e7-77ea-4ce1-9a88-b23015a74ca3/",
-                "/api/v1/container/965c951d-6edc-40f8-9ffe-40113ba81836/"
+                "/api/v1/container/4a7c672c-4f55-4417-9300-c932eabe7f7e/",
+                "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/"
             ],
             "current_num_containers": 2,
             "deployed_datetime": null,
@@ -338,13 +274,13 @@ Create and launch a new application
             "entrypoint": "",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                "MY_AWESOME_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/"
             },
             "linked_from_application": [],
             "linked_to_application": [],
-            "name": "my-new-app",
-            "public_dns": "my-new-app.alpha.tutum.io",
-            "resource_uri": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+            "name": "my-awesome-app",
+            "public_dns": "my-awesome-app-admin.dev.tutum.io",
+            "resource_uri": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
             "roles": [],
             "run_command": "/run.sh",
             "running_num_containers": 0,
@@ -353,13 +289,12 @@ Create and launch a new application
             "stopped_datetime": null,
             "stopped_num_containers": 0,
             "target_num_containers": 2,
-            "unique_name": "my-new-app",
-            "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
-            "web_public_dns": "my-new-app.alpha.tutum.io"
+            "unique_name": "my-awesome-app",
+            "uuid": "1f234d1d-dae5-46c1-9ee5-770575fe3e6f",
+            "web_public_dns": "awesome-app.example.com"
         }
 
-    :jsonparam string image_tag: required, the resource URI of the image used to deploy this application, i.e. ``/api/v1/image/tutum/hello-world/tag/latest/``
-    :jsonparam string image: optional, the image used to deploy this application in docker format, i.e. ``tutum/hello-world``. Required if ``image_tag`` is not provided.
+    :jsonparam string image: required, the image used to deploy this application in docker format, i.e. ``tutum/hello-world``.
     :jsonparam string name: optional, a human-readable name for the application, i.e. ``my-hello-world-app`` (default: ``image_tag`` without namespace)
     :jsonparam string container_size: optional, the size of the application containers, i.e. ``M`` (default: ``XS``, possible values: ``XS``, ``S``, ``M``, ``L``, ``XL``)
     :jsonparam int target_num_containers: the number of containers to run for this application (default: 1)
@@ -371,23 +306,14 @@ Create and launch a new application
     :jsonparam string autorestart: optional, whether the containers should be restarted if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autoreplace: optional, whether the containers should be replaced with a new one if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autodestroy: optional, whether the containers should be terminated if they stop, i.e. ``OFF`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
-    :jsonparam string roles: optional, a list of Tutum API role resource URIs to grant the application, i.e. ``["/api/v1/role/global/"]`` (default: empty array, options: see :ref:`api-roles`)
+    :jsonparam array(string) roles: optional, a list of Tutum API roles to grant the application, i.e. ``["global"]`` (default: empty array, possible values: ``global``)
+    :jsonparam string web_public_dns: optional, a custom domain name to be used as CNAME for the application web endpoint, only available if the application listens in port 80, i.e. ``my-app.example.com`` (default: none)
     :reqheader Content-Type: required, only ``application/json`` is supported
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
     :statuscode 202: operation accepted
-    :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
+    :statuscode 400: cannot perform the operation (probably there was a validation error on the given parameters)
     :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.create(image="tutum/hello-world", name="my-new-app", target_num_containers=2, container_size="XS")
-    >>> app.save()
-    True
-
 
 Update an application
 ^^^^^^^^^^^^^^^^^^^^^
@@ -400,7 +326,7 @@ Update an application
 
     .. sourcecode:: http
 
-        PATCH /api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/ HTTP/1.1
+        PATCH /api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -420,81 +346,75 @@ Update an application
         Vary: Accept, Authorization, Cookie
 
         {
-            "deployed_datetime": "Tue, 25 Mar 2014 20:40:13 +0000",
-            "container_ports": [
-                {
-                    "outer_port": null,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
-                }
-            ],
-            "current_num_containers": 3,
-            "run_command": "/run.sh",
-            "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Tue, 25 Mar 2014 20:40:13 +0000",
-            "stopped_num_containers": 0,
-            "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
-            "name": "my-new-app",
-            "public_dns": "my-new-app.alpha.tutum.io"
-            "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Scaling",
-            "roles": [],
-            "containers": [
-                "/api/v1/container/7dfee1e7-77ea-4ce1-9a88-b23015a74ca3/",
-                "/api/v1/container/965c951d-6edc-40f8-9ffe-40113ba81836/",
-                "/api/v1/container/0ee97d28-3d86-43fd-ac72-750cfc183791/"
-            ],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "running_num_containers": 2,
-            "resource_uri": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
-            "stopped_datetime": null,
-            "unique_name": "my-new-app",
-            "linked_from_application": [],
-            "entrypoint": "",
-            "autoreplace": "OFF",
-            "container_envvars": [],
-            "link_variables": {
-                "MY_NEW_APP_2_PORT_80_TCP_PORT": "49154",
-                "MY_NEW_APP_2_PORT_80_TCP_PROTO": "tcp",
-                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
-                "MY_NEW_APP_2_PORT": "tcp://my-new-app-2-admin.alpha.tutum.io:49154",
-                "MY_NEW_APP_1_PORT_80_TCP": "tcp://my-new-app-1-admin.alpha.tutum.io:49153",
-                "MY_NEW_APP_1_PORT_80_TCP_PORT": "49153",
-                "MY_NEW_APP_1_PORT_80_TCP_PROTO": "tcp",
-                "MY_NEW_APP_1_PORT": "tcp://my-new-app-1-admin.alpha.tutum.io:49153",
-                "MY_NEW_APP_1_PORT_80_TCP_ADDR": "my-new-app-1-admin.alpha.tutum.io",
-                "MY_NEW_APP_2_PORT_80_TCP": "tcp://my-new-app-2-admin.alpha.tutum.io:49154",
-                "MY_NEW_APP_2_PORT_80_TCP_ADDR": "my-new-app-2-admin.alpha.tutum.io"
-            },
-            "target_num_containers": 3,
-            "web_public_dns": "my-new-app.alpha.tutum.io"
+          "target_num_containers" : 3,
+          "deployed_datetime" : "Sun, 6 Apr 2014 17:59:42 +0000",
+          "container_ports" : [
+            {
+              "outer_port" : null,
+              "inner_port" : 80,
+              "protocol" : "tcp",
+              "application" : "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
+            }
+          ],
+          "current_num_containers" : 3,
+          "run_command" : "/run.sh",
+          "autodestroy" : "OFF",
+          "linked_to_application" : [],
+          "container_size" : "XS",
+          "started_datetime" : "Sun, 6 Apr 2014 17:59:42 +0000",
+          "stopped_num_containers" : 0,
+          "uuid" : "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
+          "name" : "my-web-app",
+          "autorestart" : "ALWAYS",
+          "destroyed_datetime" : null,
+          "state" : "Scaling",
+          "roles" : [],
+          "containers" : [
+            "/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/",
+            "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/",
+            "/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/"
+          ],
+          "image_tag" : "/api/v1/image/tutum/hello-world/tag/latest/",
+          "running_num_containers" : 2,
+          "resource_uri" : "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+          "stopped_datetime" : null,
+          "unique_name" : "my-web-app",
+          "linked_from_application" : [],
+          "web_public_dns" : "myapp.example.com",
+          "entrypoint" : "",
+          "public_dns" : "my-web-app-admin.dev.tutum.io",
+          "container_envvars" : [
+            {
+              "key" : "ENVIRONMENT",
+              "application" : "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+              "value" : "dev"
+            }
+          ],
+          "autoreplace" : "ALWAYS",
+          "link_variables" : {
+            "MY_WEB_APP_2_PORT_80_TCP" : "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220",
+            "MY_WEB_APP_TUTUM_API_URL" : "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+            "MY_WEB_APP_2_PORT" : "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220",
+            "MY_WEB_APP_1_PORT_80_TCP_PROTO" : "tcp",
+            "MY_WEB_APP_1_PORT" : "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
+            "MY_WEB_APP_1_PORT_80_TCP_PORT" : "49219",
+            "MY_WEB_APP_2_PORT_80_TCP_PORT" : "49220",
+            "MY_WEB_APP_2_PORT_80_TCP_PROTO" : "tcp",
+            "MY_WEB_APP_1_PORT_80_TCP" : "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
+            "MY_WEB_APP_1_PORT_80_TCP_ADDR" : "my-web-app-1-admin.alpha-dev.tutum.io",
+            "MY_WEB_APP_2_PORT_80_TCP_ADDR" : "my-web-app-2-admin.alpha-dev.tutum.io"
+          }
         }
 
     :query uuid: the UUID of the application
     :jsonparam int target_num_containers: optional, the target number of containers to scale this application to
-    :jsonparam string web_public_dns: optional, the custom domain to use for this web application
+    :jsonparam string web_public_dns: optional, the custom domain name to use for this web application
     :reqheader Content-Type: required, only ``application/json`` is supported
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
-
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
-    >>> app.target_num_containers = 3
-    >>> app.save()
-    True
-
 
 Start an application
 ^^^^^^^^^^^^^^^^^^^^
@@ -507,7 +427,7 @@ Start an application
 
     .. sourcecode:: http
 
-        POST /api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/start/ HTTP/1.1
+        POST /api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/start/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -522,48 +442,54 @@ Start an application
         Vary: Accept, Authorization, Cookie
 
         {
-            "deployed_datetime": "Tue, 25 Mar 2014 20:40:13 +0000",
-            "container_ports": [
+            "autodestroy": "OFF",
+            "autoreplace": "ALWAYS",
+            "autorestart": "ALWAYS",
+            "container_envvars": [
                 {
-                    "outer_port": null,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "key": "ENVIRONMENT",
+                    "value": "dev"
                 }
             ],
-            "current_num_containers": 3,
-            "run_command": "/run.sh",
-            "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Tue, 25 Mar 2014 20:40:13 +0000",
-            "stopped_num_containers": 0,
-            "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
-            "name": "my-new-app",
-            "public_dns": "my-new-app.alpha.tutum.io"
-            "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Starting",
-            "roles": [],
-            "containers": [
-                "/api/v1/container/7dfee1e7-77ea-4ce1-9a88-b23015a74ca3/",
-                "/api/v1/container/965c951d-6edc-40f8-9ffe-40113ba81836/",
-                "/api/v1/container/0ee97d28-3d86-43fd-ac72-750cfc183791/"
+            "container_ports": [
+                {
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "inner_port": 80,
+                    "outer_port": null,
+                    "protocol": "tcp"
+                }
             ],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "running_num_containers": 0,
-            "resource_uri": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
-            "stopped_datetime": "Tue, 25 Mar 2014 21:00:54 +0000",
-            "unique_name": "my-new-app",
-            "linked_from_application": [],
+            "container_size": "XS",
+            "containers": [
+                "/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/",
+                "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/",
+                "/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/"
+            ],
+            "current_num_containers": 3,
+            "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "destroyed_datetime": null,
             "entrypoint": "",
-            "autoreplace": "OFF",
-            "container_envvars": [],
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
             },
+            "linked_from_application": [],
+            "linked_to_application": [],
+            "name": "my-web-app",
+            "public_dns": "my-web-app-admin.dev.tutum.io",
+            "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+            "roles": [],
+            "run_command": "/run.sh",
+            "running_num_containers": 0,
+            "started_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "state": "Starting",
+            "stopped_datetime": "Sun, 6 Apr 2014 18:21:22 +0000",
+            "stopped_num_containers": 0,
             "target_num_containers": 3,
-            "web_public_dns": "my-new-app.alpha.tutum.io"
+            "unique_name": "my-web-app",
+            "uuid": "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
+            "web_public_dns": "myapp.example.com"
         }
 
     :query uuid: the UUID of the application
@@ -572,16 +498,6 @@ Start an application
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
-
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
-    >>> app.start()
-    True
 
 
 Stop an application
@@ -595,7 +511,7 @@ Stop an application
 
     .. sourcecode:: http
 
-        POST /api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/stop/ HTTP/1.1
+        POST /api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/stop/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -610,48 +526,54 @@ Stop an application
         Vary: Accept, Authorization, Cookie
 
         {
-            "deployed_datetime": "Tue, 25 Mar 2014 20:40:13 +0000",
-            "container_ports": [
+            "autodestroy": "OFF",
+            "autoreplace": "ALWAYS",
+            "autorestart": "ALWAYS",
+            "container_envvars": [
                 {
-                    "outer_port": null,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "key": "ENVIRONMENT",
+                    "value": "dev"
                 }
             ],
-            "current_num_containers": 3,
-            "run_command": "/run.sh",
-            "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Tue, 25 Mar 2014 20:40:13 +0000",
-            "stopped_num_containers": 0,
-            "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
-            "name": "my-new-app",
-            "public_dns": "my-new-app.alpha.tutum.io",
-            "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Stopping",
-            "roles": [],
-            "containers": [
-                "/api/v1/container/7dfee1e7-77ea-4ce1-9a88-b23015a74ca3/",
-                "/api/v1/container/965c951d-6edc-40f8-9ffe-40113ba81836/",
-                "/api/v1/container/0ee97d28-3d86-43fd-ac72-750cfc183791/"
+            "container_ports": [
+                {
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "inner_port": 80,
+                    "outer_port": null,
+                    "protocol": "tcp"
+                }
             ],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "running_num_containers": 0,
-            "resource_uri": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
-            "stopped_datetime": null,
-            "unique_name": "my-new-app",
-            "linked_from_application": [],
+            "container_size": "XS",
+            "containers": [
+                "/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/",
+                "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/",
+                "/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/"
+            ],
+            "current_num_containers": 3,
+            "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "destroyed_datetime": null,
             "entrypoint": "",
-            "autoreplace": "OFF",
-            "container_envvars": [],
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
             },
+            "linked_from_application": [],
+            "linked_to_application": [],
+            "name": "my-web-app",
+            "public_dns": "my-web-app-admin.dev.tutum.io",
+            "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+            "roles": [],
+            "run_command": "/run.sh",
+            "running_num_containers": 0,
+            "started_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "state": "Stopping",
+            "stopped_datetime": null,
+            "stopped_num_containers": 0,
             "target_num_containers": 3,
-            "web_public_dns": "my-new-app.alpha.tutum.io"
+            "unique_name": "my-web-app",
+            "uuid": "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
+            "web_public_dns": "myapp.example.com"
         }
 
     :query uuid: the UUID of the application
@@ -660,16 +582,6 @@ Stop an application
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
-
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
-    >>> app.stop()
-    True
 
 
 Terminate an application
@@ -683,7 +595,7 @@ Terminate an application
 
     .. sourcecode:: http
 
-        DELETE /api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/ HTTP/1.1
+        DELETE /api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -698,48 +610,54 @@ Terminate an application
         Vary: Accept, Authorization, Cookie
 
         {
-            "deployed_datetime": "Tue, 25 Mar 2014 20:40:13 +0000",
-            "container_ports": [
+            "autodestroy": "OFF",
+            "autoreplace": "ALWAYS",
+            "autorestart": "ALWAYS",
+            "container_envvars": [
                 {
-                    "outer_port": null,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "key": "ENVIRONMENT",
+                    "value": "dev"
                 }
             ],
-            "current_num_containers": 3,
-            "run_command": "/run.sh",
-            "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Tue, 25 Mar 2014 21:01:48 +0000",
-            "stopped_num_containers": 0,
-            "uuid": "80ff1635-2d56-478d-a97f-9b59c720e513",
-            "name": "my-new-app",
-            "public_dns": "my-new-app.alpha.tutum.io",
-            "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Stopping",
-            "roles": [],
-            "containers": [
-                "/api/v1/container/7dfee1e7-77ea-4ce1-9a88-b23015a74ca3/",
-                "/api/v1/container/965c951d-6edc-40f8-9ffe-40113ba81836/",
-                "/api/v1/container/0ee97d28-3d86-43fd-ac72-750cfc183791/"
+            "container_ports": [
+                {
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "inner_port": 80,
+                    "outer_port": null,
+                    "protocol": "tcp"
+                }
             ],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "running_num_containers": 0,
-            "resource_uri": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
-            "stopped_datetime": "Tue, 25 Mar 2014 21:00:54 +0000",
-            "unique_name": "my-new-app",
-            "linked_from_application": [],
+            "container_size": "XS",
+            "containers": [
+                "/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/",
+                "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/",
+                "/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/"
+            ],
+            "current_num_containers": 3,
+            "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "destroyed_datetime": null,
             "entrypoint": "",
-            "autoreplace": "OFF",
-            "container_envvars": [],
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_NEW_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"
+                "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
             },
+            "linked_from_application": [],
+            "linked_to_application": [],
+            "name": "my-web-app",
+            "public_dns": "my-web-app-admin.dev.tutum.io",
+            "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+            "roles": [],
+            "run_command": "/run.sh",
+            "running_num_containers": 0,
+            "started_datetime": "Sun, 6 Apr 2014 18:23:56 +0000",
+            "state": "Terminating",
+            "stopped_datetime": "Sun, 6 Apr 2014 18:21:22 +0000",
+            "stopped_num_containers": 0,
             "target_num_containers": 3,
-            "web_public_dns": "my-new-app.alpha.tutum.io"
+            "unique_name": "my-web-app",
+            "uuid": "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
+            "web_public_dns": "myapp.example.com"
         }
 
     :query uuid: the UUID of the application
@@ -748,16 +666,6 @@ Terminate an application
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
-
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
-    >>> app.delete()
-    True
 
 
 Containers
@@ -790,74 +698,72 @@ List all containers
 
         {
             "meta": {
-                "offset": 0,
-                "next": null,
                 "limit": 25,
+                "next": null,
+                "offset": 0,
                 "previous": null,
                 "total_count": 2
             },
             "objects": [
                 {
-                    "exit_code": null,
-                    "deployed_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-                    "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
+                    "application": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
+                    "autodestroy": "OFF",
+                    "autoreplace": "OFF",
+                    "autorestart": "OFF",
                     "container_ports": [
                         {
-                            "outer_port": 49282,
+                            "container": "/api/v1/container/4a7c672c-4f55-4417-9300-c932eabe7f7e/",
                             "inner_port": 80,
-                            "protocol": "tcp",
-                            "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/"
+                            "outer_port": 49221,
+                            "protocol": "tcp"
                         }
                     ],
-                    "run_command": "/run.sh",
-                    "autodestroy": "OFF",
                     "container_size": "XS",
-                    "started_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-                    "uuid": "7d6696b7-fbaf-471d-8e6b-ce7052586c24",
-                    "name": "my-web-app",
-                    "state": "Running",
-                    "autorestart": "OFF",
+                    "deployed_datetime": "Sun, 6 Apr 2014 18:11:17 +0000",
                     "destroyed_datetime": null,
-                    "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-                    "stopped_datetime": null,
-                    "resource_uri": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "unique_name": "my-web-app-2",
-                    "exit_code_msg": null,
                     "entrypoint": "",
-                    "public_dns": "my-web-app-2-admin.alpha.tutum.io",
-                    "autoreplace": "OFF",
-                    "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
+                    "exit_code": null,
+                    "exit_code_msg": null,
+                    "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
+                    "name": "my-awesome-app",
+                    "public_dns": "my-awesome-app-1-admin.alpha-dev.tutum.io",
+                    "resource_uri": "/api/v1/container/4a7c672c-4f55-4417-9300-c932eabe7f7e/",
+                    "run_command": "/run.sh",
+                    "started_datetime": "Sun, 6 Apr 2014 18:11:17 +0000",
+                    "state": "Running",
+                    "stopped_datetime": null,
+                    "unique_name": "my-awesome-app-1",
+                    "uuid": "4a7c672c-4f55-4417-9300-c932eabe7f7e"
                 },
                 {
-                    "exit_code": null,
-                    "deployed_datetime": "Mon, 24 Mar 2014 23:58:12 +0000",
-                    "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
+                    "application": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
+                    "autodestroy": "OFF",
+                    "autoreplace": "OFF",
+                    "autorestart": "OFF",
                     "container_ports": [
                         {
-                            "outer_port": 49283,
+                            "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                             "inner_port": 80,
-                            "protocol": "tcp",
-                            "container": "/api/v1/container/83499f74-85b1-4f69-9ab3-658a67535f70/"
+                            "outer_port": 49222,
+                            "protocol": "tcp"
                         }
                     ],
-                    "run_command": "/run.sh",
-                    "autodestroy": "OFF",
                     "container_size": "XS",
-                    "started_datetime": "Mon, 24 Mar 2014 23:58:12 +0000",
-                    "uuid": "83499f74-85b1-4f69-9ab3-658a67535f70",
-                    "name": "my-web-app",
-                    "state": "Running",
-                    "autorestart": "OFF",
+                    "deployed_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
                     "destroyed_datetime": null,
-                    "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-                    "stopped_datetime": null,
-                    "resource_uri": "/api/v1/container/83499f74-85b1-4f69-9ab3-658a67535f70/",
-                    "unique_name": "my-web-app-3",
-                    "exit_code_msg": null,
                     "entrypoint": "",
-                    "public_dns": "my-web-app-3-admin.alpha.tutum.io",
-                    "autoreplace": "OFF",
-                    "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
+                    "exit_code": null,
+                    "exit_code_msg": null,
+                    "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
+                    "name": "my-awesome-app",
+                    "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+                    "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "run_command": "/run.sh",
+                    "started_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
+                    "state": "Running",
+                    "stopped_datetime": null,
+                    "unique_name": "my-awesome-app-2",
+                    "uuid": "f5d64083-7698-4aec-b5dc-86a48be0f565"
                 }
             ]
         }
@@ -866,20 +772,15 @@ List all containers
     :reqheader Accept: required, only ``application/json`` is supported
     :queryparam int offset: optional, start the list skipping the first ``offset`` records (default: 0)
     :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
+    :queryparam string unique_name: optional, filter containers by name
+    :queryparam string uuid: optional, filter containers by UUID
+    :queryparam string uuid__startswith: optional, filter containers by UUIDs that start with the given string
+    :queryparam string state: optional, filter containers by state
+    :queryparam string application__name: optional, filter containers by application name
+    :queryparam string application__uuid: optional, filter containers by application UUID
+    :queryparam string application__state: optional, filter containers by application state
     :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
-
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Container.list()
-    [<tutum.api.container.Container object at 0x10701ca90>, <tutum.api.container.Container object at 0x10701ca91>]
-
-
-``Container`` objects have all the attributes of the returned JSON as properties
 
 
 Get container details
@@ -893,7 +794,7 @@ Get container details
 
     .. sourcecode:: http
 
-        GET /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/ HTTP/1.1
+        GET /api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -908,72 +809,71 @@ Get container details
         Vary: Accept, Authorization, Cookie
 
         {
-            "exit_code": null,
-            "deployed_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
-            "container_ports": [
-                {
-                    "outer_port": 49282,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/"
-                }
-            ],
-            "run_command": "/run.sh",
+            "application": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
             "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "uuid": "7d6696b7-fbaf-471d-8e6b-ce7052586c24",
-            "name": "my-web-app",
+            "autoreplace": "OFF",
             "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Running",
-            "roles": [],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "stopped_datetime": null,
-            "resource_uri": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-            "unique_name": "my-web-app-2",
-            "linked_from_application": [],
-            "exit_code_msg": null,
-            "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
             "container_envvars": [
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT",
+                    "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP",
+                    "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha.tutum.io"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_ADDR",
+                    "value": "my-awesome-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
-                    "value": "49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_PORT",
+                    "value": "49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
-            "autoreplace": "OFF",
+            "container_ports": [
+                {
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "inner_port": 80,
+                    "outer_port": 49222,
+                    "protocol": "tcp"
+                }
+            ],
+            "container_size": "XS",
+            "deployed_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
+            "destroyed_datetime": null,
+            "entrypoint": "",
+            "exit_code": null,
+            "exit_code_msg": null,
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
-                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+                "MY_AWESOME_APP_2_PORT": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP_ADDR": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+                "MY_AWESOME_APP_2_PORT_80_TCP_PORT": "49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP_PROTO": "tcp"
             },
-            "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
+            "linked_from_application": [],
+            "linked_to_application": [],
+            "name": "my-awesome-app",
+            "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+            "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+            "roles": [],
+            "run_command": "/run.sh",
+            "started_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
+            "state": "Running",
+            "stopped_datetime": null,
+            "unique_name": "my-awesome-app-2",
+            "uuid": "f5d64083-7698-4aec-b5dc-86a48be0f565"
         }
 
     :query uuid: the UUID of the container
@@ -982,134 +882,6 @@ Get container details
     :statuscode 200: no error
     :statuscode 404: container not found
     :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    <tutum.api.container.Container object at 0x10701ca90>
-
-``Container`` objects have all the attributes of the returned JSON as properties
-
-
-Update a container
-^^^^^^^^^^^^^^^^^^
-
-.. http:patch:: /api/v1/container/(uuid)/
-
-    Updates the specified container with the given data
-
-    **Example request**:
-
-    .. sourcecode:: http
-
-        PATCH /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/ HTTP/1.1
-        Host: app.tutum.co
-        Accept: application/json
-        Authorization: ApiKey username:apikey
-
-        {
-            "web_public_dns": "my-web-app.example.com"
-        }
-
-    **Example response**:
-
-    .. sourcecode:: http
-
-        HTTP/1.1 202 Accepted
-        Cache-Control: must-revalidate, max-age=0
-        Content-Type: application/json
-        Vary: Accept, Authorization, Cookie
-
-        {
-            "exit_code": null,
-            "deployed_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
-            "container_ports": [
-                {
-                    "outer_port": 49282,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/"
-                }
-            ],
-            "run_command": "/run.sh",
-            "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "uuid": "7d6696b7-fbaf-471d-8e6b-ce7052586c24",
-            "name": "my-web-app",
-            "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Running",
-            "roles": [],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "stopped_datetime": null,
-            "resource_uri": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-            "unique_name": "my-web-app-2",
-            "linked_from_application": [],
-            "exit_code_msg": null,
-            "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
-            "container_envvars": [
-                {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
-                },
-                {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
-                },
-                {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha.tutum.io"
-                },
-                {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
-                    "value": "49281"
-                },
-                {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
-                    "value": "tcp"
-                }
-            ],
-            "autoreplace": "OFF",
-            "link_variables": {
-                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
-                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
-            },
-            "web_public_dns": "my-web-app.example.com"
-        }
-
-    :query uuid: the UUID of the container
-    :jsonparam string web_public_dns: optional, the custom domain to use for this web application
-    :reqheader Content-Type: required, only ``application/json`` is supported
-    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
-    :reqheader Accept: required, only ``application/json`` is supported
-    :statuscode 202: operation accepted
-    :statuscode 404: container not found
-    :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.web_public_dns = "my-web-app.example.com"
-    >>> container.save()
-    True
 
 
 Start a container
@@ -1123,7 +895,7 @@ Start a container
 
     .. sourcecode:: http
 
-        POST /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/start/ HTTP/1.1
+        POST /api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/start/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -1138,72 +910,71 @@ Start a container
         Vary: Accept, Authorization, Cookie
 
         {
-            "exit_code": null,
-            "deployed_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
-            "container_ports": [
-                {
-                    "outer_port": 49282,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/"
-                }
-            ],
-            "run_command": "/run.sh",
+            "application": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
             "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "uuid": "7d6696b7-fbaf-471d-8e6b-ce7052586c24",
-            "name": "my-web-app",
+            "autoreplace": "OFF",
             "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Starting",
-            "roles": [],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "stopped_datetime": "Mon, 24 Mar 2014 23:59:08 +0000",
-            "resource_uri": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-            "unique_name": "my-web-app-2",
-            "linked_from_application": [],
-            "exit_code_msg": null,
-            "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
             "container_envvars": [
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT",
+                    "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP",
+                    "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha.tutum.io"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_ADDR",
+                    "value": "my-awesome-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
-                    "value": "49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_PORT",
+                    "value": "49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
-            "autoreplace": "OFF",
+            "container_ports": [
+                {
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "inner_port": 80,
+                    "outer_port": 49222,
+                    "protocol": "tcp"
+                }
+            ],
+            "container_size": "XS",
+            "deployed_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
+            "destroyed_datetime": null,
+            "entrypoint": "",
+            "exit_code": 0,
+            "exit_code_msg": "Exit code 0 (Success)",
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
-                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+                "MY_AWESOME_APP_2_PORT": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP_ADDR": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+                "MY_AWESOME_APP_2_PORT_80_TCP_PORT": "49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP_PROTO": "tcp"
             },
-            "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
+            "linked_from_application": [],
+            "linked_to_application": [],
+            "name": "my-awesome-app",
+            "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+            "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+            "roles": [],
+            "run_command": "/run.sh",
+            "started_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
+            "state": "Starting",
+            "stopped_datetime": "Sun, 6 Apr 2014 18:33:53 +0000",
+            "unique_name": "my-awesome-app-2",
+            "uuid": "f5d64083-7698-4aec-b5dc-86a48be0f565"
         }
 
     :query uuid: the UUID of the container
@@ -1213,15 +984,6 @@ Start a container
     :statuscode 400: cannot perform the operation (probably the container is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.start()
-    True
 
 
 Stop a container
@@ -1235,7 +997,7 @@ Stop a container
 
     .. sourcecode:: http
 
-        POST /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/stop/ HTTP/1.1
+        POST /api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/stop/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -1250,72 +1012,71 @@ Stop a container
         Vary: Accept, Authorization, Cookie
 
         {
-            "exit_code": null,
-            "deployed_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
-            "container_ports": [
-                {
-                    "outer_port": 49282,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/"
-                }
-            ],
-            "run_command": "/run.sh",
+            "application": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
             "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "uuid": "7d6696b7-fbaf-471d-8e6b-ce7052586c24",
-            "name": "my-web-app",
+            "autoreplace": "OFF",
             "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Stopping",
-            "roles": [],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "stopped_datetime": null,
-            "resource_uri": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-            "unique_name": "my-web-app-2",
-            "linked_from_application": [],
-            "exit_code_msg": null,
-            "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
             "container_envvars": [
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT",
+                    "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP",
+                    "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha.tutum.io"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_ADDR",
+                    "value": "my-awesome-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
-                    "value": "49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_PORT",
+                    "value": "49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
-            "autoreplace": "OFF",
+            "container_ports": [
+                {
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "inner_port": 80,
+                    "outer_port": 49222,
+                    "protocol": "tcp"
+                }
+            ],
+            "container_size": "XS",
+            "deployed_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
+            "destroyed_datetime": null,
+            "entrypoint": "",
+            "exit_code": null,
+            "exit_code_msg": null,
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
-                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+                "MY_AWESOME_APP_2_PORT": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP_ADDR": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+                "MY_AWESOME_APP_2_PORT_80_TCP_PORT": "49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP_PROTO": "tcp"
             },
-            "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
+            "linked_from_application": [],
+            "linked_to_application": [],
+            "name": "my-awesome-app",
+            "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+            "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+            "roles": [],
+            "run_command": "/run.sh",
+            "started_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
+            "state": "Stopping",
+            "stopped_datetime": null,
+            "unique_name": "my-awesome-app-2",
+            "uuid": "f5d64083-7698-4aec-b5dc-86a48be0f565"
         }
 
     :query uuid: the UUID of the container
@@ -1325,15 +1086,6 @@ Stop a container
     :statuscode 400: cannot perform the operation (probably the container is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.stop()
-    True
 
 
 Get logs for a container
@@ -1347,7 +1099,7 @@ Get logs for a container
 
     .. sourcecode:: http
 
-        GET /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/logs/ HTTP/1.1
+        GET /api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/logs/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -1372,15 +1124,6 @@ Get logs for a container
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
 
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.logs
-    "2014-03-24 23:58:08,973 CRIT Supervisor running as root (no user in config file)\n2014-03-24 23:58:08,973 WARN Included extra file \"/etc/supervisor/conf.d/supervisord-apache2.conf\" during parsing"
-
 
 Terminate a container
 ^^^^^^^^^^^^^^^^^^^^^
@@ -1388,13 +1131,13 @@ Terminate a container
 .. http:delete:: /api/v1/container/(uuid)/
 
     Destroy the specified container and update the target number of containers of the related application. This is not reversible.
-    All the data stored in the container will be permanently deleted.
+    All the data stored in the container will be permanently deleted. The parent application will scale down (will not try to replace it).
 
     **Example request**:
 
     .. sourcecode:: http
 
-        DELETE /api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/ HTTP/1.1
+        DELETE /api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/ HTTP/1.1
         Host: app.tutum.co
         Accept: application/json
         Authorization: ApiKey username:apikey
@@ -1409,72 +1152,71 @@ Terminate a container
         Vary: Accept, Authorization, Cookie
 
         {
-            "exit_code": null,
-            "deployed_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
-            "container_ports": [
-                {
-                    "outer_port": 49282,
-                    "inner_port": 80,
-                    "protocol": "tcp",
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/"
-                }
-            ],
-            "run_command": "/run.sh",
+            "application": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
             "autodestroy": "OFF",
-            "linked_to_application": [],
-            "container_size": "XS",
-            "started_datetime": "Mon, 24 Mar 2014 23:58:08 +0000",
-            "uuid": "7d6696b7-fbaf-471d-8e6b-ce7052586c24",
-            "name": "my-web-app",
+            "autoreplace": "OFF",
             "autorestart": "OFF",
-            "destroyed_datetime": null,
-            "state": "Stopping",
-            "roles": [],
-            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-            "stopped_datetime": null,
-            "resource_uri": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-            "unique_name": "my-web-app-2",
-            "linked_from_application": [],
-            "exit_code_msg": null,
-            "entrypoint": "",
-            "public_dns": "my-web-app-2-admin.alpha.tutum.io",
             "container_envvars": [
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT",
+                    "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP",
-                    "value": "tcp://my-web-app-1-admin.alpha.tutum.io:49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP",
+                    "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_ADDR",
-                    "value": "my-web-app-1-admin.alpha.tutum.io"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_ADDR",
+                    "value": "my-awesome-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PORT",
-                    "value": "49281"
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_PORT",
+                    "value": "49221"
                 },
                 {
-                    "container": "/api/v1/container/7d6696b7-fbaf-471d-8e6b-ce7052586c24/",
-                    "key": "MY_WEB_APP_1_PORT_80_TCP_PROTO",
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "key": "MY_AWESOME_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
-            "autoreplace": "OFF",
+            "container_ports": [
+                {
+                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+                    "inner_port": 80,
+                    "outer_port": 49222,
+                    "protocol": "tcp"
+                }
+            ],
+            "container_size": "XS",
+            "deployed_datetime": "Sun, 6 Apr 2014 18:11:22 +0000",
+            "destroyed_datetime": null,
+            "entrypoint": "",
+            "exit_code": 0,
+            "exit_code_msg": "Exit code 0 (Success)",
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
-                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
-                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49282",
-                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha.tutum.io:49282",
-                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha.tutum.io"
+                "MY_AWESOME_APP_2_PORT": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP_ADDR": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+                "MY_AWESOME_APP_2_PORT_80_TCP_PORT": "49222",
+                "MY_AWESOME_APP_2_PORT_80_TCP_PROTO": "tcp"
             },
-            "web_public_dns": "my-web-app-2-admin.alpha.tutum.io"
+            "linked_from_application": [],
+            "linked_to_application": [],
+            "name": "my-awesome-app",
+            "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
+            "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
+            "roles": [],
+            "run_command": "/run.sh",
+            "started_datetime": "Sun, 6 Apr 2014 18:35:03 +0000",
+            "state": "Stopping",
+            "stopped_datetime": "Sun, 6 Apr 2014 18:33:53 +0000",
+            "unique_name": "my-awesome-app-2",
+            "uuid": "f5d64083-7698-4aec-b5dc-86a48be0f565"
         }
 
     :query uuid: the UUID of the container
@@ -1484,126 +1226,3 @@ Terminate a container
     :statuscode 400: cannot perform the operation (probably the container is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.delete()
-    True
-
-
-.. _api-roles:
-
-Roles
------
-
-List all available roles
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. http:get:: /api/v1/role/
-
-    This operation returns a list of all available roles to be used when launching an application.
-
-    **Example request**:
-
-    .. sourcecode:: http
-
-        GET /api/v1/role/ HTTP/1.1
-        Host: app.tutum.co
-        Accept: application/json
-        Authorization: ApiKey username:apikey
-
-    **Example response**:
-
-    .. sourcecode:: http
-
-        HTTP/1.1 200 OK
-        Cache-Control: must-revalidate, max-age=0
-        Content-Type: application/json
-        Vary: Accept, Authorization, Cookie
-
-        {
-            "meta": {
-                "limit": 25,
-                "next": null,
-                "offset": 0,
-                "previous": null,
-                "total_count": 1
-            },
-            "objects": [
-                {
-                    "label": "Full access",
-                    "resource_uri": "/api/v1/role/global/",
-                    "scope": "global"
-                }
-            ]
-        }
-
-    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
-    :reqheader Accept: required, only ``application/json`` is supported
-    :queryparam int offset: optional, start the list skipping the first ``offset`` records (default: 0)
-    :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
-    :statuscode 200: no error
-    :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Role.list()
-    [<tutum.api.role.Role object at 0x10701ca90>]
-
-``Role`` objects have all the attributes of the returned JSON as properties
-
-
-Get role details
-^^^^^^^^^^^^^^^^
-
-.. http:get:: /api/v1/role/(scope)/
-
-    Returns the details of the specified role
-
-    **Example request**:
-
-    .. sourcecode:: http
-
-        GET /api/v1/role/global/ HTTP/1.1
-        Host: app.tutum.co
-        Accept: application/json
-        Authorization: ApiKey username:apikey
-
-    **Example response**:
-
-    .. sourcecode:: http
-
-        HTTP/1.1 200 OK
-        Cache-Control: must-revalidate, max-age=0
-        Content-Type: application/json
-        Vary: Accept, Authorization, Cookie
-
-        {
-            "label": "Full access",
-            "resource_uri": "/api/v1/role/global/",
-            "scope": "global"
-        }
-
-    :query scope: the scope of the role
-    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
-    :reqheader Accept: required, only ``application/json`` is supported
-    :statuscode 200: no error
-    :statuscode 404: role not found
-    :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Role.fetch("global")
-    <tutum.api.role.Role object at 0x10701ca90>
-
-``Role`` objects have all the attributes of the returned JSON as properties

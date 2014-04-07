@@ -191,7 +191,7 @@ from its member list. However, if <tt class="docutils literal"><span class="pre"
 detect the change.</p>
 <p>You can give an application an API role. This role is a set of privileges granted to the application containers on the
 Tutum API. At the moment we only support a &#8220;full&#8221; role which allows any operation to be performed on the API if granted.
-To get the list of available roles you can query the API: see <a class="reference internal" href="../../reference/api/#api-roles"><em>Roles</em></a></p>
+To get the list of available roles see <a class="reference internal" href="../../reference/api/#api-launch-app"><em>Create and launch a new application</em></a></p>
 <p>The API role is passed in to the application containers as an authorization token stored in an environment variable called <tt class="docutils literal"><span class="pre">TUTUM_AUTH</span></tt>.
 This variable should be use to set the <tt class="docutils literal"><span class="pre">Authorization</span></tt> HTTP header when calling Tutum&#8217;s API:</p>
 <div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s2">&quot;Authorization: $TUTUM_AUTH&quot;</span> https://app.tutum.co/api/v1/application/
