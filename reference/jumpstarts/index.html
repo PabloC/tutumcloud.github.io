@@ -131,15 +131,24 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li><a class="reference internal" href="#fedora-20-tutum-fedora-20" id="id5">Fedora 20 (tutum/fedora-20)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#databases-and-caches" id="id6">Databases and caches</a><ul>
+<li><a class="reference internal" href="#database-servers" id="id6">Database servers</a><ul>
 <li><a class="reference internal" href="#mysql-tutum-mysql" id="id7">MySQL (tutum/mysql)</a></li>
-<li><a class="reference internal" href="#redis-tutum-redis" id="id8">Redis (tutum/redis)</a></li>
+<li><a class="reference internal" href="#postgresql-tutum-postgresql" id="id8">PostgreSQL (tutum/postgresql)</a></li>
 <li><a class="reference internal" href="#mongodb-tutum-mongodb" id="id9">MongoDB (tutum/mongodb)</a></li>
 <li><a class="reference internal" href="#couchdb-tutum-couchdb" id="id10">CouchDB (tutum/couchdb)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#message-queues" id="id11">Message queues</a><ul>
-<li><a class="reference internal" href="#rabbitmq-tutum-rabbitmq" id="id12">RabbitMQ (tutum/rabbitmq)</a></li>
+<li><a class="reference internal" href="#cache-servers" id="id11">Cache servers</a><ul>
+<li><a class="reference internal" href="#redis-tutum-redis" id="id12">Redis (tutum/redis)</a></li>
+<li><a class="reference internal" href="#memcached-tutum-memcached" id="id13">Memcached (tutum/memcached)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#message-queues" id="id14">Message queues</a><ul>
+<li><a class="reference internal" href="#rabbitmq-tutum-rabbitmq" id="id15">RabbitMQ (tutum/rabbitmq)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#load-balancers" id="id16">Load balancers</a><ul>
+<li><a class="reference internal" href="#haproxy-tutum-haproxy-http" id="id17">HAProxy (tutum/haproxy-http)</a></li>
 </ul>
 </li>
 </ul>
@@ -261,8 +270,8 @@ CMD [&quot;/run.sh&quot;]
 </dl>
 </div>
 </div>
-<div class="section" id="databases-and-caches">
-<h2><a class="toc-backref" href="#id6">Databases and caches</a><a class="headerlink" href="#databases-and-caches" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="database-servers">
+<h2><a class="toc-backref" href="#id6">Database servers</a><a class="headerlink" href="#database-servers" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mysql-tutum-mysql">
 <h3><a class="toc-backref" href="#id7">MySQL (tutum/mysql)</a><a class="headerlink" href="#mysql-tutum-mysql" title="Permalink to this headline">¶</a></h3>
 <p>MySQL Server image - listens in port 3306. For the admin account password, either set <tt class="docutils literal"><span class="pre">MYSQL_PASS</span></tt> environment variable,
@@ -295,32 +304,43 @@ CMD [&quot;/run.sh&quot;]
 <dd>If set, the container will set the <tt class="docutils literal"><span class="pre">admin</span></tt> account password to the specified value on launch</dd>
 </dl>
 </div>
-<div class="section" id="redis-tutum-redis">
-<h3><a class="toc-backref" href="#id8">Redis (tutum/redis)</a><a class="headerlink" href="#redis-tutum-redis" title="Permalink to this headline">¶</a></h3>
-<p>Redis Docker image image – listens in port 6379. For the server password, either set <tt class="docutils literal"><span class="pre">REDIS_PASS</span></tt> environment variable or
-read the logs for a randomly generated one</p>
-<p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/redis/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-redis/">GitHub repo</a></p>
+<div class="section" id="postgresql-tutum-postgresql">
+<h3><a class="toc-backref" href="#id8">PostgreSQL (tutum/postgresql)</a><a class="headerlink" href="#postgresql-tutum-postgresql" title="Permalink to this headline">¶</a></h3>
+<p>PostgreSQL Docker Image – listens on port 5432. For the admin (postgres) password, either set
+<tt class="docutils literal"><span class="pre">POSTGRES_PASS</span></tt> environment variable or read the logs for a randomly generated one.</p>
+<p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/postgresql/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-postgresql/">GitHub repo</a></p>
 <p><strong>Source Dockerfile</strong></p>
-<div class="highlight-none"><div class="highlight"><pre>FROM ubuntu:quantal
-MAINTAINER Fernando Mayo &lt;fernando@tutum.co&gt;
+<div class="highlight-none"><div class="highlight"><pre>FROM ubuntu:saucy
+MAINTAINER FENG, HONGLIN &lt;hfeng@tutum.co&gt;
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv C7917B12
-RUN echo &quot;deb http://ppa.launchpad.net/chris-lea/redis-server/ubuntu quantal main&quot; &gt;&gt; /etc/apt/sources.list
-RUN apt-get update &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get -y upgrade &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get install -y redis-server pwgen
+#install PostgreSQL 9.3
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+RUN echo &quot;deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y -q install python-software-properties software-properties-common
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y -q install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pwgen
 
-# Add scripts
+# Adjust PostgreSQL configuration so that remote connections to the database are possible.
+RUN echo &quot;host all  all    0.0.0.0/0  md5&quot; &gt;&gt; /etc/postgresql/9.3/main/pg_hba.conf
+RUN echo &quot;listen_addresses=&#39;*&#39;&quot; &gt;&gt; /etc/postgresql/9.3/main/postgresql.conf
+
+
+# Add VOLUMEs to allow backup of config, logs and databases
+VOLUME      [&quot;/etc/postgresql&quot;, &quot;/var/log/postgresql&quot;, &quot;/var/lib/postgresql&quot;]
+
+ADD modify_postgres_pass.sh ./modify_postgres_pass.sh
 ADD run.sh /run.sh
-ADD set_redis_password.sh /set_redis_password.sh
 RUN chmod 755 /*.sh
 
-EXPOSE 6379
+EXPOSE 5432
 CMD [&quot;/run.sh&quot;]
 </pre></div>
 </div>
 <p><strong>Environment variables</strong></p>
 <dl class="docutils">
-<dt>REDIS_PASS</dt>
-<dd>If set, the container will set the <tt class="docutils literal"><span class="pre">admin</span></tt> account password to the specified value on launch</dd>
+<dt>POSTGRES_PASS</dt>
+<dd>If set, the container will set the <tt class="docutils literal"><span class="pre">postgres</span></tt> account password to the specified value on launch</dd>
 </dl>
 </div>
 <div class="section" id="mongodb-tutum-mongodb">
@@ -384,10 +404,70 @@ CMD [&quot;/run.sh&quot;]
 </dl>
 </div>
 </div>
+<div class="section" id="cache-servers">
+<h2><a class="toc-backref" href="#id11">Cache servers</a><a class="headerlink" href="#cache-servers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="redis-tutum-redis">
+<h3><a class="toc-backref" href="#id12">Redis (tutum/redis)</a><a class="headerlink" href="#redis-tutum-redis" title="Permalink to this headline">¶</a></h3>
+<p>Redis Docker image image – listens in port 6379. For the server password, either set <tt class="docutils literal"><span class="pre">REDIS_PASS</span></tt> environment variable or
+read the logs for a randomly generated one</p>
+<p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/redis/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-redis/">GitHub repo</a></p>
+<p><strong>Source Dockerfile</strong></p>
+<div class="highlight-none"><div class="highlight"><pre>FROM ubuntu:quantal
+MAINTAINER Fernando Mayo &lt;fernando@tutum.co&gt;
+
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv C7917B12
+RUN echo &quot;deb http://ppa.launchpad.net/chris-lea/redis-server/ubuntu quantal main&quot; &gt;&gt; /etc/apt/sources.list
+RUN apt-get update &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get -y upgrade &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get install -y redis-server pwgen
+
+# Add scripts
+ADD run.sh /run.sh
+ADD set_redis_password.sh /set_redis_password.sh
+RUN chmod 755 /*.sh
+
+EXPOSE 6379
+CMD [&quot;/run.sh&quot;]
+</pre></div>
+</div>
+<p><strong>Environment variables</strong></p>
+<dl class="docutils">
+<dt>REDIS_PASS</dt>
+<dd>If set, the container will set the <tt class="docutils literal"><span class="pre">admin</span></tt> account password to the specified value on launch</dd>
+</dl>
+</div>
+<div class="section" id="memcached-tutum-memcached">
+<h3><a class="toc-backref" href="#id13">Memcached (tutum/memcached)</a><a class="headerlink" href="#memcached-tutum-memcached" title="Permalink to this headline">¶</a></h3>
+<p>Memcached Docker image image – listens in port 11211. For the admin password, either set <tt class="docutils literal"><span class="pre">MEMCACHED_PASS</span></tt> environment
+variable or read the logs for a randomly generated one</p>
+<p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/memcached/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-memcached/">GitHub repo</a></p>
+<p><strong>Source Dockerfile</strong></p>
+<div class="highlight-none"><div class="highlight"><pre>FROM ubuntu:saucy
+MAINTAINER FENG, HONGLIN &lt;hfeng@tutum.co&gt;
+
+#install memcached
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libevent-dev libsasl2-2 sasl2-bin libsasl2-2 libsasl2-dev libsasl2-modules
+Run DEBIAN_FRONTEND=noninteractive apt-get install -y memcached pwgen
+
+ADD create_memcached_admin_user.sh /create_memcached_admin_user.sh
+ADD run.sh /run.sh
+RUN chmod 755 /*.sh
+
+EXPOSE 11211
+
+CMD [&quot;/run.sh&quot;]
+</pre></div>
+</div>
+<p><strong>Environment variables</strong></p>
+<dl class="docutils">
+<dt>MEMCACHED_PASS</dt>
+<dd>If set, the container will set the <tt class="docutils literal"><span class="pre">admin</span></tt> account password to the specified value on launch</dd>
+</dl>
+</div>
+</div>
 <div class="section" id="message-queues">
-<h2><a class="toc-backref" href="#id11">Message queues</a><a class="headerlink" href="#message-queues" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Message queues</a><a class="headerlink" href="#message-queues" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="rabbitmq-tutum-rabbitmq">
-<h3><a class="toc-backref" href="#id12">RabbitMQ (tutum/rabbitmq)</a><a class="headerlink" href="#rabbitmq-tutum-rabbitmq" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">RabbitMQ (tutum/rabbitmq)</a><a class="headerlink" href="#rabbitmq-tutum-rabbitmq" title="Permalink to this headline">¶</a></h3>
 <p>RabbitMQ Docker image – listens in ports 5672/55672 (admin). For the admin password, either set <tt class="docutils literal"><span class="pre">RABBITMQ_PASS</span></tt>
 environment variable or read the logs for a randomly generated one</p>
 <p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/rabbitmq/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-rabbitmq/">GitHub repo</a></p>
@@ -413,6 +493,42 @@ CMD [&quot;/run.sh&quot;]
 <dt>RABBITMQ_PASS</dt>
 <dd>If set, the container will set the <tt class="docutils literal"><span class="pre">admin</span></tt> account password to the specified value on launch</dd>
 </dl>
+</div>
+</div>
+<div class="section" id="load-balancers">
+<h2><a class="toc-backref" href="#id16">Load balancers</a><a class="headerlink" href="#load-balancers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="haproxy-tutum-haproxy-http">
+<h3><a class="toc-backref" href="#id17">HAProxy (tutum/haproxy-http)</a><a class="headerlink" href="#haproxy-tutum-haproxy-http" title="Permalink to this headline">¶</a></h3>
+<p>HAProxy image that load balances between any linked container that listens in port 80.
+It also auto-reconfigures itself if deployed in Tutum.</p>
+<p>Links: <a class="reference external" href="https://index.docker.io/u/tutum/haproxy-http/">Docker Index</a> - <a class="reference external" href="https://github.com/tutumcloud/tutum-docker-clusterproxy/">GitHub repo</a></p>
+<p><strong>Source Dockerfile</strong></p>
+<div class="highlight-none"><div class="highlight"><pre>FROM ubuntu:latest
+MAINTAINER Bernardo Pericacho &lt;bernardo@tutum.co&gt;
+
+# Install required packages
+RUN apt-get update &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get install -y haproxy supervisor python-pip
+
+# Add configuration and scripts
+ADD haproxy.cfg /etc/haproxy/haproxy.cfg
+ADD haproxy.cfg.json /etc/haproxy/empty_haproxy.cfg.json
+ADD haproxy.cfg.json /etc/haproxy/haproxy.cfg.json
+ADD requirements.txt /requirements.txt
+ADD supervisord-balancer.conf /etc/supervisor/conf.d/supervisord-balancer.conf
+ADD main.py /main.py
+ADD run.sh /run.sh
+RUN chmod 755 /*.sh
+RUN pip install -r /requirements.txt
+
+EXPOSE 80
+CMD [&quot;/run.sh&quot;]
+</pre></div>
+</div>
+<p><strong>Environment variables</strong></p>
+<p>Just link one or more containers that accept HTTP requests in port 80 to a container running this image and it will automatically
+balance traffic between them.</p>
+<p>If deployed in Tutum, if you also provide an API role to it with at least read access, it will automatically detect any
+containers created/terminated in the linked application(s) by polling Tutum&#8217;s API.</p>
 </div>
 </div>
 </div>

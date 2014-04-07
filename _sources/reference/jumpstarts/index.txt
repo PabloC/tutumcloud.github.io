@@ -141,8 +141,8 @@ ROOT_PASS
     If set, the container will set the ``root`` account password to the specified value on launch
 
 
-Databases and caches
---------------------
+Database servers
+----------------
 
 MySQL (tutum/mysql)
 ^^^^^^^^^^^^^^^^^^^
@@ -180,36 +180,47 @@ MYSQL_PASS
     If set, the container will set the ``admin`` account password to the specified value on launch
 
 
-Redis (tutum/redis)
-^^^^^^^^^^^^^^^^^^^
-Redis Docker image image – listens in port 6379. For the server password, either set ``REDIS_PASS`` environment variable or
-read the logs for a randomly generated one
+PostgreSQL (tutum/postgresql)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PostgreSQL Docker Image – listens on port 5432. For the admin (postgres) password, either set
+``POSTGRES_PASS`` environment variable or read the logs for a randomly generated one.
 
-Links: `Docker Index <https://index.docker.io/u/tutum/redis/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-redis/>`__
+Links: `Docker Index <https://index.docker.io/u/tutum/postgresql/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-postgresql/>`__
 
 **Source Dockerfile**
 
 .. sourcecode:: none
 
-    FROM ubuntu:quantal
-    MAINTAINER Fernando Mayo <fernando@tutum.co>
+    FROM ubuntu:saucy
+    MAINTAINER FENG, HONGLIN <hfeng@tutum.co>
 
-    RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv C7917B12
-    RUN echo "deb http://ppa.launchpad.net/chris-lea/redis-server/ubuntu quantal main" >> /etc/apt/sources.list
-    RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-get install -y redis-server pwgen
+    #install PostgreSQL 9.3
+    RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+    RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+    RUN DEBIAN_FRONTEND=noninteractive apt-get update
+    RUN DEBIAN_FRONTEND=noninteractive apt-get -y -q install python-software-properties software-properties-common
+    RUN DEBIAN_FRONTEND=noninteractive apt-get -y -q install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3
+    RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pwgen
 
-    # Add scripts
+    # Adjust PostgreSQL configuration so that remote connections to the database are possible.
+    RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
+    RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
+
+
+    # Add VOLUMEs to allow backup of config, logs and databases
+    VOLUME	["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
+
+    ADD modify_postgres_pass.sh ./modify_postgres_pass.sh
     ADD run.sh /run.sh
-    ADD set_redis_password.sh /set_redis_password.sh
     RUN chmod 755 /*.sh
 
-    EXPOSE 6379
+    EXPOSE 5432
     CMD ["/run.sh"]
 
 **Environment variables**
 
-REDIS_PASS
-    If set, the container will set the ``admin`` account password to the specified value on launch
+POSTGRES_PASS
+    If set, the container will set the ``postgres`` account password to the specified value on launch
 
 
 MongoDB (tutum/mongodb)
@@ -280,6 +291,74 @@ COUCHDB_PASS
     If set, the container will set the ``admin`` account password to the specified value on launch
 
 
+Cache servers
+-------------
+
+Redis (tutum/redis)
+^^^^^^^^^^^^^^^^^^^
+Redis Docker image image – listens in port 6379. For the server password, either set ``REDIS_PASS`` environment variable or
+read the logs for a randomly generated one
+
+Links: `Docker Index <https://index.docker.io/u/tutum/redis/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-redis/>`__
+
+**Source Dockerfile**
+
+.. sourcecode:: none
+
+    FROM ubuntu:quantal
+    MAINTAINER Fernando Mayo <fernando@tutum.co>
+
+    RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv C7917B12
+    RUN echo "deb http://ppa.launchpad.net/chris-lea/redis-server/ubuntu quantal main" >> /etc/apt/sources.list
+    RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-get install -y redis-server pwgen
+
+    # Add scripts
+    ADD run.sh /run.sh
+    ADD set_redis_password.sh /set_redis_password.sh
+    RUN chmod 755 /*.sh
+
+    EXPOSE 6379
+    CMD ["/run.sh"]
+
+**Environment variables**
+
+REDIS_PASS
+    If set, the container will set the ``admin`` account password to the specified value on launch
+
+
+Memcached (tutum/memcached)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Memcached Docker image image – listens in port 11211. For the admin password, either set ``MEMCACHED_PASS`` environment
+variable or read the logs for a randomly generated one
+
+Links: `Docker Index <https://index.docker.io/u/tutum/memcached/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-memcached/>`__
+
+**Source Dockerfile**
+
+.. sourcecode:: none
+
+    FROM ubuntu:saucy
+    MAINTAINER FENG, HONGLIN <hfeng@tutum.co>
+
+    #install memcached
+    RUN DEBIAN_FRONTEND=noninteractive apt-get update
+    RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libevent-dev libsasl2-2 sasl2-bin libsasl2-2 libsasl2-dev libsasl2-modules
+    Run DEBIAN_FRONTEND=noninteractive apt-get install -y memcached pwgen
+
+    ADD create_memcached_admin_user.sh /create_memcached_admin_user.sh
+    ADD run.sh /run.sh
+    RUN chmod 755 /*.sh
+
+    EXPOSE 11211
+
+    CMD ["/run.sh"]
+
+**Environment variables**
+
+MEMCACHED_PASS
+    If set, the container will set the ``admin`` account password to the specified value on launch
+
+
 Message queues
 --------------
 
@@ -313,3 +392,46 @@ Links: `Docker Index <https://index.docker.io/u/tutum/rabbitmq/>`__ - `GitHub re
 
 RABBITMQ_PASS
     If set, the container will set the ``admin`` account password to the specified value on launch
+
+
+Load balancers
+--------------
+
+HAProxy (tutum/haproxy-http)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+HAProxy image that load balances between any linked container that listens in port 80.
+It also auto-reconfigures itself if deployed in Tutum.
+
+Links: `Docker Index <https://index.docker.io/u/tutum/haproxy-http/>`__ - `GitHub repo <https://github.com/tutumcloud/tutum-docker-clusterproxy/>`__
+
+**Source Dockerfile**
+
+.. sourcecode:: none
+
+    FROM ubuntu:latest
+    MAINTAINER Bernardo Pericacho <bernardo@tutum.co>
+
+    # Install required packages
+    RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y haproxy supervisor python-pip
+
+    # Add configuration and scripts
+    ADD haproxy.cfg /etc/haproxy/haproxy.cfg
+    ADD haproxy.cfg.json /etc/haproxy/empty_haproxy.cfg.json
+    ADD haproxy.cfg.json /etc/haproxy/haproxy.cfg.json
+    ADD requirements.txt /requirements.txt
+    ADD supervisord-balancer.conf /etc/supervisor/conf.d/supervisord-balancer.conf
+    ADD main.py /main.py
+    ADD run.sh /run.sh
+    RUN chmod 755 /*.sh
+    RUN pip install -r /requirements.txt
+
+    EXPOSE 80
+    CMD ["/run.sh"]
+
+**Environment variables**
+
+Just link one or more containers that accept HTTP requests in port 80 to a container running this image and it will automatically
+balance traffic between them.
+
+If deployed in Tutum, if you also provide an API role to it with at least read access, it will automatically detect any
+containers created/terminated in the linked application(s) by polling Tutum's API.
