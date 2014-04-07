@@ -31,7 +31,7 @@ Tutum runs on top of Amazon Web Services.
 Can I set my own hostname?
 --------------------------
 
-Yes, we support custom hostnames using CNAMES for web applications (coming soon!).
+Yes, we support custom hostnames using CNAMES for web applications.
 
 
 Do you offer redundancy?
