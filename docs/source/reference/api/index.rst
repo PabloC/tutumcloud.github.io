@@ -2,44 +2,27 @@
 
 .. _api-ref:
 
-Tutum API
-=========
+HTTP API
+========
 
 .. contents::
     :local:
-
-.. _api-auth-ref:
 
 
 Introduction
 ------------
 
-Tutum currently offers an HTTP REST API and a Python library that wraps this API. In this document you will find
-all the operations currently supported in the platform and examples on how to execute them as raw HTTP requests
-and by using the Python library.
+Tutum currently offers an HTTP REST API which is used by both the Web UI and the CLI. In this document you will find
+all the operations currently supported in the platform and examples on how to execute them as raw HTTP requests.
 
 
-Installing the Python library
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _api-auth-ref:
 
-In order to install the Tutum Python library, you can use ``pip install``:
-
-.. sourcecode:: bash
-
-    pip install python-tutum
-
-It will install a Python module called ``tutum`` which you can use to interface with the API.
-
-
-Authorization
--------------
+Authentication
+--------------
 
 In order to be able to make requests to the API, you should first obtain an ApiKey for your account.
 For this, log into Tutum, click on the menu on the upper right corner of the screen, and select **Get Api Key**
-
-
-HTTP API
-^^^^^^^^
 
 The Tutum HTTP API is reachable through the following hostname::
 
@@ -50,46 +33,6 @@ All requests should be sent to this endpoint with the following ``Authorization`
 .. sourcecode:: bash
 
     curl -H "Authorization: ApiKey username:apikey" https://app.tutum.co/api/v1/application/
-
-
-Python library
-^^^^^^^^^^^^^^
-
-You can use your ApiKey with the Python library in any of the following ways (will be used in this order):
-
-* Manually set it in your Python initialization code:
-
-.. sourcecode:: python
-
-    import tutum
-    tutum.user = "username"
-    tutum.apikey = "apikey"
-
-
-* Store it in a configuration file in ``~/.tutum``:
-
-.. sourcecode:: ini
-
-    [auth]
-    user = "username"
-    apikey = "apikey"
-
-
-* Set the environment variables ``TUTUM_USER`` and ``TUTUM_APIKEY``:
-
-.. sourcecode:: bash
-
-    export TUTUM_USER=username
-    export TUTUM_APIKEY=apikey
-
-
-Errors
-------
-
-Errors in the HTTP API will be returned with status codes in the 4xx and 5xx ranges.
-
-The Python library will detect this status codes and raise ``TutumApiError`` exceptions with the error message,
-which should be handled by the calling application accordingly.
 
 
 Applications
@@ -175,20 +118,6 @@ List all applications
     :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
 
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Application.list()
-    [<tutum.api.application.Application object at 0x10701ca90>, <tutum.api.application.Application object at 0x10701ca91>]
-    >>> tutum.Application.list(name="my-web-app")
-    [<tutum.api.application.Application object at 0x10701ca90>]
-    >>> tutum.Application.list(uuid__startswith="7eaf7fff")
-    [<tutum.api.application.Application object at 0x10701ca90>]
-
-
-``Application`` objects have all the attributes of the returned JSON as properties
 
 .. _api-application-ref:
 
@@ -284,18 +213,6 @@ Get application details
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: application not found
 
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Application.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-    <tutum.api.application.Application object at 0x106c45c10>
-    >>> tutum.Application.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce").name
-    "my-web-app"
-
-
-``Application`` objects have all the attributes of the returned JSON as properties
 
 .. _api-launch-app:
 
@@ -398,22 +315,6 @@ Create and launch a new application
     :statuscode 400: cannot perform the operation (probably there was a validation error on the given parameters)
     :statuscode 401: unauthorized (wrong credentials)
 
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.create(image="tutum/hello-world", name="my-new-app", target_num_containers=2, container_size="XS")
-    >>> app.save()
-    True
-    >>> app.state
-    "Starting"
-    >>> app.refresh()
-    True
-    >>> app.state
-    "Running"
-
-
 Update an application
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -515,24 +416,6 @@ Update an application
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
 
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-    >>> app.target_num_containers = 3
-    >>> app.save()
-    True
-    >>> app.state
-    "Scaling"
-    >>> app.refresh()
-    True
-    >>> app.state
-    "Running"
-
-
 Start an application
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -615,22 +498,6 @@ Start an application
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
-
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
-    >>> app.start()
-    True
-    >>> app.state
-    "Starting"
-    >>> app.refresh()
-    True
-    >>> app.state
-    "Running"
 
 
 Stop an application
@@ -717,22 +584,6 @@ Stop an application
     :statuscode 401: unauthorized (wrong credentials)
 
 
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.fetch("7eaf7fff-882c-4f3d-9a8f-a22317ac00ce")
-    >>> app.stop()
-    True
-    >>> app.state
-    "Stopping"
-    >>> app.refresh()
-    True
-    >>> app.state
-    "Stopped"
-
-
 Terminate an application
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -815,22 +666,6 @@ Terminate an application
     :statuscode 202: operation accepted
     :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
-
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> app = tutum.Application.fetch("fee900c6-97da-46b3-a21c-e2b50ed07015")
-    >>> app.delete()
-    True
-    >>> app.state
-    "Terminating"
-    >>> app.refresh()
-    True
-    >>> app.state
-    "Terminated"
 
 
 Containers
@@ -937,7 +772,7 @@ List all containers
     :reqheader Accept: required, only ``application/json`` is supported
     :queryparam int offset: optional, start the list skipping the first ``offset`` records (default: 0)
     :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
-    :queryparam string name: optional, filter containers by name
+    :queryparam string unique_name: optional, filter containers by name
     :queryparam string uuid: optional, filter containers by UUID
     :queryparam string uuid__startswith: optional, filter containers by UUIDs that start with the given string
     :queryparam string state: optional, filter containers by state
@@ -946,20 +781,6 @@ List all containers
     :queryparam string application__state: optional, filter containers by application state
     :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
-
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Container.list()
-    [<tutum.api.container.Container object at 0x10701ca90>, <tutum.api.container.Container object at 0x10701ca91>]
-    >>> tutum.Container.list(name="my-web-app-1")
-    [<tutum.api.container.Container object at 0x10701ca90>]
-
-
-``Container`` objects have all the attributes of the returned JSON as properties
 
 
 Get container details
@@ -1061,19 +882,6 @@ Get container details
     :statuscode 200: no error
     :statuscode 404: container not found
     :statuscode 401: unauthorized (wrong credentials)
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> tutum.Container.fetch("f5d64083-7698-4aec-b5dc-86a48be0f565")
-    <tutum.api.container.Container object at 0x10701ca90>
-    >>> tutum.Container.fetch("f5d64083-7698-4aec-b5dc-86a48be0f565").name
-    "my-awesome-app"
-
-
-``Container`` objects have all the attributes of the returned JSON as properties
 
 
 Start a container
@@ -1177,21 +985,6 @@ Start a container
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
 
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.start()
-    True
-    >>> container.state
-    "Starting"
-    >>> container.refresh()
-    True
-    >>> container.state
-    "Running"
-
 
 Stop a container
 ^^^^^^^^^^^^^^^^
@@ -1294,21 +1087,6 @@ Stop a container
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
 
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.stop()
-    True
-    >>> container.state
-    "Stopping"
-    >>> container.refresh()
-    True
-    >>> container.state
-    "Stopped"
-
 
 Get logs for a container
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1345,15 +1123,6 @@ Get logs for a container
     :statuscode 200: no error
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.logs
-    "2014-03-24 23:58:08,973 CRIT Supervisor running as root (no user in config file)\n2014-03-24 23:58:08,973 WARN Included extra file \"/etc/supervisor/conf.d/supervisord-apache2.conf\" during parsing"
 
 
 Terminate a container
@@ -1457,18 +1226,3 @@ Terminate a container
     :statuscode 400: cannot perform the operation (probably the container is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
-
-**Python library example**
-
-.. sourcecode:: python
-
-    >>> import tutum
-    >>> container = tutum.Container.fetch("7d6696b7-fbaf-471d-8e6b-ce7052586c24")
-    >>> container.delete()
-    True
-    >>> container.state
-    "Terminating"
-    >>> container.refresh()
-    True
-    >>> container.state
-    "Terminated"
