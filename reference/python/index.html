@@ -263,6 +263,36 @@ which should be handled by the calling application accordingly:</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="tutum.Application.refresh">
+<tt class="descname">refresh</tt><big>(</big><em>force=False</em><big>)</big><a class="headerlink" href="#tutum.Application.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reloads the object with remote information</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>force</strong> (<em>bool</em>) &#8211; Force reloading even if there are pending changes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bool &#8211; whether the operation was successful or not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tutum.Application.save">
+<tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#tutum.Application.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create or update the model in Tutum</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool &#8211; whether the operation was successful or not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="tutum.Application.start">
 <tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#tutum.Application.start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts the application in Tutum.</p>
@@ -406,6 +436,22 @@ which should be handled by the calling application accordingly:</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="tutum.Container.refresh">
+<tt class="descname">refresh</tt><big>(</big><em>force=False</em><big>)</big><a class="headerlink" href="#tutum.Container.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reloads the object with remote information</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>force</strong> (<em>bool</em>) &#8211; Force reloading even if there are pending changes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bool &#8211; whether the operation was successful or not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="tutum.Container.start">
 <tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#tutum.Container.start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts the container in Tutum.</p>
@@ -465,6 +511,108 @@ which should be handled by the calling application accordingly:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">container</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">container</span><span class="o">.</span><span class="n">state</span>
 <span class="go">&quot;Terminated&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="tutum.Image">
+<em class="property">class </em><tt class="descclassname">tutum.</tt><tt class="descname">Image</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#tutum.Image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a Tutum Image object</p>
+<dl class="classmethod">
+<dt id="tutum.Image.create">
+<em class="property">classmethod </em><tt class="descname">create</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#tutum.Image.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new instance of the model (without saving it) with the attributes specified in <tt class="docutils literal"><span class="pre">kwargs</span></tt></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">RESTModel &#8211; a new local instance of the model</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tutum.Image.delete">
+<tt class="descname">delete</tt><big>(</big><big>)</big><a class="headerlink" href="#tutum.Image.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the object in Tutum</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool &#8211; whether the operation was successful or not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="tutum.Image.fetch">
+<em class="property">classmethod </em><tt class="descname">fetch</tt><big>(</big><em>pk</em><big>)</big><a class="headerlink" href="#tutum.Image.fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch an individual model given the pk</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pk</strong> (<em>str</em>) &#8211; The primary key for the object (usually UUID)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">RESTModel &#8211; the instance fetched from Tutum</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">TutumApiError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="tutum.Image.list">
+<em class="property">classmethod </em><tt class="descname">list</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#tutum.Image.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all objects for the authenticated user, optionally filtered by <tt class="docutils literal"><span class="pre">kwargs</span></tt></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list &#8211; a list of objects that match the query</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tutum.Image.save">
+<tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#tutum.Image.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create or update the model in Tutum</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool &#8211; whether the operation was successful or not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tutum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tutum</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">is_private_image</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">[&lt;tutum.api.image.Image object at 0x10701ca90&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">tutum</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s">&quot;quay.io/user/my-private-image&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&quot;quay.io/user/my-private-image&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newimage</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;quay.io/user/private-app&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s">&quot;user+read&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;mytoken&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newimage</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newimage</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&quot;My new secret application&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newimage</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newimage</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 </div>

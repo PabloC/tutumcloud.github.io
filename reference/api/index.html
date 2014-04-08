@@ -146,6 +146,14 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li><a class="reference internal" href="#terminate-a-container" id="id17">Terminate a container</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#images" id="id18">Images</a><ul>
+<li><a class="reference internal" href="#list-all-images" id="id19">List all images</a></li>
+<li><a class="reference internal" href="#get-image-details" id="id20">Get image details</a></li>
+<li><a class="reference internal" href="#add-a-new-private-image" id="id21">Add a new private image</a></li>
+<li><a class="reference internal" href="#update-a-private-image" id="id22">Update a private image</a></li>
+<li><a class="reference internal" href="#delete-a-private-image" id="id23">Delete a private image</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="introduction">
@@ -1561,6 +1569,435 @@ All the data stored in the container will be permanently deleted. The parent app
 <li><strong>400</strong> &#8211; cannot perform the operation (probably the container is not in a suitable state)</li>
 <li><strong>401</strong> &#8211; unauthorized (wrong credentials)</li>
 <li><strong>404</strong> &#8211; container not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="images">
+<h2><a class="toc-backref" href="#id18">Images</a><a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="list-all-images">
+<h3><a class="toc-backref" href="#id19">List all images</a><a class="headerlink" href="#list-all-images" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--api-v1-image-">
+<tt class="descname">GET </tt><tt class="descname">/api/v1/image/</tt><a class="headerlink" href="#get--api-v1-image-" title="Permalink to this definition">¶</a></dt>
+<dd><p>This operation returns a list of all jumpstarts, Linux and private images available to the user.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/api/v1/image/?is_private_image=True</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">app.tutum.co</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">ApiKey username:apikey</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Cache-Control</span><span class="o">:</span> <span class="l">must-revalidate, max-age=0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Authorization, Cookie</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;offset&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;total_count&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;objects&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;base_image&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;cluster_aware&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;docker_registry&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/registry/r.tutum.co/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;imagetag_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;/api/v1/image/r.tutum.co/user/myimage/tag/latest/&quot;</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;is_private_image&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;r.tutum.co/user/myimage&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;public_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/r.tutum.co/user/myimaget/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;starred&quot;</span><span class="p">:</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Authorization</strong> &#8211; required ApiKey authentication header in the format <tt class="docutils literal"><span class="pre">ApiKey</span> <span class="pre">username:apikey</span></tt></li>
+<li><strong>Accept</strong> &#8211; required, only <tt class="docutils literal"><span class="pre">application/json</span></tt> is supported</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>offset</strong> (<em>int</em>) &#8211; optional, start the list skipping the first <tt class="docutils literal"><span class="pre">offset</span></tt> records (default: 0)</li>
+<li><strong>limit</strong> (<em>int</em>) &#8211; optional, only return at most <tt class="docutils literal"><span class="pre">limit</span></tt> records (default: 25, max: 100)</li>
+<li><strong>name</strong> (<em>string</em>) &#8211; optional, filter applications by name</li>
+<li><strong>is_private_image</strong> (<em>bool</em>) &#8211; optional, display only private images</li>
+<li><strong>base_image</strong> (<em>bool</em>) &#8211; optional, display only Linux base images</li>
+<li><strong>starred</strong> (<em>bool</em>) &#8211; optional, display only jumpstart images</li>
+<li><strong>docker_registry__host</strong> (<em>string</em>) &#8211; optional, display only images stored in the specified host, i.e. <tt class="docutils literal"><span class="pre">r.tutum.co</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; no error</li>
+<li><strong>401</strong> &#8211; unauthorized (wrong credentials)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="get-image-details">
+<h3><a class="toc-backref" href="#id20">Get image details</a><a class="headerlink" href="#get-image-details" title="Permalink to this headline">¶</a></h3>
+<dl class="get">
+<dt id="get--api-v1-image-(name)-">
+<tt class="descname">GET </tt><tt class="descname">/api/v1/image/</tt><big>(</big><em>name</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--api-v1-image-(name)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all the details of an specific image</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/api/v1/image/tutum/lamp/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">app.tutum.co</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">ApiKey username:apikey</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Cache-Control</span><span class="o">:</span> <span class="l">must-revalidate, max-age=0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Authorization, Cookie</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;base_image&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;cluster_aware&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;docker_registry&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/registry/index.docker.io/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;imagetag_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;full_name&quot;</span><span class="p">:</span> <span class="s2">&quot;tutum/lamp:latest&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Fernando Mayo&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;docker_id&quot;</span><span class="p">:</span> <span class="s2">&quot;34ead373df921d5d28226e7a6795280f4f33bbfdf7ca0bc9c98a3e431a8f2e44&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;entrypoint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;image_creation&quot;</span><span class="p">:</span> <span class="s2">&quot;Thu, 6 Mar 2014 11:10:37 +0000&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;imageenvvar_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;HOME&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;PATH&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&quot;imageport_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+                        <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+                        <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&quot;run_command&quot;</span><span class="p">:</span> <span class="s2">&quot;/run.sh&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;image_info&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/tutum/lamp/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/tutum/lamp/tag/latest/&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;is_private_image&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tutum/lamp&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;public_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://index.docker.io/u/tutum/lamp/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/tutum/lamp/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;starred&quot;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> &#8211; the name of the image, i.e. <tt class="docutils literal"><span class="pre">tutum/lamp</span></tt> or <tt class="docutils literal"><span class="pre">r.tutum.co/user/myimage</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Authorization</strong> &#8211; required ApiKey authentication header in the format <tt class="docutils literal"><span class="pre">ApiKey</span> <span class="pre">username:apikey</span></tt></li>
+<li><strong>Accept</strong> &#8211; required, only <tt class="docutils literal"><span class="pre">application/json</span></tt> is supported</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; no error</li>
+<li><strong>401</strong> &#8211; unauthorized (wrong credentials)</li>
+<li><strong>404</strong> &#8211; application not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="add-a-new-private-image">
+<h3><a class="toc-backref" href="#id21">Add a new private image</a><a class="headerlink" href="#add-a-new-private-image" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--api-v1-image-">
+<tt class="descname">POST </tt><tt class="descname">/api/v1/image/</tt><a class="headerlink" href="#post--api-v1-image-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a private image to the user account to be used in application deployments. Note that private images pushed to
+Tutum&#8217;s private registry will be added automatically.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/api/v1/image/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">app.tutum.co</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">ApiKey username:apikey</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;quay.io/user/my-private-image&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;user+read&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;SHJW0SAOQ2BFBZVEVQH98SOL6V7UPQ0PH2VNKRVMMXR6T8Q43AHR88242FRPPTPG&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Cache-Control</span><span class="o">:</span> <span class="l">must-revalidate, max-age=0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Authorization, Cookie</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;base_image&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;cluster_aware&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;docker_registry&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/registry/quay.io/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;imagetag_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;full_name&quot;</span><span class="p">:</span> <span class="s2">&quot;quay.io/user/my-private-image:latest&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;User &lt;user@example.com&gt;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;docker_id&quot;</span><span class="p">:</span> <span class="s2">&quot;9cd978db300e27386baa9dd791bf6dc818f13e52235b56e95703361ec3c94dc6&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;entrypoint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;image_creation&quot;</span><span class="p">:</span> <span class="s2">&quot;Mon, 3 Feb 2014 17:22:29 +0000&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;imageenvvar_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;HOME&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;PATH&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&quot;imageport_set&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="nt">&quot;run_command&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;image_info&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/quay.io/user/my-private-image/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/quay.io/user/my-private-image/tag/latest/&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;is_private_image&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;quay.io/tutum/test-repo3&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;public_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://quay.io/repository/user/my-private-image&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/quay.io/user/my-private-image/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;starred&quot;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Json Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; required, the image name to add in docker format, including the registry namespace, i.e. <tt class="docutils literal"><span class="pre">quay.io/user/my-private-image</span></tt>.</li>
+<li><strong>username</strong> (<em>string</em>) &#8211; required, the username to authenticate with the registry</li>
+<li><strong>password</strong> (<em>string</em>) &#8211; required, the password to authenticate with the registry</li>
+<li><strong>description</strong> (<em>string</em>) &#8211; optional, a description for the image</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Content-Type</strong> &#8211; required, only <tt class="docutils literal"><span class="pre">application/json</span></tt> is supported</li>
+<li><strong>Authorization</strong> &#8211; required ApiKey authentication header in the format <tt class="docutils literal"><span class="pre">ApiKey</span> <span class="pre">username:apikey</span></tt></li>
+<li><strong>Accept</strong> &#8211; required, only <tt class="docutils literal"><span class="pre">application/json</span></tt> is supported</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>202</strong> &#8211; operation accepted</li>
+<li><strong>400</strong> &#8211; cannot perform the operation (probably there was a validation error on the given parameters)</li>
+<li><strong>401</strong> &#8211; unauthorized (wrong credentials)</li>
+<li><strong>404</strong> &#8211; image not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="update-a-private-image">
+<h3><a class="toc-backref" href="#id22">Update a private image</a><a class="headerlink" href="#update-a-private-image" title="Permalink to this headline">¶</a></h3>
+<dl class="patch">
+<dt id="patch--api-v1-image-(name)-">
+<tt class="descname">PATCH </tt><tt class="descname">/api/v1/image/</tt><big>(</big><em>name</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#patch--api-v1-image-(name)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the credentials (username and password) and/or the description of a private image</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre>PATCH /api/v1/image/quay.io/user/my-private-image/ HTTP/1.1
+Host: app.tutum.co
+Accept: application/json
+Authorization: ApiKey username:apikey
+Content-Type: application/json
+
+{
+    &quot;description&quot;: &quot;Awesome web application, containerized&quot;
+}
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Cache-Control</span><span class="o">:</span> <span class="l">must-revalidate, max-age=0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Authorization, Cookie</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;base_image&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;cluster_aware&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Awesome web application, containerized&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;docker_registry&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/registry/quay.io/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;imagetag_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;full_name&quot;</span><span class="p">:</span> <span class="s2">&quot;quay.io/user/my-private-image:latest&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;User &lt;user@example.com&gt;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;docker_id&quot;</span><span class="p">:</span> <span class="s2">&quot;9cd978db300e27386baa9dd791bf6dc818f13e52235b56e95703361ec3c94dc6&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;entrypoint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;image_creation&quot;</span><span class="p">:</span> <span class="s2">&quot;Mon, 3 Feb 2014 17:22:29 +0000&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;imageenvvar_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;HOME&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;PATH&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&quot;imageport_set&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="nt">&quot;run_command&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;image_info&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/quay.io/user/my-private-image/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/quay.io/user/my-private-image/tag/latest/&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;is_private_image&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;quay.io/tutum/test-repo3&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;public_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://quay.io/repository/user/my-private-image&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/quay.io/user/my-private-image/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;starred&quot;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Json Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; required, the image name to add in docker format, including the registry namespace, i.e. <tt class="docutils literal"><span class="pre">quay.io/user/my-private-image</span></tt>.</li>
+<li><strong>username</strong> (<em>string</em>) &#8211; optional, the username to authenticate with the registry</li>
+<li><strong>password</strong> (<em>string</em>) &#8211; optional, the password to authenticate with the registry (required if <tt class="docutils literal"><span class="pre">username</span></tt> is given)</li>
+<li><strong>description</strong> (<em>string</em>) &#8211; optional, a description for to the image</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Content-Type</strong> &#8211; required, only <tt class="docutils literal"><span class="pre">application/json</span></tt> is supported</li>
+<li><strong>Authorization</strong> &#8211; required ApiKey authentication header in the format <tt class="docutils literal"><span class="pre">ApiKey</span> <span class="pre">username:apikey</span></tt></li>
+<li><strong>Accept</strong> &#8211; required, only <tt class="docutils literal"><span class="pre">application/json</span></tt> is supported</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>202</strong> &#8211; operation accepted</li>
+<li><strong>400</strong> &#8211; cannot perform the operation (invalid parameters)</li>
+<li><strong>401</strong> &#8211; unauthorized (wrong credentials)</li>
+<li><strong>404</strong> &#8211; image not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="delete-a-private-image">
+<h3><a class="toc-backref" href="#id23">Delete a private image</a><a class="headerlink" href="#delete-a-private-image" title="Permalink to this headline">¶</a></h3>
+<dl class="delete">
+<dt id="delete--api-v1-image-(name)-">
+<tt class="descname">DELETE </tt><tt class="descname">/api/v1/image/</tt><big>(</big><em>name</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#delete--api-v1-image-(name)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a private image from the account. Please note that this does not delete the image in the source registry.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">DELETE</span> <span class="nn">/api/v1/image/quay.io/user/my-private-image/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">app.tutum.co</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">ApiKey username:apikey</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">Cache-Control</span><span class="o">:</span> <span class="l">must-revalidate, max-age=0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Authorization, Cookie</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Json Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; required, the image name to add in docker format, including the registry namespace, i.e. <tt class="docutils literal"><span class="pre">quay.io/user/my-private-image</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Authorization</strong> &#8211; required ApiKey authentication header in the format <tt class="docutils literal"><span class="pre">ApiKey</span> <span class="pre">username:apikey</span></tt></li>
+<li><strong>Accept</strong> &#8211; required, only <tt class="docutils literal"><span class="pre">application/json</span></tt> is supported</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>204</strong> &#8211; operation accepted (no data returned in the body)</li>
+<li><strong>401</strong> &#8211; unauthorized (wrong credentials)</li>
+<li><strong>404</strong> &#8211; image not found</li>
 </ul>
 </td>
 </tr>
