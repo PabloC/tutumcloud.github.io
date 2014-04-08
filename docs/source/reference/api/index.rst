@@ -1226,3 +1226,353 @@ Terminate a container
     :statuscode 400: cannot perform the operation (probably the container is not in a suitable state)
     :statuscode 401: unauthorized (wrong credentials)
     :statuscode 404: container not found
+
+
+Images
+------
+
+List all images
+^^^^^^^^^^^^^^^
+
+.. http:get:: /api/v1/image/
+
+    This operation returns a list of all jumpstarts, Linux and private images available to the user.
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        GET /api/v1/image/?is_private_image=True HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+        {
+            "meta": {
+                "limit": 25,
+                "next": null,
+                "offset": 0,
+                "previous": null,
+                "total_count": 1
+            },
+            "objects": [
+                {
+                    "base_image": false,
+                    "cluster_aware": false,
+                    "description": "",
+                    "docker_registry": "/api/v1/registry/r.tutum.co/",
+                    "image_url": "",
+                    "imagetag_set": [
+                        "/api/v1/image/r.tutum.co/user/myimage/tag/latest/"
+                    ],
+                    "is_private_image": true,
+                    "name": "r.tutum.co/user/myimage",
+                    "public_url": "",
+                    "resource_uri": "/api/v1/image/r.tutum.co/user/myimaget/",
+                    "starred": false
+                }
+            ]
+        }
+
+
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :queryparam int offset: optional, start the list skipping the first ``offset`` records (default: 0)
+    :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
+    :queryparam string name: optional, filter applications by name
+    :queryparam bool is_private_image: optional, display only private images
+    :queryparam bool base_image: optional, display only Linux base images
+    :queryparam bool starred: optional, display only jumpstart images
+    :queryparam string docker_registry__host: optional, display only images stored in the specified host, i.e. ``r.tutum.co``
+    :statuscode 200: no error
+    :statuscode 401: unauthorized (wrong credentials)
+
+
+Get image details
+^^^^^^^^^^^^^^^^^
+
+.. http:get:: /api/v1/image/(name)/
+
+    Get all the details of an specific image
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        GET /api/v1/image/tutum/lamp/ HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 200 OK
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+        {
+            "base_image": false,
+            "cluster_aware": false,
+            "description": "",
+            "docker_registry": "/api/v1/registry/index.docker.io/",
+            "image_url": "",
+            "imagetag_set": [
+                {
+                    "full_name": "tutum/lamp:latest",
+                    "image": {
+                        "author": "Fernando Mayo",
+                        "docker_id": "34ead373df921d5d28226e7a6795280f4f33bbfdf7ca0bc9c98a3e431a8f2e44",
+                        "entrypoint": "",
+                        "image_creation": "Thu, 6 Mar 2014 11:10:37 +0000",
+                        "imageenvvar_set": [
+                            {
+                                "key": "HOME",
+                                "value": "/"
+                            },
+                            {
+                                "key": "PATH",
+                                "value": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                            }
+                        ],
+                        "imageport_set": [
+                            {
+                                "port": 80,
+                                "protocol": "tcp"
+                            },
+                            {
+                                "port": 3306,
+                                "protocol": "tcp"
+                            }
+                        ],
+                        "run_command": "/run.sh"
+                    },
+                    "image_info": "/api/v1/image/tutum/lamp/",
+                    "name": "latest",
+                    "resource_uri": "/api/v1/image/tutum/lamp/tag/latest/"
+                }
+            ],
+            "is_private_image": false,
+            "name": "tutum/lamp",
+            "public_url": "https://index.docker.io/u/tutum/lamp/",
+            "resource_uri": "/api/v1/image/tutum/lamp/",
+            "starred": false
+        }
+
+    :query name: the name of the image, i.e. ``tutum/lamp`` or ``r.tutum.co/user/myimage``
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :statuscode 200: no error
+    :statuscode 401: unauthorized (wrong credentials)
+    :statuscode 404: application not found
+
+
+Add a new private image
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. http:post:: /api/v1/image/
+
+    Adds a private image to the user account to be used in application deployments. Note that private images pushed to
+    Tutum's private registry will be added automatically.
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        POST /api/v1/image/ HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+        Content-Type: application/json
+
+        {
+            "name": "quay.io/user/my-private-image",
+            "username": "user+read",
+            "password": "SHJW0SAOQ2BFBZVEVQH98SOL6V7UPQ0PH2VNKRVMMXR6T8Q43AHR88242FRPPTPG"
+        }
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 202 Accepted
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+        {
+            "base_image": false,
+            "cluster_aware": false,
+            "description": "",
+            "docker_registry": "/api/v1/registry/quay.io/",
+            "image_url": "",
+            "imagetag_set": [
+                {
+                    "full_name": "quay.io/user/my-private-image:latest",
+                    "image": {
+                        "author": "User <user@example.com>",
+                        "docker_id": "9cd978db300e27386baa9dd791bf6dc818f13e52235b56e95703361ec3c94dc6",
+                        "entrypoint": "",
+                        "image_creation": "Mon, 3 Feb 2014 17:22:29 +0000",
+                        "imageenvvar_set": [
+                            {
+                                "key": "HOME",
+                                "value": "/"
+                            },
+                            {
+                                "key": "PATH",
+                                "value": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                            }
+                        ],
+                        "imageport_set": [],
+                        "run_command": ""
+                    },
+                    "image_info": "/api/v1/image/quay.io/user/my-private-image/",
+                    "name": "latest",
+                    "resource_uri": "/api/v1/image/quay.io/user/my-private-image/tag/latest/"
+                }
+            ],
+            "is_private_image": true,
+            "name": "quay.io/tutum/test-repo3",
+            "public_url": "https://quay.io/repository/user/my-private-image",
+            "resource_uri": "/api/v1/image/quay.io/user/my-private-image/",
+            "starred": false
+        }
+
+    :jsonparam string name: required, the image name to add in docker format, including the registry namespace, i.e. ``quay.io/user/my-private-image``.
+    :jsonparam string username: required, the username to authenticate with the registry
+    :jsonparam string password: required, the password to authenticate with the registry
+    :jsonparam string description: optional, a description for the image
+    :reqheader Content-Type: required, only ``application/json`` is supported
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :statuscode 202: operation accepted
+    :statuscode 400: cannot perform the operation (probably there was a validation error on the given parameters)
+    :statuscode 401: unauthorized (wrong credentials)
+    :statuscode 404: image not found
+
+
+Update a private image
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. http:patch:: /api/v1/image/(name)/
+
+    Updates the credentials (username and password) and/or the description of a private image
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        PATCH /api/v1/image/quay.io/user/my-private-image/ HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+        Content-Type: application/json
+
+        {
+            "description": "Awesome web application, containerized"
+        }
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 202 Accepted
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+        {
+            "base_image": false,
+            "cluster_aware": false,
+            "description": "Awesome web application, containerized",
+            "docker_registry": "/api/v1/registry/quay.io/",
+            "image_url": "",
+            "imagetag_set": [
+                {
+                    "full_name": "quay.io/user/my-private-image:latest",
+                    "image": {
+                        "author": "User <user@example.com>",
+                        "docker_id": "9cd978db300e27386baa9dd791bf6dc818f13e52235b56e95703361ec3c94dc6",
+                        "entrypoint": "",
+                        "image_creation": "Mon, 3 Feb 2014 17:22:29 +0000",
+                        "imageenvvar_set": [
+                            {
+                                "key": "HOME",
+                                "value": "/"
+                            },
+                            {
+                                "key": "PATH",
+                                "value": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                            }
+                        ],
+                        "imageport_set": [],
+                        "run_command": ""
+                    },
+                    "image_info": "/api/v1/image/quay.io/user/my-private-image/",
+                    "name": "latest",
+                    "resource_uri": "/api/v1/image/quay.io/user/my-private-image/tag/latest/"
+                }
+            ],
+            "is_private_image": true,
+            "name": "quay.io/tutum/test-repo3",
+            "public_url": "https://quay.io/repository/user/my-private-image",
+            "resource_uri": "/api/v1/image/quay.io/user/my-private-image/",
+            "starred": false
+        }
+
+    :jsonparam string name: required, the image name to add in docker format, including the registry namespace, i.e. ``quay.io/user/my-private-image``.
+    :jsonparam string username: optional, the username to authenticate with the registry
+    :jsonparam string password: optional, the password to authenticate with the registry (required if ``username`` is given)
+    :jsonparam string description: optional, a description for to the image
+    :reqheader Content-Type: required, only ``application/json`` is supported
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :statuscode 202: operation accepted
+    :statuscode 400: cannot perform the operation (invalid parameters)
+    :statuscode 401: unauthorized (wrong credentials)
+    :statuscode 404: image not found
+
+
+Delete a private image
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. http:delete:: /api/v1/image/(name)/
+
+    Delete a private image from the account. Please note that this does not delete the image in the source registry.
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        DELETE /api/v1/image/quay.io/user/my-private-image/ HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 204 No Content
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+    :jsonparam string name: required, the image name to add in docker format, including the registry namespace, i.e. ``quay.io/user/my-private-image``.
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :statuscode 204: operation accepted (no data returned in the body)
+    :statuscode 401: unauthorized (wrong credentials)
+    :statuscode 404: image not found
