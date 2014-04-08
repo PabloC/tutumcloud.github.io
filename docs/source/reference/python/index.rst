@@ -67,7 +67,7 @@ Applications
 ------------
 
 .. autoclass:: tutum.Application
-    :members: list, fetch, create, start, stop, logs, delete
+    :members: list, fetch, create, save, refresh, start, stop, logs, delete
 
 
 Example
@@ -116,7 +116,7 @@ Containers
 ----------
 
 .. autoclass:: tutum.Container
-    :members: list, fetch, start, stop, logs, delete
+    :members: list, fetch, refresh, start, stop, logs, delete
 
 
 Example
@@ -148,6 +148,33 @@ Example
     >>> container.refresh()
     >>> container.state
     "Terminated"
+
+
+Images
+------
+
+.. autoclass:: tutum.Image
+    :members: list, fetch, create, save, delete
+
+Example
+^^^^^^^
+
+.. sourcecode:: python
+
+    >>> import tutum
+    >>> tutum.Image.list(is_private_image=True)
+    [<tutum.api.image.Image object at 0x10701ca90>]
+    >>> image = tutum.Image.fetch("quay.io/user/my-private-image")
+    >>> image.name
+    "quay.io/user/my-private-image"
+    >>> newimage = image.Image.create(name="quay.io/user/private-app", username="user+read", password="mytoken")
+    >>> newimage.save()
+    True
+    >>> newimage.description = "My new secret application"
+    >>> newimage.save()
+    True
+    >>> newimage.delete()
+    True
 
 
 Authentication utilities
