@@ -1289,6 +1289,7 @@ List all images
     :queryparam int offset: optional, start the list skipping the first ``offset`` records (default: 0)
     :queryparam int limit: optional, only return at most ``limit`` records (default: 25, max: 100)
     :queryparam string name: optional, filter applications by name
+    :queryparam string unique_name: optional, filter applications by unique name (if ``name`` is not unique, Tutum will append a number to make it unique)
     :queryparam bool is_private_image: optional, display only private images
     :queryparam bool base_image: optional, display only Linux base images
     :queryparam bool starred: optional, display only jumpstart images

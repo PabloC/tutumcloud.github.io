@@ -1643,6 +1643,7 @@ All the data stored in the container will be permanently deleted. The parent app
 <li><strong>offset</strong> (<em>int</em>) &#8211; optional, start the list skipping the first <tt class="docutils literal"><span class="pre">offset</span></tt> records (default: 0)</li>
 <li><strong>limit</strong> (<em>int</em>) &#8211; optional, only return at most <tt class="docutils literal"><span class="pre">limit</span></tt> records (default: 25, max: 100)</li>
 <li><strong>name</strong> (<em>string</em>) &#8211; optional, filter applications by name</li>
+<li><strong>unique_name</strong> (<em>string</em>) &#8211; optional, filter applications by unique name (if <tt class="docutils literal"><span class="pre">name</span></tt> is not unique, Tutum will append a number to make it unique)</li>
 <li><strong>is_private_image</strong> (<em>bool</em>) &#8211; optional, display only private images</li>
 <li><strong>base_image</strong> (<em>bool</em>) &#8211; optional, display only Linux base images</li>
 <li><strong>starred</strong> (<em>bool</em>) &#8211; optional, display only jumpstart images</li>
