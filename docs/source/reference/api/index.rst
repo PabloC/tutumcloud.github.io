@@ -89,6 +89,7 @@ List all applications
                     "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
                     "destroyed_datetime": null,
                     "entrypoint": "",
+                    "image_name": "tutum/hello-world:latest",
                     "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
                     "name": "my-web-app",
                     "public_dns": "my-web-app-admin.dev.tutum.io",
@@ -174,6 +175,7 @@ Get application details
             "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
             "destroyed_datetime": null,
             "entrypoint": "",
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_WEB_APP_1_PORT": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
@@ -272,6 +274,7 @@ Create and launch a new application
             "deployed_datetime": null,
             "destroyed_datetime": null,
             "entrypoint": "",
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_AWESOME_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/"
@@ -374,6 +377,7 @@ Update an application
             "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/",
             "/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/"
           ],
+          "image_name": "tutum/hello-world:latest",
           "image_tag" : "/api/v1/image/tutum/hello-world/tag/latest/",
           "running_num_containers" : 2,
           "resource_uri" : "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
@@ -470,6 +474,7 @@ Start an application
             "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
             "destroyed_datetime": null,
             "entrypoint": "",
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
@@ -554,6 +559,7 @@ Stop an application
             "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
             "destroyed_datetime": null,
             "entrypoint": "",
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
@@ -638,6 +644,7 @@ Terminate an application
             "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
             "destroyed_datetime": null,
             "entrypoint": "",
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
@@ -724,6 +731,7 @@ List all containers
                     "entrypoint": "",
                     "exit_code": null,
                     "exit_code_msg": null,
+                    "image_name": "tutum/hello-world:latest",
                     "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
                     "name": "my-awesome-app",
                     "public_dns": "my-awesome-app-1-admin.alpha-dev.tutum.io",
@@ -754,6 +762,7 @@ List all containers
                     "entrypoint": "",
                     "exit_code": null,
                     "exit_code_msg": null,
+                    "image_name": "tutum/hello-world:latest",
                     "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
                     "name": "my-awesome-app",
                     "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
@@ -854,6 +863,7 @@ Get container details
             "entrypoint": "",
             "exit_code": null,
             "exit_code_msg": null,
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_AWESOME_APP_2_PORT": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
@@ -955,6 +965,7 @@ Start a container
             "entrypoint": "",
             "exit_code": 0,
             "exit_code_msg": "Exit code 0 (Success)",
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_AWESOME_APP_2_PORT": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
@@ -1057,6 +1068,7 @@ Stop a container
             "entrypoint": "",
             "exit_code": null,
             "exit_code_msg": null,
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_AWESOME_APP_2_PORT": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
@@ -1197,6 +1209,7 @@ Terminate a container
             "entrypoint": "",
             "exit_code": 0,
             "exit_code_msg": "Exit code 0 (Success)",
+            "image_name": "tutum/hello-world:latest",
             "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
             "link_variables": {
                 "MY_AWESOME_APP_2_PORT": "tcp://my-awesome-app-2-admin.alpha-dev.tutum.io:49222",
@@ -1327,7 +1340,15 @@ Get image details
             "base_image": false,
             "cluster_aware": false,
             "description": "",
-            "docker_registry": "/api/v1/registry/index.docker.io/",
+            "docker_registry": {
+                "host": "index.docker.io",
+                "image_url": "",
+                "images": [],
+                "is_tutum_registry": false,
+                "name": "index.docker.io",
+                "resource_uri": "/api/v1/registry/index.docker.io/",
+                "uuid": "c6d617c1-5421-4e09-a2b3-dc05b77ffdbb"
+            },
             "image_url": "",
             "imagetag_set": [
                 {
@@ -1416,7 +1437,15 @@ Add a new private image
             "base_image": false,
             "cluster_aware": false,
             "description": "",
-            "docker_registry": "/api/v1/registry/quay.io/",
+            "docker_registry": {
+                "host": "quay.io",
+                "image_url": "https://dzu352mg2ppy3.cloudfront.net/assets/images/dockerregistries/quay.ico",
+                "images": [],
+                "is_tutum_registry": false,
+                "name": "Quay.io",
+                "resource_uri": "/api/v1/registry/quay.io/",
+                "uuid": "8df846ff-897d-4c87-bfb3-dc0ede3e8dd4"
+            },
             "image_url": "",
             "imagetag_set": [
                 {
@@ -1498,7 +1527,15 @@ Update a private image
             "base_image": false,
             "cluster_aware": false,
             "description": "Awesome web application, containerized",
-            "docker_registry": "/api/v1/registry/quay.io/",
+            "docker_registry": {
+                "host": "quay.io",
+                "image_url": "https://dzu352mg2ppy3.cloudfront.net/assets/images/dockerregistries/quay.ico",
+                "images": [],
+                "is_tutum_registry": false,
+                "name": "Quay.io",
+                "resource_uri": "/api/v1/registry/quay.io/",
+                "uuid": "8df846ff-897d-4c87-bfb3-dc0ede3e8dd4"
+            },
             "image_url": "",
             "imagetag_set": [
                 {
