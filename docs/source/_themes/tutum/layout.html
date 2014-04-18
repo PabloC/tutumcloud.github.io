@@ -58,13 +58,13 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
     <div class="w-section inverse">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3" style="padding-top:25px;">
+                <div class="col-md-3" style="padding-top:25px;">
                     <div id="toctree" style="display:none;">
                         {{ sidebar() }}
                         {{ toctree(collapse=True, maxdepth=2, titles_only=True, includehidden=True) }}
                     </div>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-md-9">
                     {{ super() }}
                     <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/{{ pagename }}.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
                 </div>
