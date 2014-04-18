@@ -1343,7 +1343,6 @@ Get image details
             "docker_registry": {
                 "host": "index.docker.io",
                 "image_url": "",
-                "images": [],
                 "is_tutum_registry": false,
                 "name": "index.docker.io",
                 "resource_uri": "/api/v1/registry/index.docker.io/",
@@ -1440,7 +1439,6 @@ Add a new private image
             "docker_registry": {
                 "host": "quay.io",
                 "image_url": "https://dzu352mg2ppy3.cloudfront.net/assets/images/dockerregistries/quay.ico",
-                "images": [],
                 "is_tutum_registry": false,
                 "name": "Quay.io",
                 "resource_uri": "/api/v1/registry/quay.io/",
@@ -1530,7 +1528,6 @@ Update a private image
             "docker_registry": {
                 "host": "quay.io",
                 "image_url": "https://dzu352mg2ppy3.cloudfront.net/assets/images/dockerregistries/quay.ico",
-                "images": [],
                 "is_tutum_registry": false,
                 "name": "Quay.io",
                 "resource_uri": "/api/v1/registry/quay.io/",
