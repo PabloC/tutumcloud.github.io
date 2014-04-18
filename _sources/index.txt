@@ -4,7 +4,7 @@ Introduction
 What is Tutum?
 --------------
 
-Tutum is a new type of cloud service. Unlike existing IaaS providers, such as Amazon Web Services or Digital Ocean,
+`Tutum <http://www.tutum.co/>`__ is a new type of cloud service. Unlike existing IaaS providers, such as Amazon Web Services or Digital Ocean,
 which provide Virtual Machines to end users, Tutum provides containers. Tutum is 100% compatible with containers that
 have been built using Docker.
 
@@ -12,7 +12,7 @@ have been built using Docker.
 What is Docker?
 ---------------
 
-Docker is "an open-source project to easily create lightweight, portable, self-sufficient containers from any
+`Docker <http://www.docker.io/>`__  is "an open-source project to easily create lightweight, portable, self-sufficient containers from any
 application". It was one of the fastest growing Open Source projects in 2013, and is poised to become the new standard
 in virtualization.
 
