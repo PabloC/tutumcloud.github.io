@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Node.js library &mdash; Tutum Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/css/blank.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Tutum Documentation" href="../../" />
+    <link rel="up" title="Reference" href="../" />
+    <link rel="next" title="Command-line Interface" href="../cli/" />
+    <link rel="prev" title="Python library" href="../python/" />
+    <link href="../../_static/css/global-style.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="icon" href="../../_static/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation Page View", {"URL": window.location.pathname});</script><!-- end Mixpanel -->
+    <script type="text/javascript" src="//use.typekit.net/nyy5cxc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  </head>
+  <body>
+
+    <div class="document">
+<header>
+    <div class="navbar navbar-white" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.tutum.co/">
+                    <img src="../../_static/images/tutum-logo-white.svg" alt="Tutum Logo">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.tutum.co/pricing/">Pricing</a>
+                    </li>
+                    <li class="hidden-sm">
+                        <a href="http://docs.tutum.co/">Documentation</a>
+                    </li>
+                    <li>
+                        <a href="http://blog.tutum.co/">Blog</a>
+                    </li>
+                    <li>
+                        <a href="https://app.tutum.co/accounts/register/"><strong>Sign up</strong></a>
+                    </li>
+                    <li>
+                        <a href="https://app.tutum.co/accounts/login/">Log in</a>
+                    </li>
+
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</header>
+
+<section class="slice slicewhite">
+    <div class="w-section inverse">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" style="padding-top:25px;">
+                    <div id="toctree" style="display:none;">
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div id="searchbox" style="display: none; margin-bottom:50px;">
+    <form class="search" action="../../search/" method="get">
+      <input type="search" class="form-control" name="q" placeholder="Search documentation..." />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+                        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../billing/">Billing FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical/">Technical FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api/">HTTP API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/">Python library</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Node.js library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli/">Command-line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jumpstarts/">Jumpstart Images</a></li>
+</ul>
+</li>
+</ul>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="node-js-library">
+<h1>Node.js library<a class="headerlink" href="#node-js-library" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Tutum provides an <a class="reference external" href="https://github.com/goloroden/tutum">open source Node.js library</a> that wraps its HTTP REST API,
+making it easier to perform operations from Node.js applications.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>$ npm install tutum
+</pre></div>
+</div>
+</div>
+<div class="section" id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p>The first thing you need to do is to integrate tutum in your application.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">tutum</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tutum&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then you need to authenticate using your username and your API key. To obtain your ApiKey, see <a class="reference internal" href="../api/#api-auth-ref"><em>Authentication</em></a>.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">tutum</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="nx">apiKey</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">cloud</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">cloud</span></tt> object that is returned then gives you access to all of
+Tutum’s functionality.</p>
+<div class="section" id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="getting-a-list-of-applications">
+<h4>Getting a list of applications<a class="headerlink" href="#getting-a-list-of-applications" title="Permalink to this headline">¶</a></h4>
+<p>To get a list of applications, call the <tt class="docutils literal"><span class="pre">getApplications</span></tt> function.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">cloud</span><span class="p">.</span><span class="nx">getApplications</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">applications</span><span class="p">,</span> <span class="nx">metadata</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Optionally, you can provide query criteria.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">cloud</span><span class="p">.</span><span class="nx">getApplications</span><span class="p">({</span> <span class="nx">limit</span><span class="o">:</span> <span class="mi">10</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">applications</span><span class="p">,</span> <span class="nx">metadata</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-application-details">
+<h4>Getting application details<a class="headerlink" href="#getting-application-details" title="Permalink to this headline">¶</a></h4>
+<p>To get details for an applications, call the <tt class="docutils literal"><span class="pre">getApplicationDetails</span></tt>
+function.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">cloud</span><span class="p">.</span><span class="nx">getApplicationDetails</span><span class="p">(</span><span class="nx">applicationId</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-a-new-application">
+<h4>Creating a new application<a class="headerlink" href="#creating-a-new-application" title="Permalink to this headline">¶</a></h4>
+<p>To create a new application, call the <tt class="docutils literal"><span class="pre">createApplication</span></tt> function.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">cloud</span><span class="p">.</span><span class="nx">createApplication</span><span class="p">({</span> <span class="nx">image</span><span class="o">:</span> <span class="s1">&#39;tutum/hello-world&#39;</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="updating-an-application">
+<h4>Updating an application<a class="headerlink" href="#updating-an-application" title="Permalink to this headline">¶</a></h4>
+<p>To update an application, call the <tt class="docutils literal"><span class="pre">updateApplication</span></tt> function.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">cloud</span><span class="p">.</span><span class="nx">updateApplication</span><span class="p">(</span><span class="nx">applicationId</span><span class="p">,</span> <span class="p">{</span> <span class="nx">target_num_containers</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="starting-an-application">
+<h4>Starting an application<a class="headerlink" href="#starting-an-application" title="Permalink to this headline">¶</a></h4>
+<p>To start an application, call the <tt class="docutils literal"><span class="pre">startApplication</span></tt> function.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">cloud</span><span class="p">.</span><span class="nx">startApplication</span><span class="p">(</span><span class="nx">applicationId</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stopping-an-application">
+<h4>Stopping an application<a class="headerlink" href="#stopping-an-application" title="Permalink to this headline">¶</a></h4>
+<p>To stop an application, call the <tt class="docutils literal"><span class="pre">stopApplication</span></tt> function.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">cloud</span><span class="p">.</span><span class="nx">stopApplication</span><span class="p">(</span><span class="nx">applicationId</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="terminating-an-application">
+<h4>Terminating an application<a class="headerlink" href="#terminating-an-application" title="Permalink to this headline">¶</a></h4>
+<p>To terminate an application, call the <tt class="docutils literal"><span class="pre">terminateApplication</span></tt> function.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">cloud</span><span class="p">.</span><span class="nx">terminateApplication</span><span class="p">(</span><span class="nx">applicationId</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="running-the-tests">
+<h2>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h2>
+<p>This module can be built using <a class="reference external" href="http://gruntjs.com/">Grunt</a>. Besides running the tests,
+Grunt also analyses the code using <a class="reference external" href="http://jshint.com/">JSHint</a>. To run Grunt, go to the
+folder where you have installed tutum-node and run <tt class="docutils literal"><span class="pre">grunt</span></tt>. You need
+to have <a class="reference external" href="https://github.com/gruntjs/grunt-cli">grunt-cli</a> installed.</p>
+<div class="highlight-python"><div class="highlight"><pre>$ grunt
+</pre></div>
+</div>
+<p>Please note that for the tests to work you need a Tutum account. Add a
+file with the name <tt class="docutils literal"><span class="pre">credentials.json</span></tt> to the <tt class="docutils literal"><span class="pre">test</span></tt> directory and
+deposit your credentials in the following format:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;apiKey&quot;</span><span class="o">:</span> <span class="s2">&quot;bar&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The file <tt class="docutils literal"><span class="pre">.gitignore</span></tt> contains a rule that excludes this file from
+being committed.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>The MIT License (MIT) Copyright (c) 2014 Golo Roden.</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+“Software”), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/reference/nodejs/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <div class="clearer"></div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="col">
+                    <h4>Contact us</h4>
+                    <ul>
+                        <li>New York, NY</li>
+                        <li>Phone: <a href="tel:+14157422442">+1 415 742 2442</a></li>
+                        <li>Email: <a href="mailto:info@tutum.co" title="Email us">info@tutum.co</a></li>
+                        <li>Twitter: <a href="http://twitter.com/tutumcloud" title="Tweet" target="_blank">@tutumcloud</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col col-social-icons">
+                    <h4>Follow us</h4>
+                    <a href="http://twitter.com/tutumcloud" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://plus.google.com/109847567335136113736" rel="publisher" target="_blank"><i class="fa fa-google-plus"></i></a>
+                    <a href="http://www.linkedin.com/company/tutum" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <i class="fa">
+                        <a href="https://angel.co/tutum" target="_blank"><img src="../../_static/images/angellist.png" alt="Docker" style=" width: 20px; "></a>
+                    </i>
+                    <a href="https://www.youtube.com/channel/UCljbgzDNU1Z_U5TsGtzsL0g" target="_blank"><i class="fa fa-youtube"></i></a>
+                    <a href="https://vimeo.com/user17080388" target="_blank"><i class="fa fa-vimeo-square"></i></a>
+                    <a href="https://github.com/tutumcloud/" target="_blank"><i class="fa fa-github-square"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col col-social-icons">
+                    <h4>Tutum Weekly Newsletter</h4>
+                    <p>Sign up to receive weekly updates on all things Docker</p>
+                    <div id="mc_embed_signup">
+                    <form action="http://tutum.us8.list-manage1.com/subscribe/post?u=57b9190b37cc6cc0a3cf93b0a&amp;id=a8bf764480" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div class="mc-field-group input-group">
+                        <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Enter your email address">
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-primary" value="Go!" name="subscribe" id="mc-embedded-subscribe" />
+                        </span>
+                    </div>
+                        <div style="position: absolute; left: -5000px;"><input type="text" name="b_57b9190b37cc6cc0a3cf93b0a_a8bf764480" value=""></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="col">
+                    <h4>Accelerated by</h4>
+                    <a href="http://techstars.com" target="_blank"><img src="../../_static/images/techstars.png" alt="Docker hosting techstars accelerator startup tutum" style=" width: 150px; "></a>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-lg-9 copyright">
+                2014 &copy; Tutum, Inc. All rights reserved.
+                <a href="http://www.tutum.co/tos">Terms of Service</a> |
+                <a href="http://www.tutum.co/privacy">Privacy Policy</a> |
+                <a href="http://www.tutum.co/aup">Acceptable Use Policy</a>
+            </div>
+            <div class="col-lg-3 footer-logo">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="../../_static/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/js/modernizr.custom.js"></script>
+<!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.js"></script>
+    <script src="../../_static/js/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="../../_static/assets/hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" src="../../_static/js/custom.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38422650-6', 'tutum.co');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

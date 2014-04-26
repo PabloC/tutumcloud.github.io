@@ -10,5 +10,6 @@ Contents:
 
    api/index
    python/index
+   nodejs/index
    cli/index
    jumpstarts/index
