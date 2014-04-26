@@ -53,6 +53,9 @@ You can use your ApiKey with the Python library in any of the following ways (wi
     export TUTUM_APIKEY=apikey
 
 
+To obtain your ApiKey, see :ref:`api-auth-ref`.
+
+
 Errors
 ^^^^^^
 
