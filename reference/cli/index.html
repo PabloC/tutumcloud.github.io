@@ -134,7 +134,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <div class="highlight-none"><div class="highlight"><pre>$ tutum -h
 usage: tutum [-h] [-v]
 
-             {login,apps,run,inspect,start,stop,terminate,logs,scale,alias,ps,inspect-container,start-container,stop-container,terminate-container,logs-container,images,add,remove,update}
+             {login,search,open,apps,ps,run,inspect,start,stop,terminate,logs,scale,alias,build,images,add,remove,update,push}
              ...
 
 Tutum&#39;s CLI
@@ -144,28 +144,27 @@ optional arguments:
   -v, --version         show program&#39;s version number and exit
 
 Tutum&#39;s CLI commands:
-  {login,apps,run,inspect,start,stop,terminate,logs,scale,alias,ps,inspect-container,start-container,stop-container,terminate-container,logs-container,images,add,remove,update}
+  {login,search,open,apps,ps,run,inspect,start,stop,terminate,logs,scale,alias,build,images,add,remove,update,push}
     login               Login into Tutum
-    apps                List running applications
+    search              Search for images in the Docker Index
+    open                Open last web application created in Tutum
+    apps                List applications
+    ps                  List containers
     run                 Create and run an application
-    inspect             Inspect an application
-    start               Start an application
-    stop                Stop an application
-    terminate           Terminate an application
-    logs                Get logs from an application
+    inspect             Inspect an application or a container
+    start               Start an application or a container
+    stop                Stop an application or a container
+    terminate           Terminate an application or a container
+    logs                Get logs from an application or a container
     scale               Scale an application
-    alias               Change application&#39;s dns
-    ps                  List running containers
-    inspect-container   Inspect a container
-    start-container     Start a container
-    stop-container      Stop a container
-    terminate-container
-                        Terminate a container
-    logs-container      Get logs from a container
-    images              List private images
+    alias               Change application&#39;s dns (only for applications
+                        running in Tutum)
+    build               Build an image
+    images              List private and local images
     add                 Add a private image
     remove              Remove a private image
     update              Update a private image
+    push                Push an image or a repository to Tutum registry
 </pre></div>
 </div>
 <div class="section" id="via-docker-image">
@@ -241,16 +240,6 @@ Login succeeded!
 </dd></dl>
 
 </div>
-<div class="section" id="tutum-register">
-<h4>tutum register<a class="headerlink" href="#tutum-register" title="Permalink to this headline">¶</a></h4>
-<p>Register into Tutum</p>
-<dl class="option">
-<dt id="cmdoption-tutum-register-h">
-<span id="cmdoption-tutum-register--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-register-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
 <div class="section" id="tutum-search">
 <h4>tutum search<a class="headerlink" href="#tutum-search" title="Permalink to this headline">¶</a></h4>
 <p>Search for images in the Docker Index</p>
@@ -263,6 +252,16 @@ Login succeeded!
 <dl class="option">
 <dt id="cmdoption-tutum-search-h">
 <span id="cmdoption-tutum-search--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-search-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-open">
+<h4>tutum open<a class="headerlink" href="#tutum-open" title="Permalink to this headline">¶</a></h4>
+<p>Open last web application created in Tutum</p>
+<dl class="option">
+<dt id="cmdoption-tutum-open-h">
+<span id="cmdoption-tutum-open--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-open-h" title="Permalink to this definition">¶</a></dt>
 <dd><p>show this help message and exit</p>
 </dd></dl>
 
@@ -286,6 +285,18 @@ Login succeeded!
 <dt id="cmdoption-tutum-apps-s">
 <span id="cmdoption-tutum-apps--status"></span><tt class="descname">-s</tt><tt class="descclassname"> &lt;status&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--status</tt><tt class="descclassname"> &lt;status&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter applications by status</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-L">
+<span id="cmdoption-tutum-apps--local"></span><tt class="descname">-L</tt><tt class="descclassname"> &lt;local&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--local</tt><tt class="descclassname"> &lt;local&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-L" title="Permalink to this definition">¶</a></dt>
+<dd><p>List only applications running locally</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-R">
+<span id="cmdoption-tutum-apps--remote"></span><tt class="descname">-R</tt><tt class="descclassname"> &lt;remote&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--remote</tt><tt class="descclassname"> &lt;remote&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-R" title="Permalink to this definition">¶</a></dt>
+<dd><p>List only applications running in Tutum</p>
 </dd></dl>
 
 </div>
@@ -314,6 +325,18 @@ Login succeeded!
 <dt id="cmdoption-tutum-ps-s">
 <span id="cmdoption-tutum-ps--status"></span><tt class="descname">-s</tt><tt class="descclassname"> &lt;status&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--status</tt><tt class="descclassname"> &lt;status&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter containers by status</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-ps-L">
+<span id="cmdoption-tutum-ps--local"></span><tt class="descname">-L</tt><tt class="descclassname"> &lt;local&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--local</tt><tt class="descclassname"> &lt;local&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-L" title="Permalink to this definition">¶</a></dt>
+<dd><p>List only applications running locally</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-ps-R">
+<span id="cmdoption-tutum-ps--remote"></span><tt class="descname">-R</tt><tt class="descclassname"> &lt;remote&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--remote</tt><tt class="descclassname"> &lt;remote&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-R" title="Permalink to this definition">¶</a></dt>
+<dd><p>List only applications running in Tutum</p>
 </dd></dl>
 
 </div>
@@ -402,6 +425,12 @@ Login succeeded!
 <dt id="cmdoption-tutum-run--role">
 <tt class="descname">--role</tt><tt class="descclassname"> &lt;role&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run--role" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tutum API roles to grant the application, i.e. &#8216;global&#8217; (default: none, possible values: &#8216;global&#8217;)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-run-L">
+<span id="cmdoption-tutum-run--local"></span><tt class="descname">-L</tt><tt class="descclassname"> &lt;local&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--local</tt><tt class="descclassname"> &lt;local&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-L" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the new application locally</p>
 </dd></dl>
 
 </div>
@@ -509,7 +538,7 @@ Login succeeded!
 </div>
 <div class="section" id="tutum-alias">
 <h4>tutum alias<a class="headerlink" href="#tutum-alias" title="Permalink to this headline">¶</a></h4>
-<p>Change application&#8217;s dns</p>
+<p>Change application&#8217;s dns (only for applications running in Tutum)</p>
 <dl class="option">
 <dt id="cmdoption-tutum-alias-arg-identifier">
 <tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-alias-arg-identifier" title="Permalink to this definition">¶</a></dt>
@@ -529,9 +558,43 @@ Login succeeded!
 </dd></dl>
 
 </div>
+<div class="section" id="tutum-build">
+<h4>tutum build<a class="headerlink" href="#tutum-build" title="Permalink to this headline">¶</a></h4>
+<p>Build an image</p>
+<dl class="option">
+<dt id="cmdoption-tutum-build-arg-name">
+<tt class="descname">name</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-build-arg-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Image name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-build-h">
+<span id="cmdoption-tutum-build--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-build-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-build-d">
+<span id="cmdoption-tutum-build--directory"></span><tt class="descname">-d</tt><tt class="descclassname"> &lt;directory&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--directory</tt><tt class="descclassname"> &lt;directory&gt;</tt><a class="headerlink" href="#cmdoption-tutum-build-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Working directory</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-build-q">
+<span id="cmdoption-tutum-build--quiet"></span><tt class="descname">-q</tt><tt class="descclassname"> &lt;quiet&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"> &lt;quiet&gt;</tt><a class="headerlink" href="#cmdoption-tutum-build-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print minimum information</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-build--nocache">
+<tt class="descname">--nocache</tt><tt class="descclassname"> &lt;nocache&gt;</tt><a class="headerlink" href="#cmdoption-tutum-build--nocache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not use the cache when building the image</p>
+</dd></dl>
+
+</div>
 <div class="section" id="tutum-images">
 <h4>tutum images<a class="headerlink" href="#tutum-images" title="Permalink to this headline">¶</a></h4>
-<p>List private images</p>
+<p>List private and local images</p>
 <dl class="option">
 <dt id="cmdoption-tutum-images-h">
 <span id="cmdoption-tutum-images--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-h" title="Permalink to this definition">¶</a></dt>
@@ -554,6 +617,18 @@ Login succeeded!
 <dt id="cmdoption-tutum-images-l">
 <span id="cmdoption-tutum-images--linux"></span><tt class="descname">-l</tt><tt class="descclassname"> &lt;linux&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--linux</tt><tt class="descclassname"> &lt;linux&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-l" title="Permalink to this definition">¶</a></dt>
 <dd><p>List linux images</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-L">
+<span id="cmdoption-tutum-images--local"></span><tt class="descname">-L</tt><tt class="descclassname"> &lt;local&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--local</tt><tt class="descclassname"> &lt;local&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-L" title="Permalink to this definition">¶</a></dt>
+<dd><p>List only local images</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-R">
+<span id="cmdoption-tutum-images--remote"></span><tt class="descname">-R</tt><tt class="descclassname"> &lt;remote&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--remote</tt><tt class="descclassname"> &lt;remote&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-R" title="Permalink to this definition">¶</a></dt>
+<dd><p>List only private images in Tutum</p>
 </dd></dl>
 
 </div>
@@ -638,6 +713,28 @@ Login succeeded!
 <dt id="cmdoption-tutum-update-d">
 <span id="cmdoption-tutum-update--description"></span><tt class="descname">-d</tt><tt class="descclassname"> &lt;description&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--description</tt><tt class="descclassname"> &lt;description&gt;</tt><a class="headerlink" href="#cmdoption-tutum-update-d" title="Permalink to this definition">¶</a></dt>
 <dd><p>New image description</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-push">
+<h4>tutum push<a class="headerlink" href="#tutum-push" title="Permalink to this headline">¶</a></h4>
+<p>Push an image or a repository to Tutum registry</p>
+<dl class="option">
+<dt id="cmdoption-tutum-push-arg-name">
+<tt class="descname">name</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-push-arg-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the image or the repository</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-push-h">
+<span id="cmdoption-tutum-push--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-push-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-push--public">
+<tt class="descname">--public</tt><tt class="descclassname"> &lt;public&gt;</tt><a class="headerlink" href="#cmdoption-tutum-push--public" title="Permalink to this definition">¶</a></dt>
+<dd><p>Push image or repository to public registry</p>
 </dd></dl>
 
 </div>

@@ -25,7 +25,7 @@ Now you can start using it:
     $ tutum -h
     usage: tutum [-h] [-v]
 
-                 {login,apps,run,inspect,start,stop,terminate,logs,scale,alias,ps,inspect-container,start-container,stop-container,terminate-container,logs-container,images,add,remove,update}
+                 {login,search,open,apps,ps,run,inspect,start,stop,terminate,logs,scale,alias,build,images,add,remove,update,push}
                  ...
 
     Tutum's CLI
@@ -35,28 +35,27 @@ Now you can start using it:
       -v, --version         show program's version number and exit
 
     Tutum's CLI commands:
-      {login,apps,run,inspect,start,stop,terminate,logs,scale,alias,ps,inspect-container,start-container,stop-container,terminate-container,logs-container,images,add,remove,update}
+      {login,search,open,apps,ps,run,inspect,start,stop,terminate,logs,scale,alias,build,images,add,remove,update,push}
         login               Login into Tutum
-        apps                List running applications
+        search              Search for images in the Docker Index
+        open                Open last web application created in Tutum
+        apps                List applications
+        ps                  List containers
         run                 Create and run an application
-        inspect             Inspect an application
-        start               Start an application
-        stop                Stop an application
-        terminate           Terminate an application
-        logs                Get logs from an application
+        inspect             Inspect an application or a container
+        start               Start an application or a container
+        stop                Stop an application or a container
+        terminate           Terminate an application or a container
+        logs                Get logs from an application or a container
         scale               Scale an application
-        alias               Change application's dns
-        ps                  List running containers
-        inspect-container   Inspect a container
-        start-container     Start a container
-        stop-container      Stop a container
-        terminate-container
-                            Terminate a container
-        logs-container      Get logs from a container
-        images              List private images
+        alias               Change application's dns (only for applications
+                            running in Tutum)
+        build               Build an image
+        images              List private and local images
         add                 Add a private image
         remove              Remove a private image
         update              Update a private image
+        push                Push an image or a repository to Tutum registry
 
 
 Via Docker image
