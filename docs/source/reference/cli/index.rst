@@ -22,11 +22,9 @@ Now you can start using it:
 
 .. sourcecode:: none
 
-    $ tutum -h
-    usage: tutum [-h] [-v]
+    $ tutum
 
-                 {login,search,open,apps,ps,run,inspect,start,stop,terminate,logs,scale,alias,build,images,add,remove,update,push}
-                 ...
+    usage: tutum [-h] [-v] {apps,build,containers,images,login} ...
 
     Tutum's CLI
 
@@ -35,27 +33,12 @@ Now you can start using it:
       -v, --version         show program's version number and exit
 
     Tutum's CLI commands:
-      {login,search,open,apps,ps,run,inspect,start,stop,terminate,logs,scale,alias,build,images,add,remove,update,push}
-        login               Login into Tutum
-        search              Search for images in the Docker Index
-        open                Open last web application created in Tutum
-        apps                List applications
-        ps                  List containers
-        run                 Create and run an application
-        inspect             Inspect an application or a container
-        start               Start an application or a container
-        stop                Stop an application or a container
-        terminate           Terminate an application or a container
-        logs                Get logs from an application or a container
-        scale               Scale an application
-        alias               Change application's dns (only for applications
-                            running in Tutum)
+      {apps,build,containers,images,login}
+        apps                Applications related operations
         build               Build an image
-        images              List private and local images
-        add                 Add a private image
-        remove              Remove a private image
-        update              Update a private image
-        push                Push an image or a repository to Tutum registry
+        containers          Containers related operations
+        images              Image related operations
+        login               Login into Tutum
 
 
 Via Docker image
