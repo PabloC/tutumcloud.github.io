@@ -71,10 +71,6 @@ environment variable ``MY_WEB_APP_TUTUM_API_URL``:
     curl -H "Authorization: $TUTUM_AUTH" $MY_WEB_APP_TUTUM_API_URL
 
     {
-        "autodestroy": "OFF",
-        "autoreplace": "OFF",
-        "autorestart": "OFF",
-        "container_envvars": [],
         "container_ports": [
             {
                 "application": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
@@ -89,39 +85,9 @@ environment variable ``MY_WEB_APP_TUTUM_API_URL``:
             "/api/v1/container/83499f74-85b1-4f69-9ab3-658a67535f70/"
         ],
         "current_num_containers": 2,
-        "deployed_datetime": "Mon, 24 Mar 2014 23:58:15 +0000",
-        "destroyed_datetime": null,
-        "entrypoint": "",
-        "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
-        "link_variables": {
-            "MY_WEB_APP_1_PORT": "tcp://my-web-app-1-admin.beta.tutum.io:49330",
-            "MY_WEB_APP_1_PORT_80_TCP": "tcp://my-web-app-1-admin.beta.tutum.io:49330",
-            "MY_WEB_APP_1_PORT_80_TCP_ADDR": "my-web-app-1-admin.beta.tutum.io",
-            "MY_WEB_APP_1_PORT_80_TCP_PORT": "49330",
-            "MY_WEB_APP_1_PORT_80_TCP_PROTO": "tcp",
-            "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.beta.tutum.io:49331",
-            "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.beta.tutum.io:49331",
-            "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.beta.tutum.io",
-            "MY_WEB_APP_2_PORT_80_TCP_PORT": "49331",
-            "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
-            "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/"
-        },
-        "linked_from_application": [],
-        "linked_to_application": [],
-        "name": "my-web-app",
-        "resource_uri": "/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/",
-        "roles": [],
-        "run_command": "/run.sh",
-        "running_num_containers": 1,
-        "started_datetime": "Mon, 24 Mar 2014 23:58:15 +0000",
-        "state": "Partly running",
-        "stopped_datetime": null,
-        "stopped_num_containers": 1,
-        "target_num_containers": 2,
-        "unique_name": "my-web-app",
-        "uuid": "6fe5029e-c125-4088-9b9a-4e74da20ac58"
+        [...]
     }
 
 
-Using this information (reading the ``containers`` attribute of the JSON response), the proxy can detect any changes
+Using this information (for example, by reading the ``containers`` attribute of the JSON response), the proxy can detect any changes
 on the linked application and add and remove members as the application scales up or down.
