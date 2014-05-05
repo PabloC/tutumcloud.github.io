@@ -92,6 +92,7 @@ List all applications
                     "image_name": "tutum/hello-world:latest",
                     "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
                     "name": "my-web-app",
+                    "parallel_deployment": true,
                     "public_dns": "my-web-app-admin.dev.tutum.io",
                     "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "run_command": "/run.sh",
@@ -193,6 +194,7 @@ Get application details
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-web-app",
+            "parallel_deployment": true,
             "public_dns": "my-web-app-admin.dev.tutum.io",
             "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
             "roles": [],
@@ -282,6 +284,7 @@ Create and launch a new application
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-awesome-app",
+            "parallel_deployment": true,
             "public_dns": "my-awesome-app-admin.dev.tutum.io",
             "resource_uri": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
             "roles": [],
@@ -309,6 +312,7 @@ Create and launch a new application
     :jsonparam string autorestart: optional, whether the containers should be restarted if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autoreplace: optional, whether the containers should be replaced with a new one if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autodestroy: optional, whether the containers should be terminated if they stop, i.e. ``OFF`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
+    :jsonparam bool parallel_deployment: optional, whether the containers should be launched and scaled in parallel, i.e. ``true`` (default: ``true``). See :ref:`scaling-modes-ref`
     :jsonparam array(string) roles: optional, a list of Tutum API roles to grant the application, i.e. ``["global"]`` (default: empty array, possible values: ``global``)
     :jsonparam string web_public_dns: optional, a custom domain name to be used as CNAME for the application web endpoint, only available if the application listens in port 80, i.e. ``my-app.example.com`` (default: none)
     :reqheader Content-Type: required, only ``application/json`` is supported
@@ -368,6 +372,7 @@ Update an application
           "stopped_num_containers" : 0,
           "uuid" : "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
           "name" : "my-web-app",
+          "parallel_deployment": true,
           "autorestart" : "ALWAYS",
           "destroyed_datetime" : null,
           "state" : "Scaling",
@@ -482,6 +487,7 @@ Start an application
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-web-app",
+            "parallel_deployment": true,
             "public_dns": "my-web-app-admin.dev.tutum.io",
             "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
             "roles": [],
@@ -567,6 +573,7 @@ Stop an application
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-web-app",
+            "parallel_deployment": true,
             "public_dns": "my-web-app-admin.dev.tutum.io",
             "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
             "roles": [],
@@ -652,6 +659,7 @@ Terminate an application
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-web-app",
+            "parallel_deployment": true,
             "public_dns": "my-web-app-admin.dev.tutum.io",
             "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
             "roles": [],

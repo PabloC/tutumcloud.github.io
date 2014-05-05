@@ -20,13 +20,26 @@ Examples include:
 Usually, databases cannot be scaled horizontally by just increasing the number of instances. The application has to be
 configured specifically to handle horizontal scaling, for example, for MySQL to automatically configure itself as
 a master or a slave instance depending on the number of existing instances in the cluster. A custom proxy is usually
-deployed in these scenarios to route traffic to the appropiate instance.
+deployed in these scenarios to route traffic to the appropriate instance.
+
+.. _scaling-modes-ref:
+
+Deployment and scaling modes
+----------------------------
+
+There are two modes of deployment of multiple containers for an application:
+
+* **Parallel mode**: all the containers of the application will be deployed at the same tim without any links between them.
+  This is the fastest way of deployment and is the default.
+
+* **Sequential mode**: each new container deployed for the application will be linked to all previous containers,
+  making complex scaling setups possible within the containers bootstrap logic. This mode is explained in detail in the following chapters.
 
 
-How Tutum handles scaling
--------------------------
+How Tutum handles sequential deployment and scaling
+---------------------------------------------------
 
-When an application is launched with more than one instance, the second and subsequent instances are linked to all the other instances.
+When an application is launched with more than one container, the second and subsequent container are linked to all the previous ones.
 This environment variables are very useful if your application needs to autoconfigure itself when launching depending
 on the number of instances already running.
 For example, if an application named ``my-web-app`` is launched with **3** containers, each instance will be started with the
