@@ -45,7 +45,7 @@ You can also push a local image to Tutum's private registry using the CLI. Follo
     Username: user
     Password:
     Login Succeeded
-    $ tutum push my_image
+    $ tutum images push my_image
     Pushing my_image to Tutum private registry ...
     Tagging my_image as r.tutum.co/user/my_image ...
 
