@@ -29,7 +29,7 @@ Deployment and scaling modes
 
 There are two modes of deployment of multiple containers for an application:
 
-* **Parallel mode**: all the containers of the application will be deployed at the same tim without any links between them.
+* **Parallel mode**: all the containers of the application will be deployed at the same time without any links between them.
   This is the fastest way of deployment and is the default.
 
 * **Sequential mode**: each new container deployed for the application will be linked to all previous containers,

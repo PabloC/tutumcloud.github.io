@@ -1,5 +1,7 @@
 :title: Command-line Interface
 
+.. _cli-ref:
+
 Command-line Interface
 ======================
 

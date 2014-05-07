@@ -322,6 +322,9 @@ Create and launch a new application
     :statuscode 400: cannot perform the operation (probably there was a validation error on the given parameters)
     :statuscode 401: unauthorized (wrong credentials)
 
+
+.. _api-update-app:
+
 Update an application
 ^^^^^^^^^^^^^^^^^^^^^
 

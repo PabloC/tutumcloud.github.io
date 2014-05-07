@@ -6,5 +6,5 @@
    index
    billing/index
    technical/index
-   usage/index
+   features/index
    reference/index

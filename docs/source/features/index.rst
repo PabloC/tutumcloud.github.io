@@ -1,7 +1,7 @@
-:title: Usage
+:title: Features
 
-Usage
-=====
+Features
+========
 
 Contents:
 
@@ -9,6 +9,8 @@ Contents:
    :maxdepth: 2
 
    launching/index
+   crashrecovery/index
+   autodestroy/index
    scaling/index
    linking/index
    pushing/index
