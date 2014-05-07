@@ -1,7 +1,7 @@
-:title: Scaling an application
+:title: Application scaling
 
-Scaling an application
-======================
+Application scaling
+===================
 
 If the application that you are deploying supports horizontal scaling, Tutum makes it easy to spawn new instances (containers)
 with your application to handle any additional load.

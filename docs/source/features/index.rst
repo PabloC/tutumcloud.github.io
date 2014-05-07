@@ -8,9 +8,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   launching/index
+   deployment/index
    crashrecovery/index
    autodestroy/index
    scaling/index
-   linking/index
-   pushing/index
+   links/index
+   registry/index

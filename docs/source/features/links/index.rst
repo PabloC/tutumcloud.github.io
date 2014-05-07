@@ -1,7 +1,7 @@
-:title: Linking applications
+:title: Application links
 
-Linking applications
-====================
+Application links
+=================
 
 Tutum's application linking capabilities have been modeled after Docker's own
 `Container Links <http://docs.docker.io/en/latest/use/working_with_links_names/>`_.
