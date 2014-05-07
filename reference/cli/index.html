@@ -103,7 +103,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li class="toctree-l1"><a class="reference internal" href="../../">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../billing/">Billing FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../technical/">Technical FAQ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage/">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/">Features</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../">Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api/">HTTP API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/">Python library</a></li>
@@ -123,7 +123,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
           <div class="body">
             
   <div class="section" id="command-line-interface">
-<h1>Command-line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h1>
+<span id="cli-ref"></span><h1>Command-line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Tutum also offers a command-line interface tool to interact with the service.</p>
@@ -134,11 +134,9 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 </pre></div>
 </div>
 <p>Now you can start using it:</p>
-<div class="highlight-none"><div class="highlight"><pre>$ tutum -h
-usage: tutum [-h] [-v]
+<div class="highlight-none"><div class="highlight"><pre>$ tutum
 
-             {login,search,open,apps,ps,run,inspect,start,stop,terminate,logs,scale,alias,build,images,add,remove,update,push}
-             ...
+usage: tutum [-h] [-v] {apps,build,containers,images,login} ...
 
 Tutum&#39;s CLI
 
@@ -147,27 +145,12 @@ optional arguments:
   -v, --version         show program&#39;s version number and exit
 
 Tutum&#39;s CLI commands:
-  {login,search,open,apps,ps,run,inspect,start,stop,terminate,logs,scale,alias,build,images,add,remove,update,push}
-    login               Login into Tutum
-    search              Search for images in the Docker Index
-    open                Open last web application created in Tutum
-    apps                List applications
-    ps                  List containers
-    run                 Create and run an application
-    inspect             Inspect an application or a container
-    start               Start an application or a container
-    stop                Stop an application or a container
-    terminate           Terminate an application or a container
-    logs                Get logs from an application or a container
-    scale               Scale an application
-    alias               Change application&#39;s dns (only for applications
-                        running in Tutum)
+  {apps,build,containers,images,login}
+    apps                Applications related operations
     build               Build an image
-    images              List private and local images
-    add                 Add a private image
-    remove              Remove a private image
-    update              Update a private image
-    push                Push an image or a repository to Tutum registry
+    containers          Containers related operations
+    images              Image related operations
+    login               Login into Tutum
 </pre></div>
 </div>
 <div class="section" id="via-docker-image">
@@ -233,330 +216,318 @@ Login succeeded!
 <dd><p>show program&#8217;s version number and exit</p>
 </dd></dl>
 
-<div class="section" id="tutum-login">
-<h4>tutum login<a class="headerlink" href="#tutum-login" title="Permalink to this headline">¶</a></h4>
-<p>Login into Tutum</p>
-<dl class="option">
-<dt id="cmdoption-tutum-login-h">
-<span id="cmdoption-tutum-login--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-login-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-search">
-<h4>tutum search<a class="headerlink" href="#tutum-search" title="Permalink to this headline">¶</a></h4>
-<p>Search for images in the Docker Index</p>
-<dl class="option">
-<dt id="cmdoption-tutum-search-arg-text">
-<tt class="descname">text</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-search-arg-text" title="Permalink to this definition">¶</a></dt>
-<dd><p>Text to search</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-search-h">
-<span id="cmdoption-tutum-search--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-search-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-open">
-<h4>tutum open<a class="headerlink" href="#tutum-open" title="Permalink to this headline">¶</a></h4>
-<p>Open last web application created in Tutum</p>
-<dl class="option">
-<dt id="cmdoption-tutum-open-h">
-<span id="cmdoption-tutum-open--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-open-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
 <div class="section" id="tutum-apps">
 <h4>tutum apps<a class="headerlink" href="#tutum-apps" title="Permalink to this headline">¶</a></h4>
-<p>List applications</p>
+<p>Applications related operations</p>
 <dl class="option">
 <dt id="cmdoption-tutum-apps-h">
 <span id="cmdoption-tutum-apps--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-h" title="Permalink to this definition">¶</a></dt>
 <dd><p>show this help message and exit</p>
 </dd></dl>
 
-<dl class="option">
-<dt id="cmdoption-tutum-apps-q">
-<span id="cmdoption-tutum-apps--quiet"></span><tt class="descname">-q</tt><tt class="descclassname"> &lt;quiet&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"> &lt;quiet&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-q" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print only long uuids</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-apps-s">
-<span id="cmdoption-tutum-apps--status"></span><tt class="descname">-s</tt><tt class="descclassname"> &lt;status&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--status</tt><tt class="descclassname"> &lt;status&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-s" title="Permalink to this definition">¶</a></dt>
-<dd><p>Filter applications by status</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-apps-L">
-<span id="cmdoption-tutum-apps--local"></span><tt class="descname">-L</tt><tt class="descclassname"> &lt;local&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--local</tt><tt class="descclassname"> &lt;local&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-L" title="Permalink to this definition">¶</a></dt>
-<dd><p>List only applications running locally</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-apps-R">
-<span id="cmdoption-tutum-apps--remote"></span><tt class="descname">-R</tt><tt class="descclassname"> &lt;remote&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--remote</tt><tt class="descclassname"> &lt;remote&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-R" title="Permalink to this definition">¶</a></dt>
-<dd><p>List only applications running in Tutum</p>
-</dd></dl>
-
 </div>
-<div class="section" id="tutum-ps">
-<h4>tutum ps<a class="headerlink" href="#tutum-ps" title="Permalink to this headline">¶</a></h4>
-<p>List containers</p>
+<div class="section" id="tutum-apps-alias">
+<h4>tutum apps alias<a class="headerlink" href="#tutum-apps-alias" title="Permalink to this headline">¶</a></h4>
+<p>Change application&#8217;s dns (only for Tutum applications)</p>
 <dl class="option">
-<dt id="cmdoption-tutum-ps-h">
-<span id="cmdoption-tutum-ps--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
+<dt id="cmdoption-tutum-apps-alias-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-alias-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
 </dd></dl>
 
 <dl class="option">
-<dt id="cmdoption-tutum-ps-i">
-<span id="cmdoption-tutum-ps--identifier"></span><tt class="descname">-i</tt><tt class="descclassname"> &lt;identifier&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--identifier</tt><tt class="descclassname"> &lt;identifier&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-i" title="Permalink to this definition">¶</a></dt>
-<dd><p>Application&#8217;s uuid (either long or short) or name</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-ps-q">
-<span id="cmdoption-tutum-ps--quiet"></span><tt class="descname">-q</tt><tt class="descclassname"> &lt;quiet&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"> &lt;quiet&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-q" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print only long uuids</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-ps-s">
-<span id="cmdoption-tutum-ps--status"></span><tt class="descname">-s</tt><tt class="descclassname"> &lt;status&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--status</tt><tt class="descclassname"> &lt;status&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-s" title="Permalink to this definition">¶</a></dt>
-<dd><p>Filter containers by status</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-ps-L">
-<span id="cmdoption-tutum-ps--local"></span><tt class="descname">-L</tt><tt class="descclassname"> &lt;local&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--local</tt><tt class="descclassname"> &lt;local&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-L" title="Permalink to this definition">¶</a></dt>
-<dd><p>List only applications running locally</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-ps-R">
-<span id="cmdoption-tutum-ps--remote"></span><tt class="descname">-R</tt><tt class="descclassname"> &lt;remote&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--remote</tt><tt class="descclassname"> &lt;remote&gt;</tt><a class="headerlink" href="#cmdoption-tutum-ps-R" title="Permalink to this definition">¶</a></dt>
-<dd><p>List only applications running in Tutum</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-run">
-<h4>tutum run<a class="headerlink" href="#tutum-run" title="Permalink to this headline">¶</a></h4>
-<p>Create and run an application</p>
-<dl class="option">
-<dt id="cmdoption-tutum-run-arg-image">
-<tt class="descname">image</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-run-arg-image" title="Permalink to this definition">¶</a></dt>
-<dd><p>the image used to deploy this application in docker format</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-h">
-<span id="cmdoption-tutum-run--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-n">
-<span id="cmdoption-tutum-run--name"></span><tt class="descname">-n</tt><tt class="descclassname"> &lt;name&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--name</tt><tt class="descclassname"> &lt;name&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-n" title="Permalink to this definition">¶</a></dt>
-<dd><p>a human-readable name for the application (default: image_tag without namespace)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-s">
-<span id="cmdoption-tutum-run--container_size"></span><tt class="descname">-s</tt><tt class="descclassname"> &lt;container_size&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--container_size</tt><tt class="descclassname"> &lt;container_size&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-s" title="Permalink to this definition">¶</a></dt>
-<dd><p>the size of the application containers (default: XS, possible values: XS, S, M, L, XL)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-t">
-<span id="cmdoption-tutum-run--target_num_containers"></span><tt class="descname">-t</tt><tt class="descclassname"> &lt;target_num_containers&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--target_num_containers</tt><tt class="descclassname"> &lt;target_num_containers&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-t" title="Permalink to this definition">¶</a></dt>
-<dd><p>the number of containers to run for this application (default: 1)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-r">
-<span id="cmdoption-tutum-run--run_command"></span><tt class="descname">-r</tt><tt class="descclassname"> &lt;run_command&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--run_command</tt><tt class="descclassname"> &lt;run_command&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-r" title="Permalink to this definition">¶</a></dt>
-<dd><p>the command used to start the application containers (default: as defined in the image)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run--entrypoint">
-<tt class="descname">--entrypoint</tt><tt class="descclassname"> &lt;entrypoint&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run--entrypoint" title="Permalink to this definition">¶</a></dt>
-<dd><p>the command prefix used to start the application containers (default: as defined in the image)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-p">
-<span id="cmdoption-tutum-run--port"></span><tt class="descname">-p</tt><tt class="descclassname"> &lt;port&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--port</tt><tt class="descclassname"> &lt;port&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-p" title="Permalink to this definition">¶</a></dt>
-<dd><p>set ports i.e. &#8216;80/tcp&#8217;(default: as defined in the image)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-e">
-<span id="cmdoption-tutum-run--env"></span><tt class="descname">-e</tt><tt class="descclassname"> &lt;env&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--env</tt><tt class="descclassname"> &lt;env&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-e" title="Permalink to this definition">¶</a></dt>
-<dd><p>set environment variables i.e. &#8216;ENVVAR=foo&#8217; (default: as defined in the image, plus any link- or role-generated variables)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-l">
-<span id="cmdoption-tutum-run--link"></span><tt class="descname">-l</tt><tt class="descclassname"> &lt;link&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--link</tt><tt class="descclassname"> &lt;link&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-l" title="Permalink to this definition">¶</a></dt>
-<dd><p>an application&#8217;s uuid (either long or short) or name to link this application to, i.e. 80ff1635-2d56-478d-a97f-9b59c720e513&#8217;] (default: none)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run--autorestart">
-<tt class="descname">--autorestart</tt><tt class="descclassname"> &lt;autorestart&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run--autorestart" title="Permalink to this definition">¶</a></dt>
-<dd><p>whether the containers should be restarted if they stop (default: OFF)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run--autoreplace">
-<tt class="descname">--autoreplace</tt><tt class="descclassname"> &lt;autoreplace&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run--autoreplace" title="Permalink to this definition">¶</a></dt>
-<dd><p>whether the containers should be replaced with a new one if they stop (default: OFF)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run--autodestroy">
-<tt class="descname">--autodestroy</tt><tt class="descclassname"> &lt;autodestroy&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run--autodestroy" title="Permalink to this definition">¶</a></dt>
-<dd><p>whether the containers should be terminated if they stop (default: OFF)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run--role">
-<tt class="descname">--role</tt><tt class="descclassname"> &lt;role&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run--role" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tutum API roles to grant the application, i.e. &#8216;global&#8217; (default: none, possible values: &#8216;global&#8217;)</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-run-L">
-<span id="cmdoption-tutum-run--local"></span><tt class="descname">-L</tt><tt class="descclassname"> &lt;local&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--local</tt><tt class="descclassname"> &lt;local&gt;</tt><a class="headerlink" href="#cmdoption-tutum-run-L" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run the new application locally</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-inspect">
-<h4>tutum inspect<a class="headerlink" href="#tutum-inspect" title="Permalink to this headline">¶</a></h4>
-<p>Inspect an application or a container</p>
-<dl class="option">
-<dt id="cmdoption-tutum-inspect-arg-identifier">
-<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-inspect-arg-identifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Application&#8217;s or container&#8217;s uuid (either long or short) or name</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-inspect-h">
-<span id="cmdoption-tutum-inspect--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-inspect-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-start">
-<h4>tutum start<a class="headerlink" href="#tutum-start" title="Permalink to this headline">¶</a></h4>
-<p>Start an application or a container</p>
-<dl class="option">
-<dt id="cmdoption-tutum-start-arg-identifier">
-<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-start-arg-identifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Application&#8217;s or container&#8217;s uuid (either long or short) or name</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-start-h">
-<span id="cmdoption-tutum-start--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-start-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-stop">
-<h4>tutum stop<a class="headerlink" href="#tutum-stop" title="Permalink to this headline">¶</a></h4>
-<p>Stop an application or a container</p>
-<dl class="option">
-<dt id="cmdoption-tutum-stop-arg-identifier">
-<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-stop-arg-identifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Application&#8217;s or container&#8217;s uuid (either long or short) or name</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-stop-h">
-<span id="cmdoption-tutum-stop--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-stop-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-terminate">
-<h4>tutum terminate<a class="headerlink" href="#tutum-terminate" title="Permalink to this headline">¶</a></h4>
-<p>Terminate an application or a container</p>
-<dl class="option">
-<dt id="cmdoption-tutum-terminate-arg-identifier">
-<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-terminate-arg-identifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Application&#8217;s or container&#8217;s uuid (either long or short) or name</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-terminate-h">
-<span id="cmdoption-tutum-terminate--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-terminate-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-logs">
-<h4>tutum logs<a class="headerlink" href="#tutum-logs" title="Permalink to this headline">¶</a></h4>
-<p>Get logs from an application or a container</p>
-<dl class="option">
-<dt id="cmdoption-tutum-logs-arg-identifier">
-<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-logs-arg-identifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Application&#8217;s or container&#8217;s uuid (either long or short) or name</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-logs-h">
-<span id="cmdoption-tutum-logs--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-logs-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-scale">
-<h4>tutum scale<a class="headerlink" href="#tutum-scale" title="Permalink to this headline">¶</a></h4>
-<p>Scale an application</p>
-<dl class="option">
-<dt id="cmdoption-tutum-scale-arg-identifier">
-<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-scale-arg-identifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Application&#8217;s or container&#8217;s uuid (either long or short) or name</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-scale-arg-target_num_containers">
-<tt class="descname">target_num_containers</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-scale-arg-target_num_containers" title="Permalink to this definition">¶</a></dt>
-<dd><p>target number of containers to scale this application to</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-scale-h">
-<span id="cmdoption-tutum-scale--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-scale-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-alias">
-<h4>tutum alias<a class="headerlink" href="#tutum-alias" title="Permalink to this headline">¶</a></h4>
-<p>Change application&#8217;s dns (only for applications running in Tutum)</p>
-<dl class="option">
-<dt id="cmdoption-tutum-alias-arg-identifier">
-<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-alias-arg-identifier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Application&#8217;s or container&#8217;s uuid (either long or short) or name</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-alias-arg-dns">
-<tt class="descname">dns</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-alias-arg-dns" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-tutum-apps-alias-arg-dns">
+<tt class="descname">dns</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-alias-arg-dns" title="Permalink to this definition">¶</a></dt>
 <dd><p>custom domain to use for this web application</p>
 </dd></dl>
 
 <dl class="option">
-<dt id="cmdoption-tutum-alias-h">
-<span id="cmdoption-tutum-alias--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-alias-h" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-tutum-apps-alias-h">
+<span id="cmdoption-tutum-apps-alias--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-alias-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-inspect">
+<h4>tutum apps inspect<a class="headerlink" href="#tutum-apps-inspect" title="Permalink to this headline">¶</a></h4>
+<p>Inspect an application</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-inspect-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-inspect-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-inspect-h">
+<span id="cmdoption-tutum-apps-inspect--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-inspect-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-logs">
+<h4>tutum apps logs<a class="headerlink" href="#tutum-apps-logs" title="Permalink to this headline">¶</a></h4>
+<p>Get logs from an application</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-logs-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-logs-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-logs-h">
+<span id="cmdoption-tutum-apps-logs--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-logs-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-open">
+<h4>tutum apps open<a class="headerlink" href="#tutum-apps-open" title="Permalink to this headline">¶</a></h4>
+<p>Open last web application created in Tutum</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-open-h">
+<span id="cmdoption-tutum-apps-open--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-open-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-ps">
+<h4>tutum apps ps<a class="headerlink" href="#tutum-apps-ps" title="Permalink to this headline">¶</a></h4>
+<p>List applications</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-ps-h">
+<span id="cmdoption-tutum-apps-ps--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-ps-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-ps-q">
+<span id="cmdoption-tutum-apps-ps--quiet"></span><tt class="descname">-q</tt><tt class="descclassname"> &lt;quiet&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"> &lt;quiet&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-ps-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>print only long uuids</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-ps-s">
+<span id="cmdoption-tutum-apps-ps--status"></span><tt class="descname">-s</tt><tt class="descclassname"> &lt;status&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--status</tt><tt class="descclassname"> &lt;status&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-ps-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>filter applications by status</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-redeploy">
+<h4>tutum apps redeploy<a class="headerlink" href="#tutum-apps-redeploy" title="Permalink to this headline">¶</a></h4>
+<p>Redeploy an application</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-redeploy-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-redeploy-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-redeploy-h">
+<span id="cmdoption-tutum-apps-redeploy--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-redeploy-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-redeploy-t">
+<span id="cmdoption-tutum-apps-redeploy--tag"></span><tt class="descname">-t</tt><tt class="descclassname"> &lt;tag&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--tag</tt><tt class="descclassname"> &lt;tag&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-redeploy-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>tag of the image</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-run">
+<h4>tutum apps run<a class="headerlink" href="#tutum-apps-run" title="Permalink to this headline">¶</a></h4>
+<p>Create and run an application</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-arg-image">
+<tt class="descname">image</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-run-arg-image" title="Permalink to this definition">¶</a></dt>
+<dd><p>the image used to deploy this application in docker format</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-h">
+<span id="cmdoption-tutum-apps-run--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-n">
+<span id="cmdoption-tutum-apps-run--name"></span><tt class="descname">-n</tt><tt class="descclassname"> &lt;name&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--name</tt><tt class="descclassname"> &lt;name&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>a human-readable name for the application (default: image_tag without namespace)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-s">
+<span id="cmdoption-tutum-apps-run--container_size"></span><tt class="descname">-s</tt><tt class="descclassname"> &lt;container_size&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--container_size</tt><tt class="descclassname"> &lt;container_size&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>the size of the application containers (default: XS, possible values: XS, S, M, L, XL)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-t">
+<span id="cmdoption-tutum-apps-run--target_num_containers"></span><tt class="descname">-t</tt><tt class="descclassname"> &lt;target_num_containers&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--target_num_containers</tt><tt class="descclassname"> &lt;target_num_containers&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of containers to run for this application (default: 1)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-r">
+<span id="cmdoption-tutum-apps-run--run_command"></span><tt class="descname">-r</tt><tt class="descclassname"> &lt;run_command&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--run_command</tt><tt class="descclassname"> &lt;run_command&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>the command used to start the application containers (default: as defined in the image)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run--entrypoint">
+<tt class="descname">--entrypoint</tt><tt class="descclassname"> &lt;entrypoint&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run--entrypoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>the command prefix used to start the application containers (default: as defined in the image)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-p">
+<span id="cmdoption-tutum-apps-run--port"></span><tt class="descname">-p</tt><tt class="descclassname"> &lt;port&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--port</tt><tt class="descclassname"> &lt;port&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>set ports i.e. &#8220;80/tcp&#8221; (default: as defined in the image)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-e">
+<span id="cmdoption-tutum-apps-run--env"></span><tt class="descname">-e</tt><tt class="descclassname"> &lt;env&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--env</tt><tt class="descclassname"> &lt;env&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>set environment variables i.e. &#8220;ENVVAR=foo&#8221; (default: as defined in the image, plus any link- or role-generated variables)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-l">
+<span id="cmdoption-tutum-apps-run--link"></span><tt class="descname">-l</tt><tt class="descclassname"> &lt;link&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--link</tt><tt class="descclassname"> &lt;link&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>an application&#8217;s uuid (either long or short) or name to link this application to, i.e. 80ff1635-2d56-478d-a97f-9b59c720e513&#8217;] (default: none)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run--autorestart">
+<tt class="descname">--autorestart</tt><tt class="descclassname"> &lt;autorestart&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run--autorestart" title="Permalink to this definition">¶</a></dt>
+<dd><p>whether the containers should be restarted if they stop (default: OFF)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run--autoreplace">
+<tt class="descname">--autoreplace</tt><tt class="descclassname"> &lt;autoreplace&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run--autoreplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>whether the containers should be replaced with a new one if they stop (default: OFF)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run--autodestroy">
+<tt class="descname">--autodestroy</tt><tt class="descclassname"> &lt;autodestroy&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run--autodestroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>whether the containers should be terminated if they stop (default: OFF)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run--role">
+<tt class="descname">--role</tt><tt class="descclassname"> &lt;role&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run--role" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tutum API roles to grant the application, i.e. &#8220;global&#8221; (default: none, possible values: &#8220;global&#8221;</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-run-P">
+<span id="cmdoption-tutum-apps-run--parallel"></span><tt class="descname">-P</tt><tt class="descclassname"> &lt;parallel&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--parallel</tt><tt class="descclassname"> &lt;parallel&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-run-P" title="Permalink to this definition">¶</a></dt>
+<dd><p>run the application in parallel</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-scale">
+<h4>tutum apps scale<a class="headerlink" href="#tutum-apps-scale" title="Permalink to this headline">¶</a></h4>
+<p>Scale an application</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-scale-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-scale-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-scale-arg-target_num_containers">
+<tt class="descname">target_num_containers</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-scale-arg-target_num_containers" title="Permalink to this definition">¶</a></dt>
+<dd><p>target number of containers to scale this application to</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-scale-h">
+<span id="cmdoption-tutum-apps-scale--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-scale-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-set">
+<h4>tutum apps set<a class="headerlink" href="#tutum-apps-set" title="Permalink to this headline">¶</a></h4>
+<p>Set crash-recovery and auto-destroy of Turum applications</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-set-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-set-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-set-h">
+<span id="cmdoption-tutum-apps-set--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-set-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-set--autorestart">
+<tt class="descname">--autorestart</tt><tt class="descclassname"> &lt;autorestart&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-set--autorestart" title="Permalink to this definition">¶</a></dt>
+<dd><p>whether the containers should be restarted if they stop (default: OFF)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-set--autoreplace">
+<tt class="descname">--autoreplace</tt><tt class="descclassname"> &lt;autoreplace&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-set--autoreplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>whether the containers should be replaced with a new one if they stop (default: OFF)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-set--autodestroy">
+<tt class="descname">--autodestroy</tt><tt class="descclassname"> &lt;autodestroy&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-set--autodestroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>whether the containers should be terminated if they stop (default: OFF)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-start">
+<h4>tutum apps start<a class="headerlink" href="#tutum-apps-start" title="Permalink to this headline">¶</a></h4>
+<p>Start an application</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-start-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-start-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-start-h">
+<span id="cmdoption-tutum-apps-start--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-start-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-stop">
+<h4>tutum apps stop<a class="headerlink" href="#tutum-apps-stop" title="Permalink to this headline">¶</a></h4>
+<p>Stop an application</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-stop-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-stop-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-stop-h">
+<span id="cmdoption-tutum-apps-stop--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-stop-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-apps-terminate">
+<h4>tutum apps terminate<a class="headerlink" href="#tutum-apps-terminate" title="Permalink to this headline">¶</a></h4>
+<p>Terminate an application</p>
+<dl class="option">
+<dt id="cmdoption-tutum-apps-terminate-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-apps-terminate-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-apps-terminate-h">
+<span id="cmdoption-tutum-apps-terminate--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-apps-terminate-h" title="Permalink to this definition">¶</a></dt>
 <dd><p>show this help message and exit</p>
 </dd></dl>
 
@@ -567,7 +538,7 @@ Login succeeded!
 <dl class="option">
 <dt id="cmdoption-tutum-build-arg-name">
 <tt class="descname">name</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-build-arg-name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image name</p>
+<dd><p>image name</p>
 </dd></dl>
 
 <dl class="option">
@@ -579,165 +550,295 @@ Login succeeded!
 <dl class="option">
 <dt id="cmdoption-tutum-build-d">
 <span id="cmdoption-tutum-build--directory"></span><tt class="descname">-d</tt><tt class="descclassname"> &lt;directory&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--directory</tt><tt class="descclassname"> &lt;directory&gt;</tt><a class="headerlink" href="#cmdoption-tutum-build-d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Working directory</p>
+<dd><p>working directory</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-tutum-build-q">
 <span id="cmdoption-tutum-build--quiet"></span><tt class="descname">-q</tt><tt class="descclassname"> &lt;quiet&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"> &lt;quiet&gt;</tt><a class="headerlink" href="#cmdoption-tutum-build-q" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print minimum information</p>
+<dd><p>print minimum information</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-tutum-build--nocache">
 <tt class="descname">--nocache</tt><tt class="descclassname"> &lt;nocache&gt;</tt><a class="headerlink" href="#cmdoption-tutum-build--nocache" title="Permalink to this definition">¶</a></dt>
-<dd><p>Do not use the cache when building the image</p>
+<dd><p>do not use the cache when building the image</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-containers">
+<h4>tutum containers<a class="headerlink" href="#tutum-containers" title="Permalink to this headline">¶</a></h4>
+<p>Containers related operations</p>
+<dl class="option">
+<dt id="cmdoption-tutum-containers-h">
+<span id="cmdoption-tutum-containers--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-containers-inspect">
+<h4>tutum containers inspect<a class="headerlink" href="#tutum-containers-inspect" title="Permalink to this headline">¶</a></h4>
+<p>Inspect a container</p>
+<dl class="option">
+<dt id="cmdoption-tutum-containers-inspect-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-containers-inspect-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>container&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-containers-inspect-h">
+<span id="cmdoption-tutum-containers-inspect--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-inspect-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-containers-logs">
+<h4>tutum containers logs<a class="headerlink" href="#tutum-containers-logs" title="Permalink to this headline">¶</a></h4>
+<p>Get logs from a container</p>
+<dl class="option">
+<dt id="cmdoption-tutum-containers-logs-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-containers-logs-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-containers-logs-h">
+<span id="cmdoption-tutum-containers-logs--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-logs-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-containers-ps">
+<h4>tutum containers ps<a class="headerlink" href="#tutum-containers-ps" title="Permalink to this headline">¶</a></h4>
+<p>List containers</p>
+<dl class="option">
+<dt id="cmdoption-tutum-containers-ps-h">
+<span id="cmdoption-tutum-containers-ps--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-ps-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-containers-ps-i">
+<span id="cmdoption-tutum-containers-ps--identifier"></span><tt class="descname">-i</tt><tt class="descclassname"> &lt;identifier&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--identifier</tt><tt class="descclassname"> &lt;identifier&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-ps-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>application&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-containers-ps-q">
+<span id="cmdoption-tutum-containers-ps--quiet"></span><tt class="descname">-q</tt><tt class="descclassname"> &lt;quiet&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"> &lt;quiet&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-ps-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>print only long uuids</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-containers-ps-s">
+<span id="cmdoption-tutum-containers-ps--status"></span><tt class="descname">-s</tt><tt class="descclassname"> &lt;status&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--status</tt><tt class="descclassname"> &lt;status&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-ps-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>filter containers by status</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-containers-start">
+<h4>tutum containers start<a class="headerlink" href="#tutum-containers-start" title="Permalink to this headline">¶</a></h4>
+<p>Start a container</p>
+<dl class="option">
+<dt id="cmdoption-tutum-containers-start-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-containers-start-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>container&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-containers-start-h">
+<span id="cmdoption-tutum-containers-start--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-start-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-containers-stop">
+<h4>tutum containers stop<a class="headerlink" href="#tutum-containers-stop" title="Permalink to this headline">¶</a></h4>
+<p>Stop a container</p>
+<dl class="option">
+<dt id="cmdoption-tutum-containers-stop-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-containers-stop-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>container&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-containers-stop-h">
+<span id="cmdoption-tutum-containers-stop--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-stop-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-containers-terminate">
+<h4>tutum containers terminate<a class="headerlink" href="#tutum-containers-terminate" title="Permalink to this headline">¶</a></h4>
+<p>Terminate a container</p>
+<dl class="option">
+<dt id="cmdoption-tutum-containers-terminate-arg-identifier">
+<tt class="descname">identifier</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-containers-terminate-arg-identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>container&#8217;s uuid (either long or short) or name</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-containers-terminate-h">
+<span id="cmdoption-tutum-containers-terminate--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-containers-terminate-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
 </dd></dl>
 
 </div>
 <div class="section" id="tutum-images">
 <h4>tutum images<a class="headerlink" href="#tutum-images" title="Permalink to this headline">¶</a></h4>
-<p>List private and local images</p>
+<p>Image related operations</p>
 <dl class="option">
 <dt id="cmdoption-tutum-images-h">
 <span id="cmdoption-tutum-images--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-h" title="Permalink to this definition">¶</a></dt>
 <dd><p>show this help message and exit</p>
 </dd></dl>
 
-<dl class="option">
-<dt id="cmdoption-tutum-images-q">
-<span id="cmdoption-tutum-images--quiet"></span><tt class="descname">-q</tt><tt class="descclassname"> &lt;quiet&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"> &lt;quiet&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-q" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print only image names</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-images-j">
-<span id="cmdoption-tutum-images--jumpstarts"></span><tt class="descname">-j</tt><tt class="descclassname"> &lt;jumpstarts&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--jumpstarts</tt><tt class="descclassname"> &lt;jumpstarts&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-j" title="Permalink to this definition">¶</a></dt>
-<dd><p>List jumpstart images</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-images-l">
-<span id="cmdoption-tutum-images--linux"></span><tt class="descname">-l</tt><tt class="descclassname"> &lt;linux&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--linux</tt><tt class="descclassname"> &lt;linux&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-l" title="Permalink to this definition">¶</a></dt>
-<dd><p>List linux images</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-images-L">
-<span id="cmdoption-tutum-images--local"></span><tt class="descname">-L</tt><tt class="descclassname"> &lt;local&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--local</tt><tt class="descclassname"> &lt;local&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-L" title="Permalink to this definition">¶</a></dt>
-<dd><p>List only local images</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-images-R">
-<span id="cmdoption-tutum-images--remote"></span><tt class="descname">-R</tt><tt class="descclassname"> &lt;remote&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--remote</tt><tt class="descclassname"> &lt;remote&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-R" title="Permalink to this definition">¶</a></dt>
-<dd><p>List only private images in Tutum</p>
-</dd></dl>
-
 </div>
-<div class="section" id="tutum-add">
-<h4>tutum add<a class="headerlink" href="#tutum-add" title="Permalink to this headline">¶</a></h4>
-<p>Add a private image</p>
+<div class="section" id="tutum-images-list">
+<h4>tutum images list<a class="headerlink" href="#tutum-images-list" title="Permalink to this headline">¶</a></h4>
+<p>List private images</p>
 <dl class="option">
-<dt id="cmdoption-tutum-add-arg-repository">
-<tt class="descname">repository</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-add-arg-repository" title="Permalink to this definition">¶</a></dt>
-<dd><p>Full image repository, i.e. quay.io/tutum/test-repo</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-add-arg-username">
-<tt class="descname">username</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-add-arg-username" title="Permalink to this definition">¶</a></dt>
-<dd><p>Username to authenticate with the registry</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-add-arg-password">
-<tt class="descname">password</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-add-arg-password" title="Permalink to this definition">¶</a></dt>
-<dd><p>Username password</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-add-h">
-<span id="cmdoption-tutum-add--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-add-h" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-tutum-images-list-h">
+<span id="cmdoption-tutum-images-list--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-list-h" title="Permalink to this definition">¶</a></dt>
 <dd><p>show this help message and exit</p>
 </dd></dl>
 
 <dl class="option">
-<dt id="cmdoption-tutum-add-d">
-<span id="cmdoption-tutum-add--description"></span><tt class="descname">-d</tt><tt class="descclassname"> &lt;description&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--description</tt><tt class="descclassname"> &lt;description&gt;</tt><a class="headerlink" href="#cmdoption-tutum-add-d" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-tutum-images-list-q">
+<span id="cmdoption-tutum-images-list--quiet"></span><tt class="descname">-q</tt><tt class="descclassname"> &lt;quiet&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--quiet</tt><tt class="descclassname"> &lt;quiet&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-list-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>print only image names</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-list-j">
+<span id="cmdoption-tutum-images-list--jumpstarts"></span><tt class="descname">-j</tt><tt class="descclassname"> &lt;jumpstarts&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--jumpstarts</tt><tt class="descclassname"> &lt;jumpstarts&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-list-j" title="Permalink to this definition">¶</a></dt>
+<dd><p>list jumpstart images</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-list-l">
+<span id="cmdoption-tutum-images-list--linux"></span><tt class="descname">-l</tt><tt class="descclassname"> &lt;linux&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--linux</tt><tt class="descclassname"> &lt;linux&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-list-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>list linux images</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-images-register">
+<h4>tutum images register<a class="headerlink" href="#tutum-images-register" title="Permalink to this headline">¶</a></h4>
+<p>Register an image from a private repository to Tutum</p>
+<dl class="option">
+<dt id="cmdoption-tutum-images-register-arg-repository">
+<tt class="descname">repository</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-images-register-arg-repository" title="Permalink to this definition">¶</a></dt>
+<dd><p>full image repository, i.e. quay.io/tutum/test-repo</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-register-h">
+<span id="cmdoption-tutum-images-register--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-register-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-register-d">
+<span id="cmdoption-tutum-images-register--description"></span><tt class="descname">-d</tt><tt class="descclassname"> &lt;description&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--description</tt><tt class="descclassname"> &lt;description&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-register-d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Image description</p>
 </dd></dl>
 
 </div>
-<div class="section" id="tutum-remove">
-<h4>tutum remove<a class="headerlink" href="#tutum-remove" title="Permalink to this headline">¶</a></h4>
-<p>Remove a private image</p>
-<dl class="option">
-<dt id="cmdoption-tutum-remove-arg-repository">
-<tt class="descname">repository</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-remove-arg-repository" title="Permalink to this definition">¶</a></dt>
-<dd><p>Full image repository, i.e. quay.io/tutum/test-repo</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-remove-h">
-<span id="cmdoption-tutum-remove--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-remove-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-update">
-<h4>tutum update<a class="headerlink" href="#tutum-update" title="Permalink to this headline">¶</a></h4>
-<p>Update a private image</p>
-<dl class="option">
-<dt id="cmdoption-tutum-update-arg-repository">
-<tt class="descname">repository</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-update-arg-repository" title="Permalink to this definition">¶</a></dt>
-<dd><p>Full image repository, i.e. quay.io/tutum/test-repo</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-update-h">
-<span id="cmdoption-tutum-update--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-update-h" title="Permalink to this definition">¶</a></dt>
-<dd><p>show this help message and exit</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-update-u">
-<span id="cmdoption-tutum-update--username"></span><tt class="descname">-u</tt><tt class="descclassname"> &lt;username&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--username</tt><tt class="descclassname"> &lt;username&gt;</tt><a class="headerlink" href="#cmdoption-tutum-update-u" title="Permalink to this definition">¶</a></dt>
-<dd><p>New username to authenticate with the registry</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-update-p">
-<span id="cmdoption-tutum-update--password"></span><tt class="descname">-p</tt><tt class="descclassname"> &lt;password&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--password</tt><tt class="descclassname"> &lt;password&gt;</tt><a class="headerlink" href="#cmdoption-tutum-update-p" title="Permalink to this definition">¶</a></dt>
-<dd><p>New username password</p>
-</dd></dl>
-
-<dl class="option">
-<dt id="cmdoption-tutum-update-d">
-<span id="cmdoption-tutum-update--description"></span><tt class="descname">-d</tt><tt class="descclassname"> &lt;description&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--description</tt><tt class="descclassname"> &lt;description&gt;</tt><a class="headerlink" href="#cmdoption-tutum-update-d" title="Permalink to this definition">¶</a></dt>
-<dd><p>New image description</p>
-</dd></dl>
-
-</div>
-<div class="section" id="tutum-push">
-<h4>tutum push<a class="headerlink" href="#tutum-push" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="tutum-images-push">
+<h4>tutum images push<a class="headerlink" href="#tutum-images-push" title="Permalink to this headline">¶</a></h4>
 <p>Push an image or a repository to Tutum registry</p>
 <dl class="option">
-<dt id="cmdoption-tutum-push-arg-name">
-<tt class="descname">name</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-push-arg-name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of the image or the repository</p>
+<dt id="cmdoption-tutum-images-push-arg-name">
+<tt class="descname">name</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-images-push-arg-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>name of the image or the repository</p>
 </dd></dl>
 
 <dl class="option">
-<dt id="cmdoption-tutum-push-h">
-<span id="cmdoption-tutum-push--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-push-h" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-tutum-images-push-h">
+<span id="cmdoption-tutum-images-push--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-push-h" title="Permalink to this definition">¶</a></dt>
 <dd><p>show this help message and exit</p>
 </dd></dl>
 
 <dl class="option">
-<dt id="cmdoption-tutum-push--public">
-<tt class="descname">--public</tt><tt class="descclassname"> &lt;public&gt;</tt><a class="headerlink" href="#cmdoption-tutum-push--public" title="Permalink to this definition">¶</a></dt>
-<dd><p>Push image or repository to public registry</p>
+<dt id="cmdoption-tutum-images-push--public">
+<tt class="descname">--public</tt><tt class="descclassname"> &lt;public&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-push--public" title="Permalink to this definition">¶</a></dt>
+<dd><p>push image or repository to public registry</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-images-rm">
+<h4>tutum images rm<a class="headerlink" href="#tutum-images-rm" title="Permalink to this headline">¶</a></h4>
+<p>Remove a private image</p>
+<dl class="option">
+<dt id="cmdoption-tutum-images-rm-arg-repository">
+<tt class="descname">repository</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-images-rm-arg-repository" title="Permalink to this definition">¶</a></dt>
+<dd><p>full image repository, i.e. quay.io/tutum/test-repo</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-rm-h">
+<span id="cmdoption-tutum-images-rm--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-rm-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-images-search">
+<h4>tutum images search<a class="headerlink" href="#tutum-images-search" title="Permalink to this headline">¶</a></h4>
+<p>Search for images in the Docker Index</p>
+<dl class="option">
+<dt id="cmdoption-tutum-images-search-arg-text">
+<tt class="descname">text</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-images-search-arg-text" title="Permalink to this definition">¶</a></dt>
+<dd><p>text to search</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-search-h">
+<span id="cmdoption-tutum-images-search--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-search-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-images-update">
+<h4>tutum images update<a class="headerlink" href="#tutum-images-update" title="Permalink to this headline">¶</a></h4>
+<p>Update a private image</p>
+<dl class="option">
+<dt id="cmdoption-tutum-images-update-arg-repository">
+<tt class="descname">repository</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-tutum-images-update-arg-repository" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full image repository, i.e. quay.io/tutum/test-repo</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-update-h">
+<span id="cmdoption-tutum-images-update--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-update-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-update-u">
+<span id="cmdoption-tutum-images-update--username"></span><tt class="descname">-u</tt><tt class="descclassname"> &lt;username&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--username</tt><tt class="descclassname"> &lt;username&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-update-u" title="Permalink to this definition">¶</a></dt>
+<dd><p>new username to authenticate with the registry</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-update-p">
+<span id="cmdoption-tutum-images-update--password"></span><tt class="descname">-p</tt><tt class="descclassname"> &lt;password&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--password</tt><tt class="descclassname"> &lt;password&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-update-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>new username password</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-tutum-images-update-d">
+<span id="cmdoption-tutum-images-update--description"></span><tt class="descname">-d</tt><tt class="descclassname"> &lt;description&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--description</tt><tt class="descclassname"> &lt;description&gt;</tt><a class="headerlink" href="#cmdoption-tutum-images-update-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>new image description</p>
+</dd></dl>
+
+</div>
+<div class="section" id="tutum-login">
+<h4>tutum login<a class="headerlink" href="#tutum-login" title="Permalink to this headline">¶</a></h4>
+<p>Login into Tutum</p>
+<dl class="option">
+<dt id="cmdoption-tutum-login-h">
+<span id="cmdoption-tutum-login--help"></span><tt class="descname">-h</tt><tt class="descclassname"> &lt;help&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"> &lt;help&gt;</tt><a class="headerlink" href="#cmdoption-tutum-login-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
 </dd></dl>
 
 </div>

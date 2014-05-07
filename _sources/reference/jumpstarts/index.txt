@@ -1,5 +1,7 @@
 :title: Jumpstart Images
 
+.. _jumpstarts-ref:
+
 Jumpstart Images
 ================
 

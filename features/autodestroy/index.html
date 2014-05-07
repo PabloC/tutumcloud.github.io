@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Autodestroy &mdash; Tutum Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/css/blank.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Tutum Documentation" href="../../" />
+    <link rel="up" title="Features" href="../" />
+    <link rel="next" title="Application scaling" href="../scaling/" />
+    <link rel="prev" title="Crash Recovery" href="../crashrecovery/" />
+    <link href="../../_static/css/global-style.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="icon" href="../../_static/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation Page View", {"URL": window.location.pathname});</script><!-- end Mixpanel -->
+    <script type="text/javascript" src="//use.typekit.net/nyy5cxc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  </head>
+  <body>
+
+    <div class="document">
+<header>
+    <div class="navbar navbar-white" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.tutum.co/">
+                    <img src="../../_static/images/tutum-logo-white.svg" alt="Tutum Logo">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.tutum.co/features/">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.tutum.co/pricing/">Pricing</a>
+                    </li>
+                    <li class="hidden-sm">
+                        <a href="http://docs.tutum.co/">Documentation</a>
+                    </li>
+                    <li>
+                        <a href="http://blog.tutum.co/">Blog</a>
+                    </li>
+                    <li>
+                        <a href="https://app.tutum.co/accounts/register/"><strong>Sign up</strong></a>
+                    </li>
+                    <li>
+                        <a href="https://app.tutum.co/accounts/login/">Log in</a>
+                    </li>
+
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</header>
+
+<section class="slice slicewhite">
+    <div class="w-section inverse">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" style="padding-top:25px;">
+                    <div id="toctree" style="display:none;">
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div id="searchbox" style="display: none; margin-bottom:50px;">
+    <form class="search" action="../../search/" method="get">
+      <input type="search" class="form-control" name="q" placeholder="Search documentation..." />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+                        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../billing/">Billing FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical/">Technical FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../deployment/">Docker image deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crashrecovery/">Crash Recovery</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Autodestroy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scaling/">Application scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../links/">Application links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../registry/">Private registry</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/">Reference</a></li>
+</ul>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="autodestroy">
+<h1>Autodestroy<a class="headerlink" href="#autodestroy" title="Permalink to this headline">¶</a></h1>
+<p><strong>Autodestroy</strong> is a Tutum feature that when enabled on an application, will automatically terminate containers when they stop
+(destroying all data within the container). This is useful for one-off actions which store results in a external system.
+It can be set with the following values:</p>
+<ul class="simple">
+<li><strong>OFF</strong>: if the container stops, regardless of the exit code, Tutum will not terminate it and will it in <strong>Stopped</strong> state.</li>
+<li><strong>ON_FAILURE</strong>: if the container stops with an exit code different from 0, Tutum will automatically terminate it.
+Otherwise, it will leave it in <strong>Stopped</strong> state.</li>
+<li><strong>ALWAYS</strong>: if the container stops, regardless of the exit code, Tutum will automatically terminate it.</li>
+</ul>
+<p>If <strong>Autorestart</strong> and/or <strong>Autoreplace</strong> are activated, Tutum will try to perform those actions before <strong>Autodestroy</strong>.</p>
+<div class="section" id="launching-an-application-with-autodestroy-activated-through-the-api">
+<h2>Launching an application with Autodestroy activated through the API<a class="headerlink" href="#launching-an-application-with-autodestroy-activated-through-the-api" title="Permalink to this headline">¶</a></h2>
+<p>You can enable autodestroy when launching an application through the API:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;autodestroy&quot;</span><span class="o">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
+    <span class="p">[...]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If not provided, it will have a default value of <strong>OFF</strong>. See <a class="reference internal" href="../../reference/api/#api-launch-app"><em>Create and launch a new application</em></a> for more information.</p>
+</div>
+<div class="section" id="launching-an-application-with-autodestroy-activated-through-the-cli">
+<h2>Launching an application with Autodestroy activated through the CLI<a class="headerlink" href="#launching-an-application-with-autodestroy-activated-through-the-cli" title="Permalink to this headline">¶</a></h2>
+<p>You can enable autodestroy when launching an application using the CLI:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ tutum apps run --autodestroy ALWAYS [...]
+</pre></div>
+</div>
+<p>If not provided, it will have a default value of <strong>OFF</strong>. See <a class="reference internal" href="../../reference/cli/#cli-ref"><em>Command-line Interface</em></a> for more information.</p>
+</div>
+<div class="section" id="launching-an-application-with-autodestroy-activated-through-the-ui">
+<h2>Launching an application with Autodestroy activated through the UI<a class="headerlink" href="#launching-an-application-with-autodestroy-activated-through-the-ui" title="Permalink to this headline">¶</a></h2>
+<p>At the moment, activating the <strong>Autodestroy</strong> setting on the <strong>Application configuration</strong> step of the <strong>Launch new application</strong> wizard
+sets the <em>autodestroy</em> setting to <strong>ALWAYS</strong>.</p>
+<p>The default value is to be <em>deactivated</em> which will set it to <strong>OFF</strong>.</p>
+</div>
+<div class="section" id="activating-autodestroy-to-an-already-deployed-application">
+<h2>Activating Autodestroy to an already deployed application<a class="headerlink" href="#activating-autodestroy-to-an-already-deployed-application" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-the-api">
+<h3>Using the API<a class="headerlink" href="#using-the-api" title="Permalink to this headline">¶</a></h3>
+<p>You can set the autodestroy option after the application has been deployed through the API:</p>
+<div class="highlight-http"><div class="highlight"><pre>PATCH /api/v1/application/(uuid)/ HTTP/1.1
+
+{
+    &quot;autodestroy&quot;: &quot;ALWAYS&quot;
+}
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../../reference/api/#api-update-app"><em>Update an application</em></a> for more information.</p>
+</div>
+<div class="section" id="using-the-cli">
+<h3>Using the CLI<a class="headerlink" href="#using-the-cli" title="Permalink to this headline">¶</a></h3>
+<p>You can set the autodestroy option after the application has been deployed using the CLI:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ tutum apps set --autodestroy ALWAYS (name or uuid)
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../../reference/cli/#cli-ref"><em>Command-line Interface</em></a> for more information.</p>
+</div>
+<div class="section" id="using-the-web-interface">
+<h3>Using the web interface<a class="headerlink" href="#using-the-web-interface" title="Permalink to this headline">¶</a></h3>
+<p>You can also activate or deactivate <strong>Autodestroy</strong> to an application after it has been deployed from within the application detail page.</p>
+<img alt="../../_images/application_view_autodestroy.png" class="img-responsive img-thumbnail" src="../../_images/application_view_autodestroy.png" />
+<p>You can click on the <strong>Autodestroy</strong> button to turn the feature <strong>ON</strong> or <strong>OFF</strong>. The behaviour of this settings is
+the same as activating it on the <strong>Application configuration</strong> step of the <strong>Launch new application</strong> wizard.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/features/autodestroy/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <div class="clearer"></div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="col">
+                    <h4>Contact us</h4>
+                    <ul>
+                        <li>New York, NY</li>
+                        <li>Phone: <a href="tel:+14157422442">+1 415 742 2442</a></li>
+                        <li>Email: <a href="mailto:info@tutum.co" title="Email us">info@tutum.co</a></li>
+                        <li>Twitter: <a href="http://twitter.com/tutumcloud" title="Tweet" target="_blank">@tutumcloud</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col col-social-icons">
+                    <h4>Follow us</h4>
+                    <a href="http://twitter.com/tutumcloud" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://plus.google.com/109847567335136113736" rel="publisher" target="_blank"><i class="fa fa-google-plus"></i></a>
+                    <a href="http://www.linkedin.com/company/tutum" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <i class="fa">
+                        <a href="https://angel.co/tutum" target="_blank"><img src="../../_static/images/angellist.png" alt="Docker" style=" width: 20px; "></a>
+                    </i>
+                    <a href="https://www.youtube.com/channel/UCljbgzDNU1Z_U5TsGtzsL0g" target="_blank"><i class="fa fa-youtube"></i></a>
+                    <a href="https://vimeo.com/user17080388" target="_blank"><i class="fa fa-vimeo-square"></i></a>
+                    <a href="https://github.com/tutumcloud/" target="_blank"><i class="fa fa-github-square"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col col-social-icons">
+                    <h4>Tutum Weekly Newsletter</h4>
+                    <p>Sign up to receive weekly updates on all things Docker</p>
+                    <div id="mc_embed_signup">
+                    <form action="http://tutum.us8.list-manage1.com/subscribe/post?u=57b9190b37cc6cc0a3cf93b0a&amp;id=a8bf764480" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div class="mc-field-group input-group">
+                        <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Enter your email address">
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-primary" value="Go!" name="subscribe" id="mc-embedded-subscribe" />
+                        </span>
+                    </div>
+                        <div style="position: absolute; left: -5000px;"><input type="text" name="b_57b9190b37cc6cc0a3cf93b0a_a8bf764480" value=""></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="col">
+                    <h4>Accelerated by</h4>
+                    <a href="http://techstars.com" target="_blank"><img src="../../_static/images/techstars.png" alt="Docker hosting techstars accelerator startup tutum" style=" width: 150px; "></a>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-lg-9 copyright">
+                2014 &copy; Tutum, Inc. All rights reserved.
+                <a href="http://www.tutum.co/tos">Terms of Service</a> |
+                <a href="http://www.tutum.co/privacy">Privacy Policy</a> |
+                <a href="http://www.tutum.co/aup">Acceptable Use Policy</a>
+            </div>
+            <div class="col-lg-3 footer-logo">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="../../_static/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/js/modernizr.custom.js"></script>
+<!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.js"></script>
+    <script src="../../_static/js/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="../../_static/assets/hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" src="../../_static/js/custom.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38422650-6', 'tutum.co');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

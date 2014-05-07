@@ -101,7 +101,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li class="toctree-l1"><a class="reference internal" href="../">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../billing/">Billing FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../technical/">Technical FAQ</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../usage/">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features/">Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/">Reference</a></li>
 </ul>
 
@@ -126,11 +126,9 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#N"><strong>N</strong></a>
- | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
- | <a href="#U"><strong>U</strong></a>
  
 </div>
 <h2 id="Symbols">Symbols</h2>
@@ -143,7 +141,11 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--autodestroy">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--autodestroy">tutum-apps-run command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set--autodestroy">tutum-apps-set command line option</a>
   </dt>
 
       </dl></dd>
@@ -154,7 +156,11 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--autoreplace">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--autoreplace">tutum-apps-run command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set--autoreplace">tutum-apps-set command line option</a>
   </dt>
 
       </dl></dd>
@@ -165,7 +171,11 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--autorestart">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--autorestart">tutum-apps-run command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set--autorestart">tutum-apps-set command line option</a>
   </dt>
 
       </dl></dd>
@@ -176,7 +186,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--entrypoint">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--entrypoint">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -198,7 +208,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-push--public">tutum-push command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-push--public">tutum-images-push command line option</a>
   </dt>
 
       </dl></dd>
@@ -209,7 +219,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--role">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--role">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -220,11 +230,11 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-d">tutum-add command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-register-d">tutum-images-register command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-d">tutum-update command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-d">tutum-images-update command line option</a>
   </dt>
 
       </dl></dd>
@@ -246,7 +256,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-e">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-e">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -261,15 +271,55 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-h">tutum-add command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-alias-h">tutum-alias command line option</a>
-  </dt>
-
-        
   <dt><a href="../reference/cli/#cmdoption-tutum-apps-h">tutum-apps command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-alias-h">tutum-apps-alias command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-inspect-h">tutum-apps-inspect command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-logs-h">tutum-apps-logs command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-open-h">tutum-apps-open command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-ps-h">tutum-apps-ps command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-redeploy-h">tutum-apps-redeploy command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-h">tutum-apps-run command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-scale-h">tutum-apps-scale command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set-h">tutum-apps-set command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-start-h">tutum-apps-start command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-stop-h">tutum-apps-stop command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-terminate-h">tutum-apps-terminate command line option</a>
   </dt>
 
         
@@ -277,63 +327,63 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
   </dt>
 
         
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-h">tutum-containers command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-inspect-h">tutum-containers-inspect command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-logs-h">tutum-containers-logs command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-ps-h">tutum-containers-ps command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-start-h">tutum-containers-start command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-stop-h">tutum-containers-stop command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-terminate-h">tutum-containers-terminate command line option</a>
+  </dt>
+
+        
   <dt><a href="../reference/cli/#cmdoption-tutum-images-h">tutum-images command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-inspect-h">tutum-inspect command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-list-h">tutum-images-list command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-push-h">tutum-images-push command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-register-h">tutum-images-register command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-rm-h">tutum-images-rm command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-search-h">tutum-images-search command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-h">tutum-images-update command line option</a>
   </dt>
 
         
   <dt><a href="../reference/cli/#cmdoption-tutum-login-h">tutum-login command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-logs-h">tutum-logs command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-open-h">tutum-open command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-h">tutum-ps command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-push-h">tutum-push command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-remove-h">tutum-remove command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-h">tutum-run command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-scale-h">tutum-scale command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-search-h">tutum-search command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-start-h">tutum-start command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-stop-h">tutum-stop command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-terminate-h">tutum-terminate command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-h">tutum-update command line option</a>
   </dt>
 
       </dl></dd>
@@ -344,7 +394,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-i">tutum-ps command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-ps-i">tutum-containers-ps command line option</a>
   </dt>
 
       </dl></dd>
@@ -355,7 +405,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-j">tutum-images command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-list-j">tutum-images-list command line option</a>
   </dt>
 
       </dl></dd>
@@ -366,7 +416,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-l">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-l">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -379,30 +429,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-l">tutum-images command line option</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    -L &lt;local&gt;, --local &lt;local&gt;
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-apps-L">tutum-apps command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-L">tutum-images command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-L">tutum-ps command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-L">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-list-l">tutum-images-list command line option</a>
   </dt>
 
       </dl></dd>
@@ -413,7 +440,18 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-n">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-n">tutum-apps-run command line option</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    -P &lt;parallel&gt;, --parallel &lt;parallel&gt;
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-P">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -424,7 +462,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-p">tutum-update command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-p">tutum-images-update command line option</a>
   </dt>
 
       </dl></dd>
@@ -435,7 +473,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-p">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-p">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -446,7 +484,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-apps-q">tutum-apps command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-ps-q">tutum-apps-ps command line option</a>
   </dt>
 
         
@@ -454,30 +492,11 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-q">tutum-images command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-ps-q">tutum-containers-ps command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-q">tutum-ps command line option</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    -R &lt;remote&gt;, --remote &lt;remote&gt;
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-apps-R">tutum-apps command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-R">tutum-images command line option</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-R">tutum-ps command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-list-q">tutum-images-list command line option</a>
   </dt>
 
       </dl></dd>
@@ -488,7 +507,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-r">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-r">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -499,7 +518,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-s">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-s">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -510,11 +529,22 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-apps-s">tutum-apps command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-ps-s">tutum-apps-ps command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-s">tutum-ps command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-ps-s">tutum-containers-ps command line option</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    -t &lt;tag&gt;, --tag &lt;tag&gt;
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-redeploy-t">tutum-apps-redeploy command line option</a>
   </dt>
 
       </dl></dd>
@@ -525,7 +555,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-t">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-t">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -536,7 +566,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-u">tutum-update command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-u">tutum-images-update command line option</a>
   </dt>
 
       </dl></dd>
@@ -618,7 +648,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-alias-arg-dns">tutum-alias command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-alias-arg-dns">tutum-apps-alias command line option</a>
   </dt>
 
       </dl></dd>
@@ -665,31 +695,59 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-alias-arg-identifier">tutum-alias command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-alias-arg-identifier">tutum-apps-alias command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-inspect-arg-identifier">tutum-inspect command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-inspect-arg-identifier">tutum-apps-inspect command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-logs-arg-identifier">tutum-logs command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-logs-arg-identifier">tutum-apps-logs command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-scale-arg-identifier">tutum-scale command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-redeploy-arg-identifier">tutum-apps-redeploy command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-start-arg-identifier">tutum-start command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-scale-arg-identifier">tutum-apps-scale command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-stop-arg-identifier">tutum-stop command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set-arg-identifier">tutum-apps-set command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-terminate-arg-identifier">tutum-terminate command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-start-arg-identifier">tutum-apps-start command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-stop-arg-identifier">tutum-apps-stop command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-terminate-arg-identifier">tutum-apps-terminate command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-inspect-arg-identifier">tutum-containers-inspect command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-logs-arg-identifier">tutum-containers-logs command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-start-arg-identifier">tutum-containers-start command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-stop-arg-identifier">tutum-containers-stop command line option</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-terminate-arg-identifier">tutum-containers-terminate command line option</a>
   </dt>
 
       </dl></dd>
@@ -700,7 +758,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-arg-image">tutum-run command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-arg-image">tutum-apps-run command line option</a>
   </dt>
 
       </dl></dd>
@@ -771,24 +829,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-push-arg-name">tutum-push command line option</a>
-  </dt>
-
-      </dl></dd>
-  </dl></td>
-</tr></table>
-
-<h2 id="P">P</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt>
-    password
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-arg-password">tutum-add command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-push-arg-name">tutum-images-push command line option</a>
   </dt>
 
       </dl></dd>
@@ -817,15 +858,15 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-arg-repository">tutum-add command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-register-arg-repository">tutum-images-register command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-remove-arg-repository">tutum-remove command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-rm-arg-repository">tutum-images-rm command line option</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-arg-repository">tutum-update command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-arg-repository">tutum-images-update command line option</a>
   </dt>
 
       </dl></dd>
@@ -880,7 +921,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-scale-arg-target_num_containers">tutum-scale command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-scale-arg-target_num_containers">tutum-apps-scale command line option</a>
   </dt>
 
       </dl></dd>
@@ -891,7 +932,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-search-arg-text">tutum-search command line option</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-search-arg-text">tutum-images-search command line option</a>
   </dt>
 
       </dl></dd>
@@ -912,74 +953,268 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
       </dl></dd>
       
   <dt>
-    tutum-add command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-d">-d &lt;description&gt;, --description &lt;description&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-arg-password">password</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-arg-repository">repository</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-arg-username">username</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-alias command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-alias-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-alias-arg-dns">dns</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-alias-arg-identifier">identifier</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
     tutum-apps command line option
   </dt>
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-apps-L">-L &lt;local&gt;, --local &lt;local&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-apps-R">-R &lt;remote&gt;, --remote &lt;remote&gt;</a>
-  </dt>
-
-        
   <dt><a href="../reference/cli/#cmdoption-tutum-apps-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
   </dt>
 
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-alias command line option
+  </dt>
+
+      <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-apps-q">-q &lt;quiet&gt;, --quiet &lt;quiet&gt;</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-alias-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-apps-s">-s &lt;status&gt;, --status &lt;status&gt;</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-alias-arg-dns">dns</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-alias-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-inspect command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-inspect-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-inspect-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-logs command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-logs-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-logs-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-open command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-open-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-ps command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-ps-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-ps-q">-q &lt;quiet&gt;, --quiet &lt;quiet&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-ps-s">-s &lt;status&gt;, --status &lt;status&gt;</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-redeploy command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-redeploy-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-redeploy-t">-t &lt;tag&gt;, --tag &lt;tag&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-redeploy-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-run command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--autodestroy">--autodestroy &lt;autodestroy&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--autoreplace">--autoreplace &lt;autoreplace&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--autorestart">--autorestart &lt;autorestart&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--entrypoint">--entrypoint &lt;entrypoint&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run--role">--role &lt;role&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-P">-P &lt;parallel&gt;, --parallel &lt;parallel&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-e">-e &lt;env&gt;, --env &lt;env&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-l">-l &lt;link&gt;, --link &lt;link&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-n">-n &lt;name&gt;, --name &lt;name&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-p">-p &lt;port&gt;, --port &lt;port&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-r">-r &lt;run_command&gt;, --run_command &lt;run_command&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-s">-s &lt;container_size&gt;, --container_size &lt;container_size&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-t">-t &lt;target_num_containers&gt;, --target_num_containers &lt;target_num_containers&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-run-arg-image">image</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-scale command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-scale-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-scale-arg-identifier">identifier</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-scale-arg-target_num_containers">target_num_containers</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-set command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set--autodestroy">--autodestroy &lt;autodestroy&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set--autoreplace">--autoreplace &lt;autoreplace&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set--autorestart">--autorestart &lt;autorestart&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-set-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-start command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-start-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-start-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-stop command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-stop-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-stop-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-apps-terminate command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-terminate-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-apps-terminate-arg-identifier">identifier</a>
   </dt>
 
       </dl></dd>
@@ -1012,47 +1247,241 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
       </dl></dd>
       
   <dt>
-    tutum-images command line option
+    tutum-containers command line option
   </dt>
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-L">-L &lt;local&gt;, --local &lt;local&gt;</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt>
+    tutum-containers-inspect command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-inspect-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-R">-R &lt;remote&gt;, --remote &lt;remote&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-j">-j &lt;jumpstarts&gt;, --jumpstarts &lt;jumpstarts&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-l">-l &lt;linux&gt;, --linux &lt;linux&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-images-q">-q &lt;quiet&gt;, --quiet &lt;quiet&gt;</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-inspect-arg-identifier">identifier</a>
   </dt>
 
       </dl></dd>
       
   <dt>
-    tutum-inspect command line option
+    tutum-containers-logs command line option
   </dt>
 
       <dd><dl>
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-inspect-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-logs-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
   </dt>
 
         
-  <dt><a href="../reference/cli/#cmdoption-tutum-inspect-arg-identifier">identifier</a>
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-logs-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-containers-ps command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-ps-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-ps-i">-i &lt;identifier&gt;, --identifier &lt;identifier&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-ps-q">-q &lt;quiet&gt;, --quiet &lt;quiet&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-ps-s">-s &lt;status&gt;, --status &lt;status&gt;</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-containers-start command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-start-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-start-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-containers-stop command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-stop-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-stop-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-containers-terminate command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-terminate-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-containers-terminate-arg-identifier">identifier</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-images command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-images-list command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-list-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-list-j">-j &lt;jumpstarts&gt;, --jumpstarts &lt;jumpstarts&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-list-l">-l &lt;linux&gt;, --linux &lt;linux&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-list-q">-q &lt;quiet&gt;, --quiet &lt;quiet&gt;</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-images-push command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-push--public">--public &lt;public&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-push-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-push-arg-name">name</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-images-register command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-register-d">-d &lt;description&gt;, --description &lt;description&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-register-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-register-arg-repository">repository</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-images-rm command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-rm-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-rm-arg-repository">repository</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-images-search command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-search-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-search-arg-text">text</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt>
+    tutum-images-update command line option
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-d">-d &lt;description&gt;, --description &lt;description&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-p">-p &lt;password&gt;, --password &lt;password&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-u">-u &lt;username&gt;, --username &lt;username&gt;</a>
+  </dt>
+
+        
+  <dt><a href="../reference/cli/#cmdoption-tutum-images-update-arg-repository">repository</a>
   </dt>
 
       </dl></dd>
@@ -1064,272 +1493,6 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
       <dd><dl>
         
   <dt><a href="../reference/cli/#cmdoption-tutum-login-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-logs command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-logs-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-logs-arg-identifier">identifier</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-open command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-open-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-ps command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-L">-L &lt;local&gt;, --local &lt;local&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-R">-R &lt;remote&gt;, --remote &lt;remote&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-i">-i &lt;identifier&gt;, --identifier &lt;identifier&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-q">-q &lt;quiet&gt;, --quiet &lt;quiet&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-ps-s">-s &lt;status&gt;, --status &lt;status&gt;</a>
-  </dt>
-
-      </dl></dd>
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt>
-    tutum-push command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-push--public">--public &lt;public&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-push-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-push-arg-name">name</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-remove command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-remove-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-remove-arg-repository">repository</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-run command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--autodestroy">--autodestroy &lt;autodestroy&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--autoreplace">--autoreplace &lt;autoreplace&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--autorestart">--autorestart &lt;autorestart&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--entrypoint">--entrypoint &lt;entrypoint&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run--role">--role &lt;role&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-L">-L &lt;local&gt;, --local &lt;local&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-e">-e &lt;env&gt;, --env &lt;env&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-l">-l &lt;link&gt;, --link &lt;link&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-n">-n &lt;name&gt;, --name &lt;name&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-p">-p &lt;port&gt;, --port &lt;port&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-r">-r &lt;run_command&gt;, --run_command &lt;run_command&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-s">-s &lt;container_size&gt;, --container_size &lt;container_size&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-t">-t &lt;target_num_containers&gt;, --target_num_containers &lt;target_num_containers&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-run-arg-image">image</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-scale command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-scale-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-scale-arg-identifier">identifier</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-scale-arg-target_num_containers">target_num_containers</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-search command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-search-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-search-arg-text">text</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-start command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-start-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-start-arg-identifier">identifier</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-stop command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-stop-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-stop-arg-identifier">identifier</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-terminate command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-terminate-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-terminate-arg-identifier">identifier</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt>
-    tutum-update command line option
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-d">-d &lt;description&gt;, --description &lt;description&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-h">-h &lt;help&gt;, --help &lt;help&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-p">-p &lt;password&gt;, --password &lt;password&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-u">-u &lt;username&gt;, --username &lt;username&gt;</a>
-  </dt>
-
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-update-arg-repository">repository</a>
   </dt>
 
       </dl></dd>
@@ -1349,23 +1512,6 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
   <dt><a href="../reference/python/#tutum.api.exceptions.TutumAuthError">TutumAuthError</a>
   </dt>
 
-  </dl></td>
-</tr></table>
-
-<h2 id="U">U</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt>
-    username
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="../reference/cli/#cmdoption-tutum-add-arg-username">tutum-add command line option</a>
-  </dt>
-
-      </dl></dd>
   </dl></td>
 </tr></table>
 

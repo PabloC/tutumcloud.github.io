@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Application scaling &mdash; Tutum Documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/css/blank.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Tutum Documentation" href="../../" />
+    <link rel="up" title="Features" href="../" />
+    <link rel="next" title="Application links" href="../links/" />
+    <link rel="prev" title="Autodestroy" href="../autodestroy/" />
+    <link href="../../_static/css/global-style.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="icon" href="../../_static/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation Page View", {"URL": window.location.pathname});</script><!-- end Mixpanel -->
+    <script type="text/javascript" src="//use.typekit.net/nyy5cxc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  </head>
+  <body>
+
+    <div class="document">
+<header>
+    <div class="navbar navbar-white" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.tutum.co/">
+                    <img src="../../_static/images/tutum-logo-white.svg" alt="Tutum Logo">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.tutum.co/features/">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://www.tutum.co/pricing/">Pricing</a>
+                    </li>
+                    <li class="hidden-sm">
+                        <a href="http://docs.tutum.co/">Documentation</a>
+                    </li>
+                    <li>
+                        <a href="http://blog.tutum.co/">Blog</a>
+                    </li>
+                    <li>
+                        <a href="https://app.tutum.co/accounts/register/"><strong>Sign up</strong></a>
+                    </li>
+                    <li>
+                        <a href="https://app.tutum.co/accounts/login/">Log in</a>
+                    </li>
+
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</header>
+
+<section class="slice slicewhite">
+    <div class="w-section inverse">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" style="padding-top:25px;">
+                    <div id="toctree" style="display:none;">
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><div id="searchbox" style="display: none; margin-bottom:50px;">
+    <form class="search" action="../../search/" method="get">
+      <input type="search" class="form-control" name="q" placeholder="Search documentation..." />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+                        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../billing/">Billing FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical/">Technical FAQ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../deployment/">Docker image deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crashrecovery/">Crash Recovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autodestroy/">Autodestroy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Application scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../links/">Application links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../registry/">Private registry</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/">Reference</a></li>
+</ul>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="application-scaling">
+<h1>Application scaling<a class="headerlink" href="#application-scaling" title="Permalink to this headline">¶</a></h1>
+<p>If the application that you are deploying supports horizontal scaling, Tutum makes it easy to spawn new instances (containers)
+with your application to handle any additional load.</p>
+<div class="section" id="what-can-be-scaled-horizontally">
+<h2>What can be scaled horizontally<a class="headerlink" href="#what-can-be-scaled-horizontally" title="Permalink to this headline">¶</a></h2>
+<p>Any application that can handle additional load by just increasing the number of instances (containers) of such application.
+Examples include:</p>
+<ul class="simple">
+<li>Stateless web servers and proxies that listen in port 80</li>
+<li>&#8220;Worker&#8221; instances that process jobs from a queue and do not receive user traffic</li>
+<li>&#8220;Cron&#8221;-style instances that execute periodic tasks and do not receive user traffic</li>
+</ul>
+<p>Usually, databases cannot be scaled horizontally by just increasing the number of instances. The application has to be
+configured specifically to handle horizontal scaling, for example, for MySQL to automatically configure itself as
+a master or a slave instance depending on the number of existing instances in the cluster. A custom proxy is usually
+deployed in these scenarios to route traffic to the appropriate instance.</p>
+</div>
+<div class="section" id="deployment-and-scaling-modes">
+<span id="scaling-modes-ref"></span><h2>Deployment and scaling modes<a class="headerlink" href="#deployment-and-scaling-modes" title="Permalink to this headline">¶</a></h2>
+<p>There are two modes of deployment of multiple containers for an application:</p>
+<ul class="simple">
+<li><strong>Parallel mode</strong>: all the containers of the application will be deployed at the same time without any links between them.
+This is the fastest way of deployment and is the default.</li>
+<li><strong>Sequential mode</strong>: each new container deployed for the application will be linked to all previous containers,
+making complex scaling setups possible within the containers bootstrap logic. This mode is explained in detail in the following chapters.</li>
+</ul>
+</div>
+<div class="section" id="how-tutum-handles-sequential-deployment-and-scaling">
+<h2>How Tutum handles sequential deployment and scaling<a class="headerlink" href="#how-tutum-handles-sequential-deployment-and-scaling" title="Permalink to this headline">¶</a></h2>
+<p>When an application is launched with more than one container, the second and subsequent container are linked to all the previous ones.
+This environment variables are very useful if your application needs to autoconfigure itself when launching depending
+on the number of instances already running.
+For example, if an application named <tt class="docutils literal"><span class="pre">my-web-app</span></tt> is launched with <strong>3</strong> containers, each instance will be started with the
+following environment variables:</p>
+<div class="section" id="environment-variables-set-in-the-first-my-web-app-1-container">
+<h3>Environment variables set in the first (my-web-app-1) container<a class="headerlink" href="#environment-variables-set-in-the-first-my-web-app-1-container" title="Permalink to this headline">¶</a></h3>
+<p>The first container will not have any special environment variables set by the scaling mechanism</p>
+</div>
+<div class="section" id="environment-variables-set-in-the-second-my-web-app-2-container">
+<h3>Environment variables set in the second (my-web-app-2) container<a class="headerlink" href="#environment-variables-set-in-the-second-my-web-app-2-container" title="Permalink to this headline">¶</a></h3>
+<p>The second container will be linked to the first container (<tt class="docutils literal"><span class="pre">my-web-app-1</span></tt>), ending up with the following environment variables:</p>
+<table border="1" class="table table-bordered table-striped docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MY_WEB_APP_1_PORT</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_ADDR</td>
+<td>my-web-app-1-user.beta.tutum.io</td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP_PORT</td>
+<td>49330</td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="environment-variables-set-in-the-third-my-web-app-3-container">
+<h3>Environment variables set in the third (my-web-app-3) container<a class="headerlink" href="#environment-variables-set-in-the-third-my-web-app-3-container" title="Permalink to this headline">¶</a></h3>
+<p>The third container will be linked to the first and second containers (<tt class="docutils literal"><span class="pre">my-web-app-1</span></tt> and <tt class="docutils literal"><span class="pre">my-web-app-2</span></tt>),
+ending up with the following environment variables:</p>
+<table border="1" class="table table-bordered table-striped docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MY_WEB_APP_1_PORT</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP</td>
+<td><a class="reference external" href="tcp://my-web-app-1-user.beta.tutum.io:49330">tcp://my-web-app-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_ADDR</td>
+<td>my-web-app-1-user.beta.tutum.io</td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_1_PORT_80_TCP_PORT</td>
+<td>49330</td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_1_PORT_80_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT</td>
+<td><a class="reference external" href="tcp://my-web-app-2-user.delta.tutum.io:49331">tcp://my-web-app-2-user.delta.tutum.io:49331</a></td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_2_PORT_80_TCP</td>
+<td><a class="reference external" href="tcp://my-web-app-2-user.delta.tutum.io:49331">tcp://my-web-app-2-user.delta.tutum.io:49331</a></td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT_80_TCP_ADDR</td>
+<td>my-web-app-2-user.delta.tutum.io</td>
+</tr>
+<tr class="row-even"><td>MY_WEB_APP_2_PORT_80_TCP_PORT</td>
+<td>49331</td>
+</tr>
+<tr class="row-odd"><td>MY_WEB_APP_2_PORT_80_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="setting-the-initial-number-of-containers">
+<h2>Setting the initial number of containers<a class="headerlink" href="#setting-the-initial-number-of-containers" title="Permalink to this headline">¶</a></h2>
+<p>When configuring your application prior to launch, you will have the chance to specify an initial number of containers for your
+application:</p>
+<img alt="../../_images/application_configuration_v1.png" class="img-responsive img-thumbnail" src="../../_images/application_configuration_v1.png" />
+<p>The number of containers specified in this wizard will be launched immediately.</p>
+</div>
+<div class="section" id="scaling-an-already-running-application">
+<h2>Scaling an already running application<a class="headerlink" href="#scaling-an-already-running-application" title="Permalink to this headline">¶</a></h2>
+<p>After your application has been started, if you need to scale it up (or down), you can do so from the application detail page:</p>
+<img alt="../../_images/application_detail_wordpress_v1.png" class="img-responsive img-thumbnail" src="../../_images/application_detail_wordpress_v1.png" />
+<p>Simply move the <strong>Number of containers</strong> slider to the target number of containers and press <strong>Apply</strong>. The application will
+start scaling immediately.</p>
+</div>
+<div class="section" id="high-availability-and-scaling-muli-az">
+<h2>High availability and scaling (muli-AZ)<a class="headerlink" href="#high-availability-and-scaling-muli-az" title="Permalink to this headline">¶</a></h2>
+<p>In order to increase the availability of your application, each container of your scaled application will run in a different
+<a class="reference external" href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">availability zone</a>, so it
+will become tolerant to any failures in one (or more, depending on the number of containers being ran) availability zones.
+This is done automatically and requires no user input.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/features/scaling/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <div class="clearer"></div>
+    </div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="col">
+                    <h4>Contact us</h4>
+                    <ul>
+                        <li>New York, NY</li>
+                        <li>Phone: <a href="tel:+14157422442">+1 415 742 2442</a></li>
+                        <li>Email: <a href="mailto:info@tutum.co" title="Email us">info@tutum.co</a></li>
+                        <li>Twitter: <a href="http://twitter.com/tutumcloud" title="Tweet" target="_blank">@tutumcloud</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col col-social-icons">
+                    <h4>Follow us</h4>
+                    <a href="http://twitter.com/tutumcloud" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a href="https://plus.google.com/109847567335136113736" rel="publisher" target="_blank"><i class="fa fa-google-plus"></i></a>
+                    <a href="http://www.linkedin.com/company/tutum" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <i class="fa">
+                        <a href="https://angel.co/tutum" target="_blank"><img src="../../_static/images/angellist.png" alt="Docker" style=" width: 20px; "></a>
+                    </i>
+                    <a href="https://www.youtube.com/channel/UCljbgzDNU1Z_U5TsGtzsL0g" target="_blank"><i class="fa fa-youtube"></i></a>
+                    <a href="https://vimeo.com/user17080388" target="_blank"><i class="fa fa-vimeo-square"></i></a>
+                    <a href="https://github.com/tutumcloud/" target="_blank"><i class="fa fa-github-square"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col col-social-icons">
+                    <h4>Tutum Weekly Newsletter</h4>
+                    <p>Sign up to receive weekly updates on all things Docker</p>
+                    <div id="mc_embed_signup">
+                    <form action="http://tutum.us8.list-manage1.com/subscribe/post?u=57b9190b37cc6cc0a3cf93b0a&amp;id=a8bf764480" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div class="mc-field-group input-group">
+                        <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Enter your email address">
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-primary" value="Go!" name="subscribe" id="mc-embedded-subscribe" />
+                        </span>
+                    </div>
+                        <div style="position: absolute; left: -5000px;"><input type="text" name="b_57b9190b37cc6cc0a3cf93b0a_a8bf764480" value=""></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="col">
+                    <h4>Accelerated by</h4>
+                    <a href="http://techstars.com" target="_blank"><img src="../../_static/images/techstars.png" alt="Docker hosting techstars accelerator startup tutum" style=" width: 150px; "></a>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-lg-9 copyright">
+                2014 &copy; Tutum, Inc. All rights reserved.
+                <a href="http://www.tutum.co/tos">Terms of Service</a> |
+                <a href="http://www.tutum.co/privacy">Privacy Policy</a> |
+                <a href="http://www.tutum.co/aup">Acceptable Use Policy</a>
+            </div>
+            <div class="col-lg-3 footer-logo">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="../../_static/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../_static/js/modernizr.custom.js"></script>
+<!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.js"></script>
+    <script src="../../_static/js/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="../../_static/assets/hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" src="../../_static/js/custom.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38422650-6', 'tutum.co');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
