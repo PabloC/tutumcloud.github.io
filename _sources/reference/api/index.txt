@@ -421,6 +421,9 @@ Update an application
     :query uuid: the UUID of the application
     :jsonparam int target_num_containers: optional, the target number of containers to scale this application to
     :jsonparam string web_public_dns: optional, the custom domain name to use for this web application
+    :jsonparam string autorestart: optional, whether the containers should be restarted if they stop, i.e. ``ALWAYS`` (possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
+    :jsonparam string autoreplace: optional, whether the containers should be replaced with a new one if they stop, i.e. ``ALWAYS`` (possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
+    :jsonparam string autodestroy: optional, whether the containers should be terminated if they stop, i.e. ``OFF`` (possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :reqheader Content-Type: required, only ``application/json`` is supported
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
@@ -593,6 +596,99 @@ Stop an application
         }
 
     :query uuid: the UUID of the application
+    :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
+    :reqheader Accept: required, only ``application/json`` is supported
+    :statuscode 202: operation accepted
+    :statuscode 400: cannot perform the operation (probably the application is not in a suitable state)
+    :statuscode 401: unauthorized (wrong credentials)
+
+
+.. _api-redeploy-ref:
+
+Redeploy an application
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. http:post:: /api/v1/application/(uuid)/redeploy/
+
+    Redeploys a new version and/or image tag for a running application
+
+    **Example request**:
+
+    .. sourcecode:: http
+
+        POST /api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/ HTTP/1.1
+        Host: app.tutum.co
+        Accept: application/json
+        Authorization: ApiKey username:apikey
+
+        {
+            "tag": "v2"
+        }
+
+    **Example response**:
+
+    .. sourcecode:: http
+
+        HTTP/1.1 202 Accepted
+        Cache-Control: must-revalidate, max-age=0
+        Content-Type: application/json
+        Vary: Accept, Authorization, Cookie
+
+        {
+            "autodestroy": "OFF",
+            "autoreplace": "ALWAYS",
+            "autorestart": "ALWAYS",
+            "container_envvars": [
+                {
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "key": "ENVIRONMENT",
+                    "value": "dev"
+                }
+            ],
+            "container_ports": [
+                {
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "inner_port": 80,
+                    "outer_port": null,
+                    "protocol": "tcp"
+                }
+            ],
+            "container_size": "XS",
+            "containers": [
+                "/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/",
+                "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/",
+                "/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/"
+            ],
+            "current_num_containers": 3,
+            "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "destroyed_datetime": null,
+            "entrypoint": "",
+            "image_name": "tutum/hello-world:latest",
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
+            "link_variables": {
+                "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
+            },
+            "linked_from_application": [],
+            "linked_to_application": [],
+            "name": "my-web-app",
+            "parallel_deployment": true,
+            "public_dns": "my-web-app-admin.dev.tutum.io",
+            "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+            "roles": [],
+            "run_command": "/run.sh",
+            "running_num_containers": 0,
+            "started_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "state": "Running",
+            "stopped_datetime": "Sun, 6 Apr 2014 18:21:22 +0000",
+            "stopped_num_containers": 0,
+            "target_num_containers": 3,
+            "unique_name": "my-web-app",
+            "uuid": "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
+            "web_public_dns": "myapp.example.com"
+        }
+
+    :query uuid: the UUID of the application
+    :jsonparam string tag: optional, image tag of the current application image to redeploy, i.e. ``latest`` (default: current deployed image tag)
     :reqheader Authorization: required ApiKey authentication header in the format ``ApiKey username:apikey``
     :reqheader Accept: required, only ``application/json`` is supported
     :statuscode 202: operation accepted

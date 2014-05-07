@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Autodestroy &mdash; Tutum Documentation</title>
+    <title>Hot redeployment &mdash; Tutum Documentation</title>
     
     <link rel="stylesheet" href="../../_static/css/blank.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Tutum Documentation" href="../../" />
     <link rel="up" title="Features" href="../" />
-    <link rel="next" title="Hot redeployment" href="../redeploy/" />
-    <link rel="prev" title="Crash Recovery" href="../crashrecovery/" />
+    <link rel="next" title="Application scaling" href="../scaling/" />
+    <link rel="prev" title="Autodestroy" href="../autodestroy/" />
     <link href="../../_static/css/global-style.css" rel="stylesheet" type="text/css" media="screen">
     <link rel="icon" href="../../_static/images/favicon.png" type="image/png">
     <link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
@@ -106,8 +106,8 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li class="toctree-l1 current"><a class="reference internal" href="../">Features</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../deployment/">Docker image deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../crashrecovery/">Crash Recovery</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Autodestroy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../redeploy/">Hot redeployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autodestroy/">Autodestroy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Hot redeployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../scaling/">Application scaling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../links/">Application links</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../registry/">Private registry</a></li>
@@ -124,72 +124,42 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="autodestroy">
-<h1>Autodestroy<a class="headerlink" href="#autodestroy" title="Permalink to this headline">¶</a></h1>
-<p><strong>Autodestroy</strong> is a Tutum feature that when enabled on an application, will automatically terminate containers when they stop
-(destroying all data within the container). This is useful for one-off actions which store results in a external system.
-It can be set with the following values:</p>
-<ul class="simple">
-<li><strong>OFF</strong>: if the container stops, regardless of the exit code, Tutum will not terminate it and will it in <strong>Stopped</strong> state.</li>
-<li><strong>ON_FAILURE</strong>: if the container stops with an exit code different from 0, Tutum will automatically terminate it.
-Otherwise, it will leave it in <strong>Stopped</strong> state.</li>
-<li><strong>ALWAYS</strong>: if the container stops, regardless of the exit code, Tutum will automatically terminate it.</li>
-</ul>
-<p>If <strong>Autorestart</strong> and/or <strong>Autoreplace</strong> are activated, Tutum will try to perform those actions before <strong>Autodestroy</strong>.</p>
-<div class="section" id="launching-an-application-with-autodestroy-activated-through-the-api">
-<h2>Launching an application with Autodestroy activated through the API<a class="headerlink" href="#launching-an-application-with-autodestroy-activated-through-the-api" title="Permalink to this headline">¶</a></h2>
-<p>You can enable autodestroy when launching an application through the API:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s2">&quot;autodestroy&quot;</span><span class="o">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
-    <span class="p">[...]</span>
-<span class="p">}</span>
-</pre></div>
+  <div class="section" id="hot-redeployment">
+<h1>Hot redeployment<a class="headerlink" href="#hot-redeployment" title="Permalink to this headline">¶</a></h1>
+<p>Tutum supports <strong>hot redeployment</strong> of applications while they are running.
+This can be used when a new version of the image is pushed to the registry and you want your application
+to regenerate its containers with it.</p>
+<p>You can redeploy the latest version of the application&#8217;s current image tag, or select a different tag of the same image.</p>
+<p>When a hot redeployment is requested, Tutum will replace the application containers with the new version and/or the new image tag.
+The container&#8217;s endpoints will remain the same. Please note that any data stored locally in the application containers will
+be destroyed.</p>
+<div class="section" id="using-the-web-interface">
+<h2>Using the web interface<a class="headerlink" href="#using-the-web-interface" title="Permalink to this headline">¶</a></h2>
+<p>From the application detail page, click on the <strong>Redeploy</strong> button on the top right corner of the page. A modal
+will be displayed:</p>
+<img alt="../../_images/redeploy_modal.png" class="img-responsive img-thumbnail text-center" src="../../_images/redeploy_modal.png" />
+<p>By default, the current image tag deployed will be selected, but you can also select a different tag from the same image to be deployed.
+Click on <strong>Deploy</strong> to start the redeployment process.</p>
 </div>
-<p>If not provided, it will have a default value of <strong>OFF</strong>. See <a class="reference internal" href="../../reference/api/#api-launch-app"><em>Create and launch a new application</em></a> for more information.</p>
-</div>
-<div class="section" id="launching-an-application-with-autodestroy-activated-through-the-cli">
-<h2>Launching an application with Autodestroy activated through the CLI<a class="headerlink" href="#launching-an-application-with-autodestroy-activated-through-the-cli" title="Permalink to this headline">¶</a></h2>
-<p>You can enable autodestroy when launching an application using the CLI:</p>
-<div class="highlight-none"><div class="highlight"><pre>$ tutum apps run --autodestroy ALWAYS [...]
-</pre></div>
-</div>
-<p>If not provided, it will have a default value of <strong>OFF</strong>. See <a class="reference internal" href="../../reference/cli/#cli-ref"><em>Command-line Interface</em></a> for more information.</p>
-</div>
-<div class="section" id="launching-an-application-with-autodestroy-activated-through-the-ui">
-<h2>Launching an application with Autodestroy activated through the UI<a class="headerlink" href="#launching-an-application-with-autodestroy-activated-through-the-ui" title="Permalink to this headline">¶</a></h2>
-<p>At the moment, activating the <strong>Autodestroy</strong> setting on the <strong>Application configuration</strong> step of the <strong>Launch new application</strong> wizard
-sets the <em>autodestroy</em> setting to <strong>ALWAYS</strong>.</p>
-<p>The default value is to be <em>deactivated</em> which will set it to <strong>OFF</strong>.</p>
-</div>
-<div class="section" id="activating-autodestroy-to-an-already-deployed-application">
-<h2>Activating Autodestroy to an already deployed application<a class="headerlink" href="#activating-autodestroy-to-an-already-deployed-application" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="using-the-api">
-<h3>Using the API<a class="headerlink" href="#using-the-api" title="Permalink to this headline">¶</a></h3>
-<p>You can set the autodestroy option after the application has been deployed through the API:</p>
-<div class="highlight-http"><div class="highlight"><pre>PATCH /api/v1/application/(uuid)/ HTTP/1.1
+<h2>Using the API<a class="headerlink" href="#using-the-api" title="Permalink to this headline">¶</a></h2>
+<p>You can redeploy a new version of an application through the API:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/api/v1/application/(uuid)/redeploy/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 
 {
-    &quot;autodestroy&quot;: &quot;ALWAYS&quot;
+    &quot;tag&quot;: &quot;latest&quot;
 }
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="../../reference/api/#api-update-app"><em>Update an application</em></a> for more information.</p>
+<p>See <a class="reference internal" href="../../reference/api/#api-redeploy-ref"><em>Redeploy an application</em></a> for more information.</p>
 </div>
 <div class="section" id="using-the-cli">
-<h3>Using the CLI<a class="headerlink" href="#using-the-cli" title="Permalink to this headline">¶</a></h3>
-<p>You can set the autodestroy option after the application has been deployed using the CLI:</p>
-<div class="highlight-none"><div class="highlight"><pre>$ tutum apps set --autodestroy ALWAYS (name or uuid)
+<h2>Using the CLI<a class="headerlink" href="#using-the-cli" title="Permalink to this headline">¶</a></h2>
+<p>You can redeploy a new version of an application through the CLI:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ tutum apps redeploy -t latest myapp
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="../../reference/cli/#cli-ref"><em>Command-line Interface</em></a> for more information.</p>
-</div>
-<div class="section" id="using-the-web-interface">
-<h3>Using the web interface<a class="headerlink" href="#using-the-web-interface" title="Permalink to this headline">¶</a></h3>
-<p>You can also activate or deactivate <strong>Autodestroy</strong> to an application after it has been deployed from within the application detail page.</p>
-<img alt="../../_images/application_view_autodestroy.png" class="img-responsive img-thumbnail" src="../../_images/application_view_autodestroy.png" />
-<p>You can click on the <strong>Autodestroy</strong> button to turn the feature <strong>ON</strong> or <strong>OFF</strong>. The behaviour of this settings is
-the same as activating it on the <strong>Application configuration</strong> step of the <strong>Launch new application</strong> wizard.</p>
-</div>
 </div>
 </div>
 
@@ -197,7 +167,7 @@ the same as activating it on the <strong>Application configuration</strong> step
           </div>
         </div>
       </div>
-                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/features/autodestroy/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
+                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/features/redeploy/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
                 </div>
             </div>
         </div>

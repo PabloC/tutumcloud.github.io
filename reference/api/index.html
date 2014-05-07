@@ -135,24 +135,25 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li><a class="reference internal" href="#update-an-application" id="id7">Update an application</a></li>
 <li><a class="reference internal" href="#start-an-application" id="id8">Start an application</a></li>
 <li><a class="reference internal" href="#stop-an-application" id="id9">Stop an application</a></li>
-<li><a class="reference internal" href="#terminate-an-application" id="id10">Terminate an application</a></li>
+<li><a class="reference internal" href="#redeploy-an-application" id="id10">Redeploy an application</a></li>
+<li><a class="reference internal" href="#terminate-an-application" id="id11">Terminate an application</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#containers" id="id11">Containers</a><ul>
-<li><a class="reference internal" href="#list-all-containers" id="id12">List all containers</a></li>
-<li><a class="reference internal" href="#get-container-details" id="id13">Get container details</a></li>
-<li><a class="reference internal" href="#start-a-container" id="id14">Start a container</a></li>
-<li><a class="reference internal" href="#stop-a-container" id="id15">Stop a container</a></li>
-<li><a class="reference internal" href="#get-logs-for-a-container" id="id16">Get logs for a container</a></li>
-<li><a class="reference internal" href="#terminate-a-container" id="id17">Terminate a container</a></li>
+<li><a class="reference internal" href="#containers" id="id12">Containers</a><ul>
+<li><a class="reference internal" href="#list-all-containers" id="id13">List all containers</a></li>
+<li><a class="reference internal" href="#get-container-details" id="id14">Get container details</a></li>
+<li><a class="reference internal" href="#start-a-container" id="id15">Start a container</a></li>
+<li><a class="reference internal" href="#stop-a-container" id="id16">Stop a container</a></li>
+<li><a class="reference internal" href="#get-logs-for-a-container" id="id17">Get logs for a container</a></li>
+<li><a class="reference internal" href="#terminate-a-container" id="id18">Terminate a container</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#images" id="id18">Images</a><ul>
-<li><a class="reference internal" href="#list-all-images" id="id19">List all images</a></li>
-<li><a class="reference internal" href="#get-image-details" id="id20">Get image details</a></li>
-<li><a class="reference internal" href="#add-a-new-private-image" id="id21">Add a new private image</a></li>
-<li><a class="reference internal" href="#update-a-private-image" id="id22">Update a private image</a></li>
-<li><a class="reference internal" href="#delete-a-private-image" id="id23">Delete a private image</a></li>
+<li><a class="reference internal" href="#images" id="id19">Images</a><ul>
+<li><a class="reference internal" href="#list-all-images" id="id20">List all images</a></li>
+<li><a class="reference internal" href="#get-image-details" id="id21">Get image details</a></li>
+<li><a class="reference internal" href="#add-a-new-private-image" id="id22">Add a new private image</a></li>
+<li><a class="reference internal" href="#update-a-private-image" id="id23">Update a private image</a></li>
+<li><a class="reference internal" href="#delete-a-private-image" id="id24">Delete a private image</a></li>
 </ul>
 </li>
 </ul>
@@ -608,6 +609,9 @@ Content-Type: application/json
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
 <li><strong>target_num_containers</strong> (<em>int</em>) &#8211; optional, the target number of containers to scale this application to</li>
 <li><strong>web_public_dns</strong> (<em>string</em>) &#8211; optional, the custom domain name to use for this web application</li>
+<li><strong>autorestart</strong> (<em>string</em>) &#8211; optional, whether the containers should be restarted if they stop, i.e. <tt class="docutils literal"><span class="pre">ALWAYS</span></tt> (possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
+<li><strong>autoreplace</strong> (<em>string</em>) &#8211; optional, whether the containers should be replaced with a new one if they stop, i.e. <tt class="docutils literal"><span class="pre">ALWAYS</span></tt> (possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
+<li><strong>autodestroy</strong> (<em>string</em>) &#8211; optional, whether the containers should be terminated if they stop, i.e. <tt class="docutils literal"><span class="pre">OFF</span></tt> (possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
 </ul>
 </td>
 </tr>
@@ -835,8 +839,120 @@ Content-Type: application/json
 </dd></dl>
 
 </div>
+<div class="section" id="redeploy-an-application">
+<span id="api-redeploy-ref"></span><h3><a class="toc-backref" href="#id10">Redeploy an application</a><a class="headerlink" href="#redeploy-an-application" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--api-v1-application-(uuid)-redeploy-">
+<tt class="descname">POST </tt><tt class="descname">/api/v1/application/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/redeploy/</tt><a class="headerlink" href="#post--api-v1-application-(uuid)-redeploy-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redeploys a new version and/or image tag for a running application</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/redeploy/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">app.tutum.co</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">ApiKey username:apikey</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;v2&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Cache-Control</span><span class="o">:</span> <span class="l">must-revalidate, max-age=0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Authorization, Cookie</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;autodestroy&quot;</span><span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;autoreplace&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dev&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+            <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;container_size&quot;</span><span class="p">:</span> <span class="s2">&quot;XS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;containers&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;current_num_containers&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;deployed_datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 17:59:42 +0000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;destroyed_datetime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;entrypoint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;image_name&quot;</span><span class="p">:</span> <span class="s2">&quot;tutum/hello-world:latest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;image_tag&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/tutum/hello-world/tag/latest/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;link_variables&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;MY_WEB_APP_TUTUM_API_URL&quot;</span><span class="p">:</span> <span class="s2">&quot;https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;run_command&quot;</span><span class="p">:</span> <span class="s2">&quot;/run.sh&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;running_num_containers&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;started_datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 17:59:42 +0000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Running&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;stopped_datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 18:21:22 +0000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;stopped_num_containers&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;target_num_containers&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;unique_name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;7eaf7fff-882c-4f3d-9a8f-a22317ac00ce&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;web_public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;myapp.example.com&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>uuid</strong> &#8211; the UUID of the application</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Json Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>tag</strong> (<em>string</em>) &#8211; optional, image tag of the current application image to redeploy, i.e. <tt class="docutils literal"><span class="pre">latest</span></tt> (default: current deployed image tag)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Authorization</strong> &#8211; required ApiKey authentication header in the format <tt class="docutils literal"><span class="pre">ApiKey</span> <span class="pre">username:apikey</span></tt></li>
+<li><strong>Accept</strong> &#8211; required, only <tt class="docutils literal"><span class="pre">application/json</span></tt> is supported</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>202</strong> &#8211; operation accepted</li>
+<li><strong>400</strong> &#8211; cannot perform the operation (probably the application is not in a suitable state)</li>
+<li><strong>401</strong> &#8211; unauthorized (wrong credentials)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
 <div class="section" id="terminate-an-application">
-<h3><a class="toc-backref" href="#id10">Terminate an application</a><a class="headerlink" href="#terminate-an-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Terminate an application</a><a class="headerlink" href="#terminate-an-application" title="Permalink to this headline">¶</a></h3>
 <dl class="delete">
 <dt id="delete--api-v1-application-(uuid)-">
 <tt class="descname">DELETE </tt><tt class="descname">/api/v1/application/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#delete--api-v1-application-(uuid)-" title="Permalink to this definition">¶</a></dt>
@@ -939,9 +1055,9 @@ Content-Type: application/json
 </div>
 </div>
 <div class="section" id="containers">
-<h2><a class="toc-backref" href="#id11">Containers</a><a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Containers</a><a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="list-all-containers">
-<h3><a class="toc-backref" href="#id12">List all containers</a><a class="headerlink" href="#list-all-containers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">List all containers</a><a class="headerlink" href="#list-all-containers" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-container-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/container/</tt><a class="headerlink" href="#get--api-v1-container-" title="Permalink to this definition">¶</a></dt>
@@ -1071,7 +1187,7 @@ Content-Type: application/json
 
 </div>
 <div class="section" id="get-container-details">
-<h3><a class="toc-backref" href="#id13">Get container details</a><a class="headerlink" href="#get-container-details" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Get container details</a><a class="headerlink" href="#get-container-details" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-container-(uuid)-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--api-v1-container-(uuid)-" title="Permalink to this definition">¶</a></dt>
@@ -1189,7 +1305,7 @@ Content-Type: application/json
 
 </div>
 <div class="section" id="start-a-container">
-<h3><a class="toc-backref" href="#id14">Start a container</a><a class="headerlink" href="#start-a-container" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Start a container</a><a class="headerlink" href="#start-a-container" title="Permalink to this headline">¶</a></h3>
 <dl class="post">
 <dt id="post--api-v1-container-(uuid)-start-">
 <tt class="descname">POST </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/start/</tt><a class="headerlink" href="#post--api-v1-container-(uuid)-start-" title="Permalink to this definition">¶</a></dt>
@@ -1308,7 +1424,7 @@ Content-Type: application/json
 
 </div>
 <div class="section" id="stop-a-container">
-<h3><a class="toc-backref" href="#id15">Stop a container</a><a class="headerlink" href="#stop-a-container" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Stop a container</a><a class="headerlink" href="#stop-a-container" title="Permalink to this headline">¶</a></h3>
 <dl class="post">
 <dt id="post--api-v1-container-(uuid)-stop-">
 <tt class="descname">POST </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/stop/</tt><a class="headerlink" href="#post--api-v1-container-(uuid)-stop-" title="Permalink to this definition">¶</a></dt>
@@ -1427,7 +1543,7 @@ Content-Type: application/json
 
 </div>
 <div class="section" id="get-logs-for-a-container">
-<h3><a class="toc-backref" href="#id16">Get logs for a container</a><a class="headerlink" href="#get-logs-for-a-container" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Get logs for a container</a><a class="headerlink" href="#get-logs-for-a-container" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-container-(uuid)-logs-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/logs/</tt><a class="headerlink" href="#get--api-v1-container-(uuid)-logs-" title="Permalink to this definition">¶</a></dt>
@@ -1480,7 +1596,7 @@ Content-Type: application/json
 
 </div>
 <div class="section" id="terminate-a-container">
-<h3><a class="toc-backref" href="#id17">Terminate a container</a><a class="headerlink" href="#terminate-a-container" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">Terminate a container</a><a class="headerlink" href="#terminate-a-container" title="Permalink to this headline">¶</a></h3>
 <dl class="delete">
 <dt id="delete--api-v1-container-(uuid)-">
 <tt class="descname">DELETE </tt><tt class="descname">/api/v1/container/</tt><big>(</big><em>uuid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#delete--api-v1-container-(uuid)-" title="Permalink to this definition">¶</a></dt>
@@ -1601,9 +1717,9 @@ All the data stored in the container will be permanently deleted. The parent app
 </div>
 </div>
 <div class="section" id="images">
-<h2><a class="toc-backref" href="#id18">Images</a><a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">Images</a><a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="list-all-images">
-<h3><a class="toc-backref" href="#id19">List all images</a><a class="headerlink" href="#list-all-images" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">List all images</a><a class="headerlink" href="#list-all-images" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-image-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/image/</tt><a class="headerlink" href="#get--api-v1-image-" title="Permalink to this definition">¶</a></dt>
@@ -1685,7 +1801,7 @@ All the data stored in the container will be permanently deleted. The parent app
 
 </div>
 <div class="section" id="get-image-details">
-<h3><a class="toc-backref" href="#id20">Get image details</a><a class="headerlink" href="#get-image-details" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">Get image details</a><a class="headerlink" href="#get-image-details" title="Permalink to this headline">¶</a></h3>
 <dl class="get">
 <dt id="get--api-v1-image-(name)-">
 <tt class="descname">GET </tt><tt class="descname">/api/v1/image/</tt><big>(</big><em>name</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--api-v1-image-(name)-" title="Permalink to this definition">¶</a></dt>
@@ -1789,7 +1905,7 @@ All the data stored in the container will be permanently deleted. The parent app
 
 </div>
 <div class="section" id="add-a-new-private-image">
-<h3><a class="toc-backref" href="#id21">Add a new private image</a><a class="headerlink" href="#add-a-new-private-image" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">Add a new private image</a><a class="headerlink" href="#add-a-new-private-image" title="Permalink to this headline">¶</a></h3>
 <dl class="post">
 <dt id="post--api-v1-image-">
 <tt class="descname">POST </tt><tt class="descname">/api/v1/image/</tt><a class="headerlink" href="#post--api-v1-image-" title="Permalink to this definition">¶</a></dt>
@@ -1897,7 +2013,7 @@ Tutum&#8217;s private registry will be added automatically.</p>
 
 </div>
 <div class="section" id="update-a-private-image">
-<h3><a class="toc-backref" href="#id22">Update a private image</a><a class="headerlink" href="#update-a-private-image" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">Update a private image</a><a class="headerlink" href="#update-a-private-image" title="Permalink to this headline">¶</a></h3>
 <dl class="patch">
 <dt id="patch--api-v1-image-(name)-">
 <tt class="descname">PATCH </tt><tt class="descname">/api/v1/image/</tt><big>(</big><em>name</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#patch--api-v1-image-(name)-" title="Permalink to this definition">¶</a></dt>
@@ -2002,7 +2118,7 @@ Content-Type: application/json
 
 </div>
 <div class="section" id="delete-a-private-image">
-<h3><a class="toc-backref" href="#id23">Delete a private image</a><a class="headerlink" href="#delete-a-private-image" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">Delete a private image</a><a class="headerlink" href="#delete-a-private-image" title="Permalink to this headline">¶</a></h3>
 <dl class="delete">
 <dt id="delete--api-v1-image-(name)-">
 <tt class="descname">DELETE </tt><tt class="descname">/api/v1/image/</tt><big>(</big><em>name</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#delete--api-v1-image-(name)-" title="Permalink to this definition">¶</a></dt>

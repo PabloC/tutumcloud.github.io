@@ -107,6 +107,7 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li class="toctree-l2"><a class="reference internal" href="../deployment/">Docker image deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../crashrecovery/">Crash Recovery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../autodestroy/">Autodestroy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../redeploy/">Hot redeployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../scaling/">Application scaling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../links/">Application links</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Private registry</a></li>
@@ -153,7 +154,7 @@ inside the <strong>Private</strong> tab in the <strong>Launch new application</s
 Username: user
 Password:
 Login Succeeded
-$ tutum push my_image
+$ tutum images push my_image
 Pushing my_image to Tutum private registry ...
 Tagging my_image as r.tutum.co/user/my_image ...
 
