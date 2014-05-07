@@ -603,6 +603,8 @@ Stop an application
     :statuscode 401: unauthorized (wrong credentials)
 
 
+.. _api-redeploy-ref:
+
 Redeploy an application
 ^^^^^^^^^^^^^^^^^^^^^^^
 

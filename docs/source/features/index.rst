@@ -11,6 +11,7 @@ Contents:
    deployment/index
    crashrecovery/index
    autodestroy/index
+   redeploy/index
    scaling/index
    links/index
    registry/index
