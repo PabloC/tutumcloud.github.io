@@ -226,7 +226,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
             <span class="nt">&quot;image_name&quot;</span><span class="p">:</span> <span class="s2">&quot;tutum/hello-world:latest&quot;</span><span class="p">,</span>
             <span class="nt">&quot;image_tag&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/tutum/hello-world/tag/latest/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
             <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
             <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;run_command&quot;</span><span class="p">:</span> <span class="s2">&quot;/run.sh&quot;</span><span class="p">,</span>
@@ -342,7 +342,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
     <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
@@ -446,7 +446,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/&quot;</span><span class="p">,</span>
     <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
@@ -481,7 +481,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 <li><strong>autorestart</strong> (<em>string</em>) &#8211; optional, whether the containers should be restarted if they stop, i.e. <tt class="docutils literal"><span class="pre">ALWAYS</span></tt> (default: <tt class="docutils literal"><span class="pre">OFF</span></tt>, possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
 <li><strong>autoreplace</strong> (<em>string</em>) &#8211; optional, whether the containers should be replaced with a new one if they stop, i.e. <tt class="docutils literal"><span class="pre">ALWAYS</span></tt> (default: <tt class="docutils literal"><span class="pre">OFF</span></tt>, possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
 <li><strong>autodestroy</strong> (<em>string</em>) &#8211; optional, whether the containers should be terminated if they stop, i.e. <tt class="docutils literal"><span class="pre">OFF</span></tt> (default: <tt class="docutils literal"><span class="pre">OFF</span></tt>, possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
-<li><strong>parallel_deployment</strong> (<em>bool</em>) &#8211; optional, whether the containers should be launched and scaled in parallel, i.e. <tt class="docutils literal"><span class="pre">true</span></tt> (default: <tt class="docutils literal"><span class="pre">true</span></tt>). See <a class="reference internal" href="../../features/scaling/#scaling-modes-ref"><em>Deployment and scaling modes</em></a></li>
+<li><strong>sequential_deployment</strong> (<em>bool</em>) &#8211; optional, whether the containers should be launched and scaled in sequence, i.e. <tt class="docutils literal"><span class="pre">true</span></tt> (default: <tt class="docutils literal"><span class="pre">false</span></tt>). See <a class="reference internal" href="../../features/scaling/#scaling-modes-ref"><em>Deployment and scaling modes</em></a></li>
 <li><strong>roles</strong> (<em>array(string)</em>) &#8211; optional, a list of Tutum API roles to grant the application, i.e. <tt class="docutils literal"><span class="pre">[&quot;global&quot;]</span></tt> (default: empty array, possible values: <tt class="docutils literal"><span class="pre">global</span></tt>)</li>
 <li><strong>web_public_dns</strong> (<em>string</em>) &#8211; optional, a custom domain name to be used as CNAME for the application web endpoint, only available if the application listens in port 80, i.e. <tt class="docutils literal"><span class="pre">my-app.example.com</span></tt> (default: none)</li>
 </ul>
@@ -551,7 +551,7 @@ Content-Type: application/json
   <span class="nt">&quot;stopped_num_containers&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="nt">&quot;uuid&quot;</span> <span class="p">:</span> <span class="s2">&quot;7eaf7fff-882c-4f3d-9a8f-a22317ac00ce&quot;</span><span class="p">,</span>
   <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="nt">&quot;autorestart&quot;</span> <span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
   <span class="nt">&quot;destroyed_datetime&quot;</span> <span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
   <span class="nt">&quot;state&quot;</span> <span class="p">:</span> <span class="s2">&quot;Scaling&quot;</span><span class="p">,</span>
@@ -691,7 +691,7 @@ Content-Type: application/json
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
     <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
@@ -793,7 +793,7 @@ Content-Type: application/json
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
     <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
@@ -899,7 +899,7 @@ Content-Type: application/json
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
     <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
@@ -1007,7 +1007,7 @@ Content-Type: application/json
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;parallel_deployment&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
     <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
@@ -2268,7 +2268,7 @@ Content-Type: application/json
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-38422650-6', 'tutum.co');
+  ga('create', 'UA-38422650-3', 'tutum.co');
   ga('send', 'pageview');
 </script>
 

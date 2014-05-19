@@ -643,15 +643,15 @@ which should be handled by the calling application accordingly:</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="tutum.api.auth.get_apikey">
-<tt class="descclassname">tutum.api.auth.</tt><tt class="descname">get_apikey</tt><big>(</big><em>username</em>, <em>password</em><big>)</big><a class="headerlink" href="#tutum.api.auth.get_apikey" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the user&#8217;s ApiKey, or raises an exception if username/password incorrect</p>
+<dt id="tutum.api.auth.get_auth">
+<tt class="descclassname">tutum.api.auth.</tt><tt class="descname">get_auth</tt><big>(</big><em>username</em>, <em>password</em><big>)</big><a class="headerlink" href="#tutum.api.auth.get_auth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the user&#8217;s Username and ApiKey, or raises an exception if username/password incorrect</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>username</strong> (<em>str</em>) &#8211; The username of the user to authenticate</li>
+<li><strong>username</strong> (<em>str</em>) &#8211; The username/email of the user to authenticate</li>
 <li><strong>password</strong> (<em>str</em>) &#8211; The password of the user to authenticate</li>
 </ul>
 </td>
@@ -659,7 +659,7 @@ which should be handled by the calling application accordingly:</p>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">TutumAuthError</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">str &#8211; the ApiKey to use for the given username</p>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">str, str &#8211; the Username, ApiKey to use for the given username/email</p>
 </td>
 </tr>
 </tbody>
@@ -804,7 +804,7 @@ which should be handled by the calling application accordingly:</p>
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-38422650-6', 'tutum.co');
+  ga('create', 'UA-38422650-3', 'tutum.co');
   ga('send', 'pageview');
 </script>
 

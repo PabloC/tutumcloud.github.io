@@ -151,6 +151,32 @@ This is the fastest way of deployment and is the default.</li>
 <li><strong>Sequential mode</strong>: each new container deployed for the application will be linked to all previous containers,
 making complex scaling setups possible within the containers bootstrap logic. This mode is explained in detail in the following chapters.</li>
 </ul>
+<div class="section" id="using-the-api">
+<h3>Using the API<a class="headerlink" href="#using-the-api" title="Permalink to this headline">¶</a></h3>
+<p>You can set the <tt class="docutils literal"><span class="pre">sequential_deployment</span></tt> option when deploying an application through the API:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/api/v1/application/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+
+{
+    &quot;sequential_deployment&quot;: true,
+    [...]
+}
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../../reference/api/#api-launch-app"><em>Create and launch a new application</em></a> for more information.</p>
+</div>
+<div class="section" id="using-the-cli">
+<h3>Using the CLI<a class="headerlink" href="#using-the-cli" title="Permalink to this headline">¶</a></h3>
+<p>You can set the <tt class="docutils literal"><span class="pre">sequential_deployment</span></tt> option when deploying an application through the CLI:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ tutum apps run --sequential_deployment [...]
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../../reference/cli/#cli-ref"><em>Command-line Interface</em></a> for more information.</p>
+</div>
+<div class="section" id="using-the-web-interface">
+<h3>Using the web interface<a class="headerlink" href="#using-the-web-interface" title="Permalink to this headline">¶</a></h3>
+<p>You can activate the <strong>Sequential deployment</strong> setting on the <strong>Application configuration</strong> step of the <strong>Launch new application</strong> wizard:</p>
+<img alt="../../_images/wizard_sequential_deployment.png" class="img-responsive img-thumbnail" src="../../_images/wizard_sequential_deployment.png" />
+</div>
 </div>
 <div class="section" id="how-tutum-handles-sequential-deployment-and-scaling">
 <h2>How Tutum handles sequential deployment and scaling<a class="headerlink" href="#how-tutum-handles-sequential-deployment-and-scaling" title="Permalink to this headline">¶</a></h2>
@@ -366,7 +392,7 @@ This is done automatically and requires no user input.</p>
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-38422650-6', 'tutum.co');
+  ga('create', 'UA-38422650-3', 'tutum.co');
   ga('send', 'pageview');
 </script>
 

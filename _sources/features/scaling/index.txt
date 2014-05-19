@@ -36,6 +36,44 @@ There are two modes of deployment of multiple containers for an application:
   making complex scaling setups possible within the containers bootstrap logic. This mode is explained in detail in the following chapters.
 
 
+Using the API
+^^^^^^^^^^^^^
+
+You can set the ``sequential_deployment`` option when deploying an application through the API:
+
+.. sourcecode:: http
+
+    POST /api/v1/application/ HTTP/1.1
+
+    {
+        "sequential_deployment": true,
+        [...]
+    }
+
+See :ref:`api-launch-app` for more information.
+
+
+Using the CLI
+^^^^^^^^^^^^^
+
+You can set the ``sequential_deployment`` option when deploying an application through the CLI:
+
+.. sourcecode:: none
+
+    $ tutum apps run --sequential_deployment [...]
+
+See :ref:`cli-ref` for more information.
+
+
+Using the web interface
+^^^^^^^^^^^^^^^^^^^^^^^
+
+You can activate the **Sequential deployment** setting on the **Application configuration** step of the **Launch new application** wizard:
+
+.. image:: /_static/images/wizard_sequential_deployment.png
+    :class: img-responsive img-thumbnail
+
+
 How Tutum handles sequential deployment and scaling
 ---------------------------------------------------
 
