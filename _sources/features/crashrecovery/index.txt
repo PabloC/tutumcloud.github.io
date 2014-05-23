@@ -1,5 +1,7 @@
 :title: Crash Recovery
 
+.. _crash-recovery-ref:
+
 Crash Recovery
 ==============
 

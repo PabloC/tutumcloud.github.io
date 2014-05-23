@@ -1,5 +1,7 @@
 :title: Application scaling
 
+.. _scaling-ref:
+
 Application scaling
 ===================
 

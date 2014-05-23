@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Private registry &mdash; Tutum Documentation</title>
+    <title>Web load balancing &mdash; Tutum Documentation</title>
     
     <link rel="stylesheet" href="../../_static/css/blank.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Tutum Documentation" href="../../" />
     <link rel="up" title="Features" href="../" />
-    <link rel="next" title="Reference" href="../../reference/" />
-    <link rel="prev" title="Application links" href="../links/" />
+    <link rel="next" title="Hot redeployment" href="../redeploy/" />
+    <link rel="prev" title="Autodestroy" href="../autodestroy/" />
     <link href="../../_static/css/global-style.css" rel="stylesheet" type="text/css" media="screen">
     <link rel="icon" href="../../_static/images/favicon.png" type="image/png">
     <link rel="stylesheet" href="../../_static/assets/fraction/fractionslider.css" type="text/css" />
@@ -115,11 +115,11 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <li class="toctree-l2"><a class="reference internal" href="../deployment/">Docker image deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../crashrecovery/">Crash Recovery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../autodestroy/">Autodestroy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../loadbalancing/">Web load balancing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Web load balancing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../redeploy/">Hot redeployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../scaling/">Application scaling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../links/">Application links</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Private registry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../registry/">Private registry</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/">Reference</a></li>
@@ -133,50 +133,47 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="private-registry">
-<span id="push-to-tutu-ref"></span><h1>Private registry<a class="headerlink" href="#private-registry" title="Permalink to this headline">¶</a></h1>
-<p>Tutum offers a free private Docker registry to its users. This short tutorial will guide you through the process to
-upload/push your Docker images to Tutum&#8217;s private registry. Application images pushed to Tutum&#8217;s private registry will
-automatically be shown in the <strong>Tutum Registry</strong> tab section of the <strong>Launch new application</strong> wizard.</p>
-<p>First thing you&#8217;ll need to push an image to Tutum&#8217;s registry is to have Docker installed.
-Please follow the <a class="reference external" href="https://www.docker.io/gettingstarted/">official installation instructions</a> depending on your system.</p>
-<p>With Docker installed:</p>
-<div class="highlight-none"><div class="highlight"><pre>$ docker login r.tutum.co
-Username: user
-Password:
-Email: user@email.com
-Login Succeeded
-$ docker tag my_image r.tutum.co/user/my_image
-$ docker push r.tutum.co/user/my_image
-</pre></div>
+  <div class="section" id="web-load-balancing">
+<h1>Web load balancing<a class="headerlink" href="#web-load-balancing" title="Permalink to this headline">¶</a></h1>
+<p>With Tutum, hosting and scaling your web application containers is very simple. Tutum provides built in load balancing
+based on <a class="reference external" href="https://github.com/dotcloud/hipache">Hipache</a> for your HTTP applications which configures itself automatically.</p>
+<p>In order to activate load balancing, make sure that your containers expose the port <tt class="docutils literal"><span class="pre">80/tcp</span></tt> and that listen to HTTP requests
+in that port. If that&#8217;s the case, your application will be added to our managed load balancer automatically on launch.</p>
+<p>Each one of your web application containers will still be accessible on their regular endpoints.</p>
+<div class="section" id="specifying-a-custom-domain-name">
+<h2>Specifying a custom domain name<a class="headerlink" href="#specifying-a-custom-domain-name" title="Permalink to this headline">¶</a></h2>
+<p>By default, Tutum will allocate a predefined domain name for your load balanced application in the form
+<tt class="docutils literal"><span class="pre">applicationname-username.web.tutum.io</span></tt> which resolves to our load balancer.</p>
+<p>If you want to use your own domain name, you can specify it in your application detail view:</p>
+<img alt="../../_images/application_custom_cname.png" class="img-responsive img-thumbnail" src="../../_images/application_custom_cname.png" />
+<p>You must create a <strong>CNAME</strong> record in your domain DNS configuration in order to use your new custom domain. The new
+domain name must resolve to the <tt class="docutils literal"><span class="pre">*.web.tutum.io</span></tt> domain name allocated by Tutum. For example:</p>
+<p><tt class="docutils literal"><span class="pre">www.example.com</span>&nbsp;&nbsp;&nbsp; <span class="pre">CNAME</span>&nbsp;&nbsp; <span class="pre">mywebapp-username.web.tutum.io</span></tt></p>
+<p>Your web application will still be accessible via the allocated <tt class="docutils literal"><span class="pre">*.web.tutum.io</span></tt> domain.</p>
 </div>
-<p>Note: In the instructions above, please substitute <tt class="docutils literal"><span class="pre">user</span></tt> with your Tutum username, <tt class="docutils literal"><span class="pre">my_image</span></tt> with your image&#8217;s name,
-and <tt class="docutils literal"><span class="pre">user&#64;email.com</span></tt> with the email you used to register at Tutum.</p>
-<p>If you created your account logging in via Docker.io or GitHub, you will need to <a class="reference external" href="https://app.tutum.co/accounts/password/change/">set a password</a>
-before being able to push to the registry.</p>
-<p>After you complete those steps, you&#8217;ll see that your application image is available for selection under the <strong>Tutum Registry</strong> tab
-inside the <strong>Private</strong> tab in the <strong>Launch new application</strong> wizard. See <a class="reference internal" href="../deployment/#deploy-from-tutum-reg"><em>Deploying a private image from Tutum&#8217;s private registry</em></a> for more details.</p>
-<div class="section" id="using-the-tutum-cli">
-<h2>Using the tutum CLI<a class="headerlink" href="#using-the-tutum-cli" title="Permalink to this headline">¶</a></h2>
-<p>You can also push a local image to Tutum&#8217;s private registry using the CLI. Following the above example:</p>
-<div class="highlight-none"><div class="highlight"><pre>$ tutum login
-Username: user
-Password:
-Login Succeeded
-$ tutum images push my_image
-Pushing my_image to Tutum private registry ...
-Tagging my_image as r.tutum.co/user/my_image ...
-
-The push refers to a repository [r.tutum.co/user/my_image] (len: 1)
-Sending image list
-Pushing repository r.tutum.co/user/my_image (1 tags)
-Image 511136ea3c5a already pushed, skipping
-[...]
-Pushing tag for rev [0c292a6f613e] on {https://r.tutum.co/v1/repositories/user/my_image/tags/latest}
-</pre></div>
+<div class="section" id="scaling-a-web-application">
+<h2>Scaling a web application<a class="headerlink" href="#scaling-a-web-application" title="Permalink to this headline">¶</a></h2>
+<p>When you scale up your web application, the new containers will be automatically added to the load balancer. When
+you scale down, the destroyed containers will be removed.</p>
+<p>For more information on application scaling, please see <a class="reference internal" href="../scaling/#scaling-ref"><em>Application scaling</em></a>.</p>
 </div>
-<p>Shortly after the push finishes, the image will appear under the <strong>Tutum Registry</strong> tab inside the <strong>Private</strong> tab in
-the <strong>Launch new application</strong> wizard.</p>
+<div class="section" id="managing-container-failures">
+<h2>Managing container failures<a class="headerlink" href="#managing-container-failures" title="Permalink to this headline">¶</a></h2>
+<p>If any of the containers of your web application does not respond to a request in time (less than 30 seconds), it will
+be automatically marked as <em>dead</em> by the load balancer and will not receive further traffic. The load balancer will
+check every 30 seconds if the container has recovered.</p>
+<p>If the container crashes, and <strong>crash recovery</strong> is enabled and it successfully restarts and/or replaces the container,
+it will be added to the load balancer. If not enabled or the crash recovery system is unsuccessful, it will be left
+in stopped state and removed from the load balancer. See <a class="reference internal" href="../crashrecovery/#crash-recovery-ref"><em>Crash Recovery</em></a> for more information.</p>
+</div>
+<div class="section" id="current-limitations">
+<h2>Current limitations<a class="headerlink" href="#current-limitations" title="Permalink to this headline">¶</a></h2>
+<p>We are actively developing our load balancing system. For now, please be aware of the following limitations:</p>
+<ul class="simple">
+<li>Only applications which expose port <cite>80/tcp</cite> will be added to the load balancer.</li>
+<li>No HTTPS traffic is yet supported.</li>
+<li>No sticky sessions are yet supported.</li>
+</ul>
 </div>
 </div>
 
@@ -184,7 +181,7 @@ the <strong>Launch new application</strong> wizard.</p>
           </div>
         </div>
       </div>
-                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/features/registry/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
+                    <div class="pull-right edit-on-github"><a href="https://github.com/tutumcloud/tutumcloud.github.io/blob/source/docs/source/features/loadbalancing/index.rst" target="_blank" title="Edit on GitHub"><i class="fa fa-github"></i></a></div>
                 </div>
             </div>
         </div>
