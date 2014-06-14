@@ -43,11 +43,14 @@ For more information on application scaling, please see :ref:`scaling-ref`.
 Managing container failures
 ---------------------------
 
-If any of the containers of your web application does not respond to a request in time (less than 30 seconds), it will
-be automatically marked as *dead* by the load balancer and will not receive further traffic. The load balancer will
-check every 30 seconds if the container has recovered.
+If your application has only one container, the load balancer will always try to send the request to the container.
+The container will have a status of *pass-through*.
 
-If the container crashes, and **crash recovery** is enabled and it successfully restarts and/or replaces the container,
+If your application has two or more containers, and any of them does not respond to a request in time (less than 30 seconds),
+it will be automatically marked as *out of service* by the load balancer and will not receive further traffic for
+the following 30 seconds. After that, it will be marked as *in service* again.
+
+If a container crashes, and **crash recovery** is enabled and it successfully restarts and/or replaces the container,
 it will be added to the load balancer. If not enabled or the crash recovery system is unsuccessful, it will be left
 in stopped state and removed from the load balancer. See :ref:`crash-recovery-ref` for more information.
 
