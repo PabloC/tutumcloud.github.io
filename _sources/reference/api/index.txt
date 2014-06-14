@@ -78,7 +78,6 @@ List all applications
                     "autorestart": "ALWAYS",
                     "container_ports": [
                         {
-                            "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                             "inner_port": 80,
                             "outer_port": null,
                             "protocol": "tcp"
@@ -92,11 +91,11 @@ List all applications
                     "image_name": "tutum/hello-world:latest",
                     "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
                     "name": "my-web-app",
-                    "sequential_deployment": false,
                     "public_dns": "my-web-app-admin.dev.tutum.io",
                     "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "run_command": "/run.sh",
                     "running_num_containers": 2,
+                    "sequential_deployment": false,
                     "started_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
                     "state": "Running",
                     "stopped_datetime": null,
@@ -154,14 +153,12 @@ Get application details
             "autorestart": "ALWAYS",
             "container_envvars": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "key": "ENVIRONMENT",
                     "value": "dev"
                 }
             ],
             "container_ports": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "inner_port": 80,
                     "outer_port": null,
                     "protocol": "tcp"
@@ -194,12 +191,12 @@ Get application details
             "linked_from_application": [],
             "linked_to_application": [],
             "name": "my-web-app",
-            "sequential_deployment": false,
             "public_dns": "my-web-app-admin.dev.tutum.io",
             "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
             "roles": [],
             "run_command": "/run.sh",
             "running_num_containers": 2,
+            "sequential_deployment": false,
             "started_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
             "state": "Running",
             "stopped_datetime": null,
@@ -261,7 +258,6 @@ Create and launch a new application
             "container_envvars": [],
             "container_ports": [
                 {
-                    "application": "/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/",
                     "inner_port": 80,
                     "outer_port": null,
                     "protocol": "tcp"
@@ -282,7 +278,12 @@ Create and launch a new application
                 "MY_AWESOME_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-awesome-app",
             "sequential_deployment": false,
             "public_dns": "my-awesome-app-admin.dev.tutum.io",
@@ -308,7 +309,7 @@ Create and launch a new application
     :jsonparam string entrypoint: optional, the command prefix used to start the application containers, i.e. ``/usr/sbin/sshd`` (default: as defined in the image)
     :jsonparam array(object) container_ports: optional, an array of objects with port information to be exposed in the application containers, i.e. ``[{"protocol": "tcp", "inner_port": 80}]`` (default: as defined in the image)
     :jsonparam array(object) container_envvars: optional, an array of objects with environment variables to be set in the application containers on launch, i.e. ``[{"key": "DB_PASSWORD", "value": "mypass"}]`` (default: as defined in the image, plus any link- or role-generated variables)
-    :jsonparam array(object) linked_to_application: optional, an array of application resource URIs to link this application to, i.e. ``["/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/"]`` (default: empty array)
+    :jsonparam array(object) linked_to_application: optional, an array of application resource URIs to link this application to, including the link name, i.e. ``[{"to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/", "name": "db"}]`` (default: empty array)
     :jsonparam string autorestart: optional, whether the containers should be restarted if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autoreplace: optional, whether the containers should be replaced with a new one if they stop, i.e. ``ALWAYS`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
     :jsonparam string autodestroy: optional, whether the containers should be terminated if they stop, i.e. ``OFF`` (default: ``OFF``, possible values: ``OFF``, ``ON_FAILURE``, ``ALWAYS``)
@@ -356,66 +357,70 @@ Update an application
         Vary: Accept, Authorization, Cookie
 
         {
-          "target_num_containers" : 3,
-          "deployed_datetime" : "Sun, 6 Apr 2014 17:59:42 +0000",
-          "container_ports" : [
-            {
-              "outer_port" : null,
-              "inner_port" : 80,
-              "protocol" : "tcp",
-              "application" : "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
+            "target_num_containers": 3,
+            "deployed_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "container_ports": [
+                {
+                    "outer_port": null,
+                    "inner_port": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "current_num_containers": 3,
+            "run_command": "/run.sh",
+            "autodestroy": "OFF",
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
+            "container_size": "XS",
+            "started_datetime": "Sun, 6 Apr 2014 17:59:42 +0000",
+            "stopped_num_containers": 0,
+            "uuid": "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
+            "name": "my-web-app",
+            "sequential_deployment": false,
+            "autorestart": "ALWAYS",
+            "destroyed_datetime": null,
+            "state": "Scaling",
+            "roles": [],
+            "containers": [
+                "/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/",
+                "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/",
+                "/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/"
+            ],
+            "image_name": "tutum/hello-world:latest",
+            "image_tag": "/api/v1/image/tutum/hello-world/tag/latest/",
+            "running_num_containers": 2,
+            "resource_uri": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+            "stopped_datetime": null,
+            "unique_name": "my-web-app",
+            "linked_from_application": [],
+            "web_public_dns": "myapp.example.com",
+            "entrypoint": "",
+            "public_dns": "my-web-app-admin.dev.tutum.io",
+            "container_envvars": [
+                {
+                    "key": "ENVIRONMENT",
+                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                    "value": "dev"
+                }
+            ],
+            "autoreplace": "ALWAYS",
+            "link_variables": {
+                "MY_WEB_APP_2_PORT_80_TCP": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220",
+                "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
+                "MY_WEB_APP_2_PORT": "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220",
+                "MY_WEB_APP_1_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_1_PORT": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
+                "MY_WEB_APP_1_PORT_80_TCP_PORT": "49219",
+                "MY_WEB_APP_2_PORT_80_TCP_PORT": "49220",
+                "MY_WEB_APP_2_PORT_80_TCP_PROTO": "tcp",
+                "MY_WEB_APP_1_PORT_80_TCP": "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
+                "MY_WEB_APP_1_PORT_80_TCP_ADDR": "my-web-app-1-admin.alpha-dev.tutum.io",
+                "MY_WEB_APP_2_PORT_80_TCP_ADDR": "my-web-app-2-admin.alpha-dev.tutum.io"
             }
-          ],
-          "current_num_containers" : 3,
-          "run_command" : "/run.sh",
-          "autodestroy" : "OFF",
-          "linked_to_application" : [],
-          "container_size" : "XS",
-          "started_datetime" : "Sun, 6 Apr 2014 17:59:42 +0000",
-          "stopped_num_containers" : 0,
-          "uuid" : "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce",
-          "name" : "my-web-app",
-          "sequential_deployment": false,
-          "autorestart" : "ALWAYS",
-          "destroyed_datetime" : null,
-          "state" : "Scaling",
-          "roles" : [],
-          "containers" : [
-            "/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/",
-            "/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/",
-            "/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/"
-          ],
-          "image_name": "tutum/hello-world:latest",
-          "image_tag" : "/api/v1/image/tutum/hello-world/tag/latest/",
-          "running_num_containers" : 2,
-          "resource_uri" : "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
-          "stopped_datetime" : null,
-          "unique_name" : "my-web-app",
-          "linked_from_application" : [],
-          "web_public_dns" : "myapp.example.com",
-          "entrypoint" : "",
-          "public_dns" : "my-web-app-admin.dev.tutum.io",
-          "container_envvars" : [
-            {
-              "key" : "ENVIRONMENT",
-              "application" : "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
-              "value" : "dev"
-            }
-          ],
-          "autoreplace" : "ALWAYS",
-          "link_variables" : {
-            "MY_WEB_APP_2_PORT_80_TCP" : "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220",
-            "MY_WEB_APP_TUTUM_API_URL" : "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
-            "MY_WEB_APP_2_PORT" : "tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220",
-            "MY_WEB_APP_1_PORT_80_TCP_PROTO" : "tcp",
-            "MY_WEB_APP_1_PORT" : "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
-            "MY_WEB_APP_1_PORT_80_TCP_PORT" : "49219",
-            "MY_WEB_APP_2_PORT_80_TCP_PORT" : "49220",
-            "MY_WEB_APP_2_PORT_80_TCP_PROTO" : "tcp",
-            "MY_WEB_APP_1_PORT_80_TCP" : "tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219",
-            "MY_WEB_APP_1_PORT_80_TCP_ADDR" : "my-web-app-1-admin.alpha-dev.tutum.io",
-            "MY_WEB_APP_2_PORT_80_TCP_ADDR" : "my-web-app-2-admin.alpha-dev.tutum.io"
-          }
         }
 
     :query uuid: the UUID of the application
@@ -462,14 +467,12 @@ Start an application
             "autorestart": "ALWAYS",
             "container_envvars": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "key": "ENVIRONMENT",
                     "value": "dev"
                 }
             ],
             "container_ports": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "inner_port": 80,
                     "outer_port": null,
                     "protocol": "tcp"
@@ -491,7 +494,12 @@ Start an application
                 "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-web-app",
             "sequential_deployment": false,
             "public_dns": "my-web-app-admin.dev.tutum.io",
@@ -548,14 +556,12 @@ Stop an application
             "autorestart": "ALWAYS",
             "container_envvars": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "key": "ENVIRONMENT",
                     "value": "dev"
                 }
             ],
             "container_ports": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "inner_port": 80,
                     "outer_port": null,
                     "protocol": "tcp"
@@ -577,7 +583,12 @@ Stop an application
                 "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-web-app",
             "sequential_deployment": false,
             "public_dns": "my-web-app-admin.dev.tutum.io",
@@ -640,14 +651,12 @@ Redeploy an application
             "autorestart": "ALWAYS",
             "container_envvars": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "key": "ENVIRONMENT",
                     "value": "dev"
                 }
             ],
             "container_ports": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "inner_port": 80,
                     "outer_port": null,
                     "protocol": "tcp"
@@ -669,7 +678,12 @@ Redeploy an application
                 "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-web-app",
             "sequential_deployment": false,
             "public_dns": "my-web-app-admin.dev.tutum.io",
@@ -727,14 +741,12 @@ Terminate an application
             "autorestart": "ALWAYS",
             "container_envvars": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "key": "ENVIRONMENT",
                     "value": "dev"
                 }
             ],
             "container_ports": [
                 {
-                    "application": "/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/",
                     "inner_port": 80,
                     "outer_port": null,
                     "protocol": "tcp"
@@ -756,7 +768,12 @@ Terminate an application
                 "MY_WEB_APP_TUTUM_API_URL": "https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-web-app",
             "sequential_deployment": false,
             "public_dns": "my-web-app-admin.dev.tutum.io",
@@ -826,7 +843,6 @@ List all containers
                     "autorestart": "OFF",
                     "container_ports": [
                         {
-                            "container": "/api/v1/container/4a7c672c-4f55-4417-9300-c932eabe7f7e/",
                             "inner_port": 80,
                             "outer_port": 49221,
                             "protocol": "tcp"
@@ -857,7 +873,6 @@ List all containers
                     "autorestart": "OFF",
                     "container_ports": [
                         {
-                            "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                             "inner_port": 80,
                             "outer_port": 49222,
                             "protocol": "tcp"
@@ -931,34 +946,28 @@ Get container details
             "autorestart": "OFF",
             "container_envvars": [
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT",
                     "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP",
                     "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_ADDR",
                     "value": "my-awesome-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_PORT",
                     "value": "49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
             "container_ports": [
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "inner_port": 80,
                     "outer_port": 49222,
                     "protocol": "tcp"
@@ -980,7 +989,12 @@ Get container details
                 "MY_AWESOME_APP_2_PORT_80_TCP_PROTO": "tcp"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-awesome-app",
             "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
             "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
@@ -1033,34 +1047,28 @@ Start a container
             "autorestart": "OFF",
             "container_envvars": [
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT",
                     "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP",
                     "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_ADDR",
                     "value": "my-awesome-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_PORT",
                     "value": "49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
             "container_ports": [
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "inner_port": 80,
                     "outer_port": 49222,
                     "protocol": "tcp"
@@ -1082,7 +1090,12 @@ Start a container
                 "MY_AWESOME_APP_2_PORT_80_TCP_PROTO": "tcp"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-awesome-app",
             "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
             "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
@@ -1136,34 +1149,28 @@ Stop a container
             "autorestart": "OFF",
             "container_envvars": [
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT",
                     "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP",
                     "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_ADDR",
                     "value": "my-awesome-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_PORT",
                     "value": "49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
             "container_ports": [
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "inner_port": 80,
                     "outer_port": 49222,
                     "protocol": "tcp"
@@ -1185,7 +1192,12 @@ Stop a container
                 "MY_AWESOME_APP_2_PORT_80_TCP_PROTO": "tcp"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-awesome-app",
             "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
             "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
@@ -1277,34 +1289,28 @@ Terminate a container
             "autorestart": "OFF",
             "container_envvars": [
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT",
                     "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP",
                     "value": "tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_ADDR",
                     "value": "my-awesome-app-1-admin.alpha-dev.tutum.io"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_PORT",
                     "value": "49221"
                 },
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "key": "MY_AWESOME_APP_1_PORT_80_TCP_PROTO",
                     "value": "tcp"
                 }
             ],
             "container_ports": [
                 {
-                    "container": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",
                     "inner_port": 80,
                     "outer_port": 49222,
                     "protocol": "tcp"
@@ -1326,7 +1332,12 @@ Terminate a container
                 "MY_AWESOME_APP_2_PORT_80_TCP_PROTO": "tcp"
             },
             "linked_from_application": [],
-            "linked_to_application": [],
+            "linked_to_application": [
+                {
+                    "to_application": "/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/",
+                    "name": "db"
+                }
+            ],
             "name": "my-awesome-app",
             "public_dns": "my-awesome-app-2-admin.alpha-dev.tutum.io",
             "resource_uri": "/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/",

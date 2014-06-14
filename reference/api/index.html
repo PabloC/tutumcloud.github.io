@@ -220,7 +220,6 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
             <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
             <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
-                    <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
                     <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
                     <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
                     <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -234,11 +233,11 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
             <span class="nt">&quot;image_name&quot;</span><span class="p">:</span> <span class="s2">&quot;tutum/hello-world:latest&quot;</span><span class="p">,</span>
             <span class="nt">&quot;image_tag&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/tutum/hello-world/tag/latest/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-            <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
             <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
             <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;run_command&quot;</span><span class="p">:</span> <span class="s2">&quot;/run.sh&quot;</span><span class="p">,</span>
             <span class="nt">&quot;running_num_containers&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
             <span class="nt">&quot;started_datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 17:59:42 +0000&quot;</span><span class="p">,</span>
             <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Running&quot;</span><span class="p">,</span>
             <span class="nt">&quot;stopped_datetime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -310,14 +309,12 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dev&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -350,12 +347,12 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
     <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;run_command&quot;</span><span class="p">:</span> <span class="s2">&quot;/run.sh&quot;</span><span class="p">,</span>
     <span class="nt">&quot;running_num_containers&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;started_datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 17:59:42 +0000&quot;</span><span class="p">,</span>
     <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Running&quot;</span><span class="p">,</span>
     <span class="nt">&quot;stopped_datetime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -431,7 +428,6 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -452,7 +448,12 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
         <span class="nt">&quot;MY_AWESOME_APP_TUTUM_API_URL&quot;</span><span class="p">:</span> <span class="s2">&quot;https://app.tutum.co/api/v1/application/1f234d1d-dae5-46c1-9ee5-770575fe3e6f/&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
@@ -485,7 +486,7 @@ For this, log into Tutum, click on the menu on the upper right corner of the scr
 <li><strong>entrypoint</strong> (<em>string</em>) &#8211; optional, the command prefix used to start the application containers, i.e. <tt class="docutils literal"><span class="pre">/usr/sbin/sshd</span></tt> (default: as defined in the image)</li>
 <li><strong>container_ports</strong> (<em>array(object)</em>) &#8211; optional, an array of objects with port information to be exposed in the application containers, i.e. <tt class="docutils literal"><span class="pre">[{&quot;protocol&quot;:</span> <span class="pre">&quot;tcp&quot;,</span> <span class="pre">&quot;inner_port&quot;:</span> <span class="pre">80}]</span></tt> (default: as defined in the image)</li>
 <li><strong>container_envvars</strong> (<em>array(object)</em>) &#8211; optional, an array of objects with environment variables to be set in the application containers on launch, i.e. <tt class="docutils literal"><span class="pre">[{&quot;key&quot;:</span> <span class="pre">&quot;DB_PASSWORD&quot;,</span> <span class="pre">&quot;value&quot;:</span> <span class="pre">&quot;mypass&quot;}]</span></tt> (default: as defined in the image, plus any link- or role-generated variables)</li>
-<li><strong>linked_to_application</strong> (<em>array(object)</em>) &#8211; optional, an array of application resource URIs to link this application to, i.e. <tt class="docutils literal"><span class="pre">[&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;]</span></tt> (default: empty array)</li>
+<li><strong>linked_to_application</strong> (<em>array(object)</em>) &#8211; optional, an array of application resource URIs to link this application to, including the link name, i.e. <tt class="docutils literal"><span class="pre">[{&quot;to_application&quot;:</span> <span class="pre">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;,</span> <span class="pre">&quot;name&quot;:</span> <span class="pre">&quot;db&quot;}]</span></tt> (default: empty array)</li>
 <li><strong>autorestart</strong> (<em>string</em>) &#8211; optional, whether the containers should be restarted if they stop, i.e. <tt class="docutils literal"><span class="pre">ALWAYS</span></tt> (default: <tt class="docutils literal"><span class="pre">OFF</span></tt>, possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
 <li><strong>autoreplace</strong> (<em>string</em>) &#8211; optional, whether the containers should be replaced with a new one if they stop, i.e. <tt class="docutils literal"><span class="pre">ALWAYS</span></tt> (default: <tt class="docutils literal"><span class="pre">OFF</span></tt>, possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
 <li><strong>autodestroy</strong> (<em>string</em>) &#8211; optional, whether the containers should be terminated if they stop, i.e. <tt class="docutils literal"><span class="pre">OFF</span></tt> (default: <tt class="docutils literal"><span class="pre">OFF</span></tt>, possible values: <tt class="docutils literal"><span class="pre">OFF</span></tt>, <tt class="docutils literal"><span class="pre">ON_FAILURE</span></tt>, <tt class="docutils literal"><span class="pre">ALWAYS</span></tt>)</li>
@@ -540,66 +541,70 @@ Content-Type: application/json
 <span class="na">Vary</span><span class="o">:</span> <span class="l">Accept, Authorization, Cookie</span>
 
 <span class="p">{</span>
-  <span class="nt">&quot;target_num_containers&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-  <span class="nt">&quot;deployed_datetime&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 17:59:42 +0000&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;container_ports&quot;</span> <span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;outer_port&quot;</span> <span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nt">&quot;inner_port&quot;</span> <span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
-      <span class="nt">&quot;protocol&quot;</span> <span class="p">:</span> <span class="s2">&quot;tcp&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;application&quot;</span> <span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span>
+    <span class="nt">&quot;target_num_containers&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;deployed_datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 17:59:42 +0000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+            <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;current_num_containers&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;run_command&quot;</span><span class="p">:</span> <span class="s2">&quot;/run.sh&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;autodestroy&quot;</span><span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;container_size&quot;</span><span class="p">:</span> <span class="s2">&quot;XS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;started_datetime&quot;</span><span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 17:59:42 +0000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;stopped_num_containers&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;7eaf7fff-882c-4f3d-9a8f-a22317ac00ce&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;destroyed_datetime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Scaling&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;containers&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;image_name&quot;</span><span class="p">:</span> <span class="s2">&quot;tutum/hello-world:latest&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;image_tag&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/image/tutum/hello-world/tag/latest/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;running_num_containers&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;stopped_datetime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;unique_name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;web_public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;myapp.example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;entrypoint&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dev&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;autoreplace&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;link_variables&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;MY_WEB_APP_2_PORT_80_TCP&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_TUTUM_API_URL&quot;</span><span class="p">:</span> <span class="s2">&quot;https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_2_PORT&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_1_PORT_80_TCP_PROTO&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_1_PORT&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_1_PORT_80_TCP_PORT&quot;</span><span class="p">:</span> <span class="s2">&quot;49219&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_2_PORT_80_TCP_PORT&quot;</span><span class="p">:</span> <span class="s2">&quot;49220&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_2_PORT_80_TCP_PROTO&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_1_PORT_80_TCP&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_1_PORT_80_TCP_ADDR&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-1-admin.alpha-dev.tutum.io&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;MY_WEB_APP_2_PORT_80_TCP_ADDR&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-2-admin.alpha-dev.tutum.io&quot;</span>
     <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="nt">&quot;current_num_containers&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-  <span class="nt">&quot;run_command&quot;</span> <span class="p">:</span> <span class="s2">&quot;/run.sh&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;autodestroy&quot;</span> <span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;linked_to_application&quot;</span> <span class="p">:</span> <span class="p">[],</span>
-  <span class="nt">&quot;container_size&quot;</span> <span class="p">:</span> <span class="s2">&quot;XS&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;started_datetime&quot;</span> <span class="p">:</span> <span class="s2">&quot;Sun, 6 Apr 2014 17:59:42 +0000&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;stopped_num_containers&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="nt">&quot;uuid&quot;</span> <span class="p">:</span> <span class="s2">&quot;7eaf7fff-882c-4f3d-9a8f-a22317ac00ce&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="nt">&quot;autorestart&quot;</span> <span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;destroyed_datetime&quot;</span> <span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="nt">&quot;state&quot;</span> <span class="p">:</span> <span class="s2">&quot;Scaling&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;roles&quot;</span> <span class="p">:</span> <span class="p">[],</span>
-  <span class="nt">&quot;containers&quot;</span> <span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;/api/v1/container/285b1f78-acda-4360-a1c4-1282c5e2a287/&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;/api/v1/container/fbb94d30-9b38-46d2-b7b2-03d8dc05e9ee/&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;/api/v1/container/47a0411a-9f9d-4824-bbcd-f0761ac51c89/&quot;</span>
-  <span class="p">],</span>
-  <span class="nt">&quot;image_name&quot;</span><span class="p">:</span> <span class="s2">&quot;tutum/hello-world:latest&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;image_tag&quot;</span> <span class="p">:</span> <span class="s2">&quot;/api/v1/image/tutum/hello-world/tag/latest/&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;running_num_containers&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="nt">&quot;resource_uri&quot;</span> <span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;stopped_datetime&quot;</span> <span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="nt">&quot;unique_name&quot;</span> <span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;linked_from_application&quot;</span> <span class="p">:</span> <span class="p">[],</span>
-  <span class="nt">&quot;web_public_dns&quot;</span> <span class="p">:</span> <span class="s2">&quot;myapp.example.com&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;entrypoint&quot;</span> <span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;public_dns&quot;</span> <span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;container_envvars&quot;</span> <span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;application&quot;</span> <span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;value&quot;</span> <span class="p">:</span> <span class="s2">&quot;dev&quot;</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="nt">&quot;autoreplace&quot;</span> <span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;link_variables&quot;</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;MY_WEB_APP_2_PORT_80_TCP&quot;</span> <span class="p">:</span> <span class="s2">&quot;tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_TUTUM_API_URL&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_2_PORT&quot;</span> <span class="p">:</span> <span class="s2">&quot;tcp://my-web-app-2-admin.alpha-dev.tutum.io:49220&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_1_PORT_80_TCP_PROTO&quot;</span> <span class="p">:</span> <span class="s2">&quot;tcp&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_1_PORT&quot;</span> <span class="p">:</span> <span class="s2">&quot;tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_1_PORT_80_TCP_PORT&quot;</span> <span class="p">:</span> <span class="s2">&quot;49219&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_2_PORT_80_TCP_PORT&quot;</span> <span class="p">:</span> <span class="s2">&quot;49220&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_2_PORT_80_TCP_PROTO&quot;</span> <span class="p">:</span> <span class="s2">&quot;tcp&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_1_PORT_80_TCP&quot;</span> <span class="p">:</span> <span class="s2">&quot;tcp://my-web-app-1-admin.alpha-dev.tutum.io:49219&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_1_PORT_80_TCP_ADDR&quot;</span> <span class="p">:</span> <span class="s2">&quot;my-web-app-1-admin.alpha-dev.tutum.io&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;MY_WEB_APP_2_PORT_80_TCP_ADDR&quot;</span> <span class="p">:</span> <span class="s2">&quot;my-web-app-2-admin.alpha-dev.tutum.io&quot;</span>
-  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -668,14 +673,12 @@ Content-Type: application/json
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dev&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -697,7 +700,12 @@ Content-Type: application/json
         <span class="nt">&quot;MY_WEB_APP_TUTUM_API_URL&quot;</span><span class="p">:</span> <span class="s2">&quot;https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
@@ -770,14 +778,12 @@ Content-Type: application/json
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dev&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -799,7 +805,12 @@ Content-Type: application/json
         <span class="nt">&quot;MY_WEB_APP_TUTUM_API_URL&quot;</span><span class="p">:</span> <span class="s2">&quot;https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
@@ -876,14 +887,12 @@ Content-Type: application/json
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dev&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -905,7 +914,12 @@ Content-Type: application/json
         <span class="nt">&quot;MY_WEB_APP_TUTUM_API_URL&quot;</span><span class="p">:</span> <span class="s2">&quot;https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
@@ -984,14 +998,12 @@ Content-Type: application/json
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;ALWAYS&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dev&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -1013,7 +1025,12 @@ Content-Type: application/json
         <span class="nt">&quot;MY_WEB_APP_TUTUM_API_URL&quot;</span><span class="p">:</span> <span class="s2">&quot;https://app.tutum.co/api/v1/application/7eaf7fff-882c-4f3d-9a8f-a22317ac00ce/&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;sequential_deployment&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-web-app-admin.dev.tutum.io&quot;</span><span class="p">,</span>
@@ -1099,7 +1116,6 @@ Content-Type: application/json
             <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
             <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
-                    <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/4a7c672c-4f55-4417-9300-c932eabe7f7e/&quot;</span><span class="p">,</span>
                     <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
                     <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="mi">49221</span><span class="p">,</span>
                     <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -1130,7 +1146,6 @@ Content-Type: application/json
             <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
             <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
-                    <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
                     <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
                     <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="mi">49222</span><span class="p">,</span>
                     <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -1220,34 +1235,28 @@ Content-Type: application/json
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_ADDR&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-1-admin.alpha-dev.tutum.io&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_PORT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_PROTO&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="mi">49222</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -1269,7 +1278,12 @@ Content-Type: application/json
         <span class="nt">&quot;MY_AWESOME_APP_2_PORT_80_TCP_PROTO&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-2-admin.alpha-dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
@@ -1338,34 +1352,28 @@ Content-Type: application/json
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_ADDR&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-1-admin.alpha-dev.tutum.io&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_PORT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_PROTO&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="mi">49222</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -1387,7 +1395,12 @@ Content-Type: application/json
         <span class="nt">&quot;MY_AWESOME_APP_2_PORT_80_TCP_PROTO&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-2-admin.alpha-dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
@@ -1457,34 +1470,28 @@ Content-Type: application/json
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_ADDR&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-1-admin.alpha-dev.tutum.io&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_PORT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_PROTO&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="mi">49222</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -1506,7 +1513,12 @@ Content-Type: application/json
         <span class="nt">&quot;MY_AWESOME_APP_2_PORT_80_TCP_PROTO&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-2-admin.alpha-dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
@@ -1630,34 +1642,28 @@ All the data stored in the container will be permanently deleted. The parent app
     <span class="nt">&quot;autorestart&quot;</span><span class="p">:</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
     <span class="nt">&quot;container_envvars&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp://my-awesome-app-1-admin.alpha-dev.tutum.io:49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_ADDR&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-1-admin.alpha-dev.tutum.io&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_PORT&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;49221&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MY_AWESOME_APP_1_PORT_80_TCP_PROTO&quot;</span><span class="p">,</span>
             <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="nt">&quot;container_ports&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="nt">&quot;container&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>
             <span class="nt">&quot;inner_port&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
             <span class="nt">&quot;outer_port&quot;</span><span class="p">:</span> <span class="mi">49222</span><span class="p">,</span>
             <span class="nt">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
@@ -1679,7 +1685,12 @@ All the data stored in the container will be permanently deleted. The parent app
         <span class="nt">&quot;MY_AWESOME_APP_2_PORT_80_TCP_PROTO&quot;</span><span class="p">:</span> <span class="s2">&quot;tcp&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;linked_from_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;linked_to_application&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;to_application&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/application/80ff1635-2d56-478d-a97f-9b59c720e513/&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;db&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app&quot;</span><span class="p">,</span>
     <span class="nt">&quot;public_dns&quot;</span><span class="p">:</span> <span class="s2">&quot;my-awesome-app-2-admin.alpha-dev.tutum.io&quot;</span><span class="p">,</span>
     <span class="nt">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v1/container/f5d64083-7698-4aec-b5dc-86a48be0f565/&quot;</span><span class="p">,</span>

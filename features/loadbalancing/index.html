@@ -159,10 +159,12 @@ you scale down, the destroyed containers will be removed.</p>
 </div>
 <div class="section" id="managing-container-failures">
 <h2>Managing container failures<a class="headerlink" href="#managing-container-failures" title="Permalink to this headline">¶</a></h2>
-<p>If any of the containers of your web application does not respond to a request in time (less than 30 seconds), it will
-be automatically marked as <em>dead</em> by the load balancer and will not receive further traffic. The load balancer will
-check every 30 seconds if the container has recovered.</p>
-<p>If the container crashes, and <strong>crash recovery</strong> is enabled and it successfully restarts and/or replaces the container,
+<p>If your application has only one container, the load balancer will always try to send the request to the container.
+The container will have a status of <em>pass-through</em>.</p>
+<p>If your application has two or more containers, and any of them does not respond to a request in time (less than 30 seconds),
+it will be automatically marked as <em>out of service</em> by the load balancer and will not receive further traffic for
+the following 30 seconds. After that, it will be marked as <em>in service</em> again.</p>
+<p>If a container crashes, and <strong>crash recovery</strong> is enabled and it successfully restarts and/or replaces the container,
 it will be added to the load balancer. If not enabled or the crash recovery system is unsuccessful, it will be left
 in stopped state and removed from the load balancer. See <a class="reference internal" href="../crashrecovery/#crash-recovery-ref"><em>Crash Recovery</em></a> for more information.</p>
 </div>

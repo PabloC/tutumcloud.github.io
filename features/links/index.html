@@ -140,10 +140,11 @@ mixpanel.init("159ca175991708692270a92c8a5f39f9");mixpanel.track("Documentation 
 <p>Linking applications exposes a pre-defined set of environment variables with information (i.e. hostname, port, etc.)
 from the <em>linked</em> application to the <em>linking</em> application.</p>
 <p>Tutum links your application to all of the linked application&#8217;s containers. To do this, Tutum prefixes the environment
-variables with the applications and container&#8217;s names.</p>
+variables with a name you can specify, which defaults to the applications and container&#8217;s names.</p>
 <p>For example, let&#8217;s say that you are running an application (<tt class="docutils literal"><span class="pre">my-web-app</span></tt>) with 2 containers (<tt class="docutils literal"><span class="pre">my-web-app-1</span></tt> and <tt class="docutils literal"><span class="pre">my-web-app-2</span></tt>).
 You now want to launch a proxy that will balance HTTP traffic to each of the containers in your <tt class="docutils literal"><span class="pre">my-web-app</span></tt> application.
-To launch the proxy, you would first select the appropriate image, then link it to your &#8220;web&#8221; application.
+To launch the proxy, you would first select the appropriate image, then link it to your &#8220;web&#8221; application. By default,
+the link name will be the linked application name (<tt class="docutils literal"><span class="pre">my-web-app</span></tt>), but you can also change this before deployment.
 These are the environment variables that would be passed to your proxy:</p>
 <table border="1" class="table table-bordered table-striped docutils">
 <colgroup>
@@ -196,8 +197,31 @@ between the two containers of <tt class="docutils literal"><span class="pre">my-
 <p>You will notice that the last environment variable, <tt class="docutils literal"><span class="pre">MY_WEB_APP_TUTUM_API_URL</span></tt>, is not defined in the Docker specification.
 This is a special Tutum variable passed on every link that contains the Tutum API resource URI of the linked application.
 This can be used, in conjunction with API roles (see below), to check for updates in the linked application.</p>
+<div class="section" id="environment-variable-propagation">
+<h2>Environment variable propagation<a class="headerlink" href="#environment-variable-propagation" title="Permalink to this headline">¶</a></h2>
+<p>Apart from the linked application connection details shown above, Tutum will also pass the environment variables that were
+set in the linked application. This is useful, for example, to automatically pass connection authentication details.</p>
+<p>If we launch an application <tt class="docutils literal"><span class="pre">my-db</span></tt> using the <tt class="docutils literal"><span class="pre">tutum/mysql</span></tt> image, with the following environment variable:</p>
+<table border="1" class="table table-bordered table-striped docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MYSQL_PASS</td>
+<td>SECRETPASSWORD</td>
+</tr>
+</tbody>
+</table>
+<p>And then, we launch another application <tt class="docutils literal"><span class="pre">my-wordpress</span></tt> using the <tt class="docutils literal"><span class="pre">tutum/wordpress-stackable</span></tt> image linked to
+<tt class="docutils literal"><span class="pre">my-db</span></tt> using a link name of <tt class="docutils literal"><span class="pre">DB</span></tt>, the following environment variables will be available in this application:</p>
 <div class="section" id="using-tutum-api-roles">
-<h2>Using Tutum API roles<a class="headerlink" href="#using-tutum-api-roles" title="Permalink to this headline">¶</a></h2>
+<h3>Using Tutum API roles<a class="headerlink" href="#using-tutum-api-roles" title="Permalink to this headline">¶</a></h3>
 <p>The above example is a very simple one. If <tt class="docutils literal"><span class="pre">my-web-app</span></tt> scales down, the proxy could detect this and remove the terminated container
 from its member list. However, if <tt class="docutils literal"><span class="pre">my-web-app</span></tt> scales up, these environment variables alone will not be of any help to
 detect the change.</p>
@@ -216,7 +240,6 @@ environment variable <tt class="docutils literal"><span class="pre">MY_WEB_APP_T
 <span class="o">{</span>
     <span class="s2">&quot;container_ports&quot;</span>: <span class="o">[</span>
         <span class="o">{</span>
-            <span class="s2">&quot;application&quot;</span>: <span class="s2">&quot;/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/&quot;</span>,
             <span class="s2">&quot;inner_port&quot;</span>: 80,
             <span class="s2">&quot;outer_port&quot;</span>: null,
             <span class="s2">&quot;protocol&quot;</span>: <span class="s2">&quot;tcp&quot;</span>
@@ -234,6 +257,7 @@ environment variable <tt class="docutils literal"><span class="pre">MY_WEB_APP_T
 </div>
 <p>Using this information (for example, by reading the <tt class="docutils literal"><span class="pre">containers</span></tt> attribute of the JSON response), the proxy can detect any changes
 on the linked application and add and remove members as the application scales up or down.</p>
+</div>
 </div>
 </div>
 
