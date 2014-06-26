@@ -71,7 +71,7 @@ And then, we launch another application ``my-wordpress`` using the ``tutum/wordp
     :class: table table-bordered table-striped
 
     =============================== =============================================================================
-    Name                           Value
+    Name                            Value
     =============================== =============================================================================
     MY_MYSQL_1_PORT                 tcp://my-mysql-1-user.beta.tutum.io:49330
     MY_MYSQL_1_PORT_3306_TCP        tcp://my-mysql-1-user.beta.tutum.io:49330
