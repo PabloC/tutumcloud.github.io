@@ -220,6 +220,40 @@ set in the linked application. This is useful, for example, to automatically pas
 </table>
 <p>And then, we launch another application <tt class="docutils literal"><span class="pre">my-wordpress</span></tt> using the <tt class="docutils literal"><span class="pre">tutum/wordpress-stackable</span></tt> image linked to
 <tt class="docutils literal"><span class="pre">my-db</span></tt> using a link name of <tt class="docutils literal"><span class="pre">DB</span></tt>, the following environment variables will be available in this application:</p>
+<table border="1" class="table table-bordered table-striped docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>MY_MYSQL_1_PORT</td>
+<td><a class="reference external" href="tcp://my-mysql-1-user.beta.tutum.io:49330">tcp://my-mysql-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-odd"><td>MY_MYSQL_1_PORT_3306_TCP</td>
+<td><a class="reference external" href="tcp://my-mysql-1-user.beta.tutum.io:49330">tcp://my-mysql-1-user.beta.tutum.io:49330</a></td>
+</tr>
+<tr class="row-even"><td>MY_MYSQL_1_PORT_3306_TCP_ADDR</td>
+<td>my-mysql-1-user.beta.tutum.io</td>
+</tr>
+<tr class="row-odd"><td>MY_MYSQL_1_PORT_3306_TCP_PORT</td>
+<td>49330</td>
+</tr>
+<tr class="row-even"><td>MY_MYSQL_1_PORT_3306_TCP_PROTO</td>
+<td>tcp</td>
+</tr>
+<tr class="row-odd"><td>MY_MYSQL_1_ENV_MYSQL_PASS</td>
+<td>SECRETPASSWORD</td>
+</tr>
+<tr class="row-even"><td>MY_MYSQL_TUTUM_API_URL</td>
+<td><a class="reference external" href="https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/">https://app.tutum.co/api/v1/application/6fe5029e-c125-4088-9b9a-4e74da20ac58/</a></td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="using-tutum-api-roles">
 <h3>Using Tutum API roles<a class="headerlink" href="#using-tutum-api-roles" title="Permalink to this headline">¶</a></h3>
 <p>The above example is a very simple one. If <tt class="docutils literal"><span class="pre">my-web-app</span></tt> scales down, the proxy could detect this and remove the terminated container
